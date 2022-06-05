@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
     <div class="media1">
@@ -29,7 +30,8 @@
       html {
         font-size:50px;
       }
-      @media only screen and (max-width: 599px) and (min-width: 480px) {
+      @media only screen and (max-width:767px) {
+        /*모바일*/
       .media2 {
           display:none;
     }
@@ -37,7 +39,8 @@
         display:none;
   }
       }
-      @media only screen and (max-width: 767px) and (min-width: 600px) {
+      @media only screen and (min-width:768px) and (max-width: 1023px) {
+        /*태블릿*/
         .media1 {
             display:none;
       }
@@ -45,7 +48,8 @@
           display:none;
     }
       }
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width:1024px) {
+        /*노트북*/
         .media1 {
             display:none;
       }
