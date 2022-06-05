@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>유리창</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div class="grid2">
+      <div class="back">
+      </div>
+      <div class="">
+      </div>
+      <div class="">
+        <div class="grid1">
+          <div class="h1">
+            유리창1
+          </div>
+          <div class="">
+            <br>정지용
+          </div>
+        </div>
+        <br><br>
+        <span class="tooltip">
+        유리(琉璃)<span class="tooltip-text">
+        이중적 매개체</span></span>에
+        <span class="tooltip" id="sp1">
+        차고 슬픈 것<span class="tooltip-text">
+        대위법(설명참조)</span></span>이 어른거린다.
+        <br><br>열없이 붙어 서서 입김을 흐리우니
+        <br><br>길들은 양 언 날개를 파닥거린다.
+        <br><br><span class="tooltip">
+        지우고 보고 지우고 보아도<span class="tooltip-text">
+        안타까움, 간절함</span></span>
+        <br><br><span class="tooltip">
+        새까만 밤이 밀려 나가고 밀려와 부딪치고,<span class="tooltip-text">
+        허탈감, 상실감</span></span>
+        <br><br>물 먹은 별이 반짝, 보석(寶石)처럼 박힌다.
+        <br><br><span class="tooltip">
+        밤에 홀로 유리를 닦는 것<span class="tooltip-text">
+        죽은 아이에 대한<br>그리움으로 인한 행동</span></span>은
+        <br><br><span class="tooltip" id="sp1">
+        외로운 황홀한 심사<span class="tooltip-text">
+        대위법, 모순형용, 역설법</span></span>이어니,
+        <br><br><span class="tooltip">
+        고운 폐혈관(肺血管)이 찢어진 채로<span class="tooltip-text">
+        죽음의 원인</span></span>
+        <br><br><span class="tooltip" id="sp1">
+        아아,<span class="tooltip-text">
+        탄식, 감정의 집약적 제시<br>10구체 향가의 낙구 전통 계승</span></span> 늬는 산(山)새처럼 날아갔구나!
+        <br><br><br><hr><br>1 ~ 3행: 유리창에 어린 영상
+        <br>4 ~ 6행: 밤의 창 밖의 영상
+        <br>7 ~ 8행: 유리를 닦는 화자의 심정
+        <br>9 ~ 10행: 아이의 죽음을 인식한 데서 오는 탄식
+        <br><br>특징:애상적, 감각적, 회화적<br>
+        차분한 어조, 시각적 이미지, 대위법과 역설적 표현<br><br>
+        주제: 자식을 잃은 슬픔<br><br><hr>
+        <br><span class="fb">대위법이란?</span><br><br>감정의 대위법:서로 상반된 감정이 나열된 것
+        <br>예시 : 차고(이성적,슬픔 억누름) + 슬픈(죽은 자식,감정의 복받침)<br><br><hr><br><span class="fb">사별(死別)을 주제로 한 시</span>
+        <br><br>허난설헌의『곡자』, 김광균의 『은수저』는 자식과의 사별
+        <br><br>월명사의 『제망매가』, 송수권의 『산문에 기대어』는 형제와의 사별
+        <br><br>이용악의 『풀벌레 소리 가득 차 있었다』는 부모와의 사별
+      </div>
+      <div class="">
+      </div>
+      <div class="back">
+      </div>
+    </div>
+
+    <style>
+      .grid2 {
+        display:grid;
+        grid-template-columns: 400px 20px 1fr 20px 400px;
+      }
+      .back {
+        background:#D8FFFB;
+      }
+      .grid1 {
+          display:grid;
+          grid-template-columns: 150px 1fr;
+          margin-top:20px;
+        }
+        .h1 {
+          font-size:35px;
+        }
+        @font-face {
+          font-family: 'font1';
+          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/GothicA1-Light.woff2') format('woff2');
+          font-weight: 300;
+          font-style: normal;
+        }
+        html {
+          font-family: 'font1';
+        }
+        .tooltip {
+          display: inline-block;
+          font-weight: bold;
+          text-decoration: underline red;
+
+        }
+        .tooltip-text {
+        display: none;
+        position: absolute;
+        max-width: 400px;
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 0.8em;
+        color: black;
+        background: #FFFEF4;
+      }
+      .tooltip:hover .tooltip-text {
+        display: block;
+      }
+      #sp1 {
+        text-decoration: underline blue;
+      }
+      .fb {
+        font-size:21px;
+      }
+      @media(max-width:767px) {
+        .grid2 {
+            display:grid;
+            grid-template-columns: 0fr 0px 15fr 0px 0fr;
+      }
+        html {
+          font-size :20px;
+        }
+        .h1 {
+          font-size:50px;
+        }
+        .grid1 {
+            display:grid;
+            grid-template-columns: 180px 1fr;
+            margin-top:20px;
+      }
+      .fb {
+        font-size:40px;
+      }
+      }
+      @media(min-width:768px) and (max-width:1023px) {
+        .grid2 {
+            display:grid;
+            grid-template-columns: 200px 20px 1fr 20px 200px;
+      }
+      }
+    </style>
+  </body>
+</html>
