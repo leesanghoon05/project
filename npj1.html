@@ -408,8 +408,8 @@
         <br>
         <p id="name">수능에 나온 지문들의 제목과 년도와 작가를 정리한 사이트입니다.<br>틀리거나 누락된 내용이 있으면 3학년 안성현 학생에게 문의하세요.<br>2023 수능=2022년에 시행</p>
       </div>
-      <div class="df">
-        <h1>작가로 검색</h1>
+      <div class="dff">
+        <h1 class="mq">작가로 검색</h1>
         <select id="ret">
           <option value="a1">기형도</option>
           <option value="a2">강은교</option>
@@ -632,8 +632,8 @@
         <br>
         <p id="namet">환영합니다!</p>
       </div>
-      <div class="">
-        <h1>시험년도로 검색</h1>
+      <div class="dfff">
+        <h1 class="mq">시험년도로 검색</h1>
         <select id="bat">
           <option value="a1">2023 수능</option>
           <option value="a2">2023 9모</option>
@@ -2067,15 +2067,25 @@ function codett() {
 }
 </script>
 <style media="screen">
-  .grid {
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-}
-  h1 {
-    font-size: 35px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+  @media(max-width:900px) {
+    html{
+      text-align:center;
+    }
+    .mq {
+      margin-top: 300px;
+    }
   }
+  @media(min-width:900px) {
+    .grid {
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+  }
+    h1 {
+      font-size: 35px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+}
 </style>
   </body>
 </html>
