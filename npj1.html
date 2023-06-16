@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+    <style media="screen">
+      #epic {
+        width:200px;
+      }
+      #ret {
+        width:200px;
+      }
+      #bat {
+        width:200px;
+      }
+    </style>
+    <div class="grid">
+      <div class="df">
+        <h1>제목으로 검색</h1>
+        <select id="epic">
+          <option value="a1">IYEU도</option>
+          <option value="a2">가객</option>
+          <option value="a3">가난한 사랑 노래</option>
+          <option value="a4">가시리</option>
+          <option value="a5">가정</option>
+          <option value="a6">장마</option>
+          <option value="a7">강 건너간 노래</option>
+          <option value="a8">강설</option>
+          <option value="a9">강우</option>
+          <option value="a10">강촌</option>
+          <option value="a11">갯마을</option>
+          <option value="a12">거문고</option>
+          <option value="a13">거산호 2</option>
+          <option value="a14">게</option>
+          <option value="a15">겨울- 나무로부터 봄- 나무에로</option>
+          <option value="a16">견회요</option>
+          <option value="a17">결빙의 아버지</option>
+          <option value="a18">결혼</option>
+          <option value="a19">겸재의 빛</option>
+          <option value="a20">계량의 시조</option>
+          <option value="a21">고고</option>
+          <option value="a22">고공가</option>
+          <option value="a23">고산구곡가</option>
+          <option value="a24">고풍 의상</option>
+          <option value="a25">고향</option>
+          <option value="a26">고향 앞에서</option>
+          <option value="a27">고향길</option>
+          <option value="a28">공동 경비 구역 JSA</option>
+          <option value="a29">관동별곡</option>
+          <option value="a30">관촌수필</option>
+          <option value="a31">광장</option>
+          <option value="a32">교목</option>
+          <option value="a33">구두 한 켤레의 시</option>
+          <option value="a34">구름의 파수병</option>
+          <option value="a35">구운몽</option>
+          <option value="a36">권태</option>
+          <option value="a37">귀촉도</option>
+          <option value="a38">규원가</option>
+          <option value="a39">그 나무</option>
+          <option value="a40">그 복숭아나무 곁으로</option>
+          <option value="a41">그 시절 우리들의 집</option>
+          <option value="a42">그리움</option>
+          <option value="a43">그의 행복을 기도드리는</option>
+          <option value="a44">금방울전</option>
+          <option value="a45">금시조</option>
+          <option value="a46">길</option>
+          <option value="a47">길의역사, 길의사상</option>
+          <option value="a48">김 약국의 딸들</option>
+          <option value="a49">김원전</option>
+          <option value="a50">꺼삐딴 리</option>
+          <option value="a51">꽃</option>
+          <option value="a52">꽃덤불</option>
+          <option value="a53">꽃밭의 독백-사소 단장</option>
+          <option value="a54">나그네</option>
+          <option value="a55">나룻배 이야기</option>
+          <option value="a56">나룻배와 행인</option>
+          <option value="a57">나목</option>
+          <option value="a58">나무</option>
+          <option value="a59">나무를 위하여</option>
+          <option value="a60">나뭇잎 하나</option>
+          <option value="a61">나상</option>
+          <option value="a62">나의 집</option>
+          <option value="a63">낙화</option>
+          <option value="a64">난장이가 쏘아 올린 작은 공</option>
+          <option value="a65">날개</option>
+          <option value="a66">낡은 집</option>
+          <option value="a67">내 마음을 아실 이</option>
+          <option value="a68">내가 만난 이중섭</option>
+          <option value="a69">너를 기다리는 동안</option>
+          <option value="a70">노래와 이야기</option>
+          <option value="a71">농가</option>
+          <option value="a72">농가월령가</option>
+          <option value="a73">누항사</option>
+          <option value="a74">눈</option>
+          <option value="a75">눈이 오면</option>
+          <option value="a76">느낌, 극락같은</option>
+          <option value="a77">님의 침묵</option>
+          <option value="a78">다정가</option>
+          <option value="a79">달</option>
+          <option value="a80">담초(談艸)</option>
+          <option value="a81">대설주의보</option>
+          <option value="a82">대장간의 유혹</option>
+          <option value="a83">대장금</option>
+          <option value="a84">덴동어미화전가</option>
+          <option value="a85">도산십이곡</option>
+          <option value="a86">도산육곡 발</option>
+          <option value="a87">독을 차고</option>
+          <option value="a88">독자왕유희유오영</option>
+          <option value="a89">돌다리</option>
+          <option value="a90">동동</option>
+          <option value="a91">동명왕편 서</option>
+          <option value="a92">동백꽃</option>
+          <option value="a93">동승</option>
+          <option value="a94">동원화수기</option>
+          <option value="a95">둥둥 낙랑둥</option>
+          <option value="a96">들길에 서서</option>
+          <option value="a97">딸깍발이</option>
+          <option value="a98">또 다른 고향</option>
+          <option value="a99">마음의 고향</option>
+          <option value="a100">마음의 태양</option>
+          <option value="a101">만무방</option>
+          <option value="a102">만복사저포기</option>
+          <option value="a103">만분가</option>
+          <option value="a104">만선</option>
+          <option value="a105">만세전</option>
+          <option value="a106">만언사</option>
+          <option value="a107">만흥</option>
+          <option value="a108">매우 잘생긴 우산 하나</option>
+          <option value="a109">매직펜과 붓</option>
+          <option value="a110">매화사</option>
+          <option value="a111">멋 설</option>
+          <option value="a112">메밀꽃 필 무렵</option>
+          <option value="a113">강호사시가</option>
+          <option value="a114">면앙정가</option>
+          <option value="a115">멸치</option>
+          <option value="a116">모래톱 이야기</option>
+          <option value="a117">모반</option>
+          <option value="a118">못 위의 잠</option>
+          <option value="a119">묘비명</option>
+          <option value="a120">무량수전 배흘림기둥에 기대 서서</option>
+          <option value="a121">무사와 악사</option>
+          <option value="a122">무영탑</option>
+          <option value="a123">무진기행</option>
+          <option value="a124">미스터 방</option>
+          <option value="a125">민옹전</option>
+          <option value="a126">바다와 나비</option>
+          <option value="a127">바람이 불어</option>
+          <option value="a128">바위</option>
+          <option value="a129">박씨전</option>
+          <option value="a130">박태보전</option>
+          <option value="a131">박흥보전</option>
+          <option value="a132">발열</option>
+          <option value="a133">배</option>
+          <option value="a134">배비장전</option>
+          <option value="a135">백두산 등척</option>
+          <option value="a136">범희문회서도원림</option>
+          <option value="a137">별 헤는 밤</option>
+          <option value="a138">별-금강산시 3</option>
+          <option value="a139">병산육곡</option>
+          <option value="a140">병신과 머저리</option>
+          <option value="a141">보리</option>
+          <option value="a142">복덕방</option>
+          <option value="a143">봄·봄</option>
+          <option value="a144">봉산탈춤</option>
+          <option value="a145">북어</option>
+          <option value="a146">북찬가</option>
+          <option value="a147">북학의</option>
+          <option value="a148">불국사 기행</option>
+          <option value="a149">불모지</option>
+          <option value="a150">비 오는 날</option>
+          <option value="a151">비가</option>
+          <option value="a152">사랑</option>
+          <option value="a153">사령</option>
+          <option value="a154">사막을 건너는 법</option>
+          <option value="a155">사미인곡</option>
+          <option value="a156">사변록</option>
+          <option value="a157">사설시조</option>
+          <option value="a158">사시가</option>
+          <option value="a159">사씨남정기</option>
+          <option value="a160">사향</option>
+          <option value="a161">산</option>
+          <option value="a162">산 너머 남촌에는</option>
+          <option value="a163">산상의 노래</option>
+          <option value="a164">산허구리</option>
+          <option value="a165">살아 있는 것은 흔들리면서</option>
+          <option value="a166">살아 있는 이중생 각하</option>
+          <option value="a167">삼대</option>
+          <option value="a168">삼수갑산</option>
+          <option value="a169">상사곡</option>
+          <option value="a170">상춘곡</option>
+          <option value="a171">상한 영혼을 위하여</option>
+          <option value="a172">새</option>
+          <option value="a173">생명의 서</option>
+          <option value="a174">샤갈의 마을에 내리는 눈</option>
+          <option value="a175">서경별곡</option>
+          <option value="a176">서동지전</option>
+          <option value="a177">서시</option>
+          <option value="a178">서해</option>
+          <option value="a179">석문</option>
+          <option value="a180">선제리 아낙네들</option>
+          <option value="a181">설일</option>
+          <option value="a182">성묘</option>
+          <option value="a183">성산별곡</option>
+          <option value="a184">성탄제</option>
+          <option value="a185">소</option>
+          <option value="a186">소년에게</option>
+          <option value="a187">소대성전</option>
+          <option value="a188">소설가 구보 씨의 일일</option>
+          <option value="a189">소유정가</option>
+          <option value="a190">소현성록</option>
+          <option value="a191">속미인곡</option>
+          <option value="a192">송인</option>
+          <option value="a193">수궁가</option>
+          <option value="a194">수정가</option>
+          <option value="a195">수철리</option>
+          <option value="a196">숙영낭자전</option>
+          <option value="a197">숙향전</option>
+          <option value="a198">승무</option>
+          <option value="a199">시장과 전장</option>
+          <option value="a200">시조</option>
+          <option value="a201">시집살이 노래</option>
+          <option value="a202">신록 예찬</option>
+          <option value="a203">신열</option>
+          <option value="a204">신흠</option>
+          <option value="a205">심생전</option>
+          <option value="a206">심청전</option>
+          <option value="a207">심춘순례</option>
+          <option value="a208">쓰고 싶고 읽고 싶은 글</option>
+          <option value="a209">쓰러지는 빛</option>
+          <option value="a210">아직 촛불을 켤 때가 아닙니다</option>
+          <option value="a211">아침 이미지</option>
+          <option value="a212">안개</option>
+          <option value="a213">알 수 없어요</option>
+          <option value="a214">야청도의성</option>
+          <option value="a215">양반전</option>
+          <option value="a216">어디서 무엇이 되어 만나랴</option>
+          <option value="a217">어떤 귀로</option>
+          <option value="a218">어떤 사람에게</option>
+          <option value="a219">어머니의 그릇</option>
+          <option value="a220">어부</option>
+          <option value="a221">어부단가</option>
+          <option value="a222">어부사시사</option>
+          <option value="a223">어옹</option>
+          <option value="a224">어우야담</option>
+          <option value="a225">어촌기</option>
+          <option value="a226">엄마의 말뚝 2</option>
+          <option value="a227">여승</option>
+          <option value="a228">역로</option>
+          <option value="a229">역사</option>
+          <option value="a230">연륜</option>
+          <option value="a231">연행가</option>
+          <option value="a232">열녀춘향수절가</option>
+          <option value="a233">옛집 정승초당을 둘러보고 쓰다</option>
+          <option value="a234">오륜가</option>
+          <option value="a235">오발탄</option>
+          <option value="a236">오우가</option>
+          <option value="a237">옥단춘전</option>
+          <option value="a238">옥루몽</option>
+          <option value="a239">옹고집전</option>
+          <option value="a240">와사등</option>
+          <option value="a241">왕방연</option>
+          <option value="a242">외딴 방</option>
+          <option value="a243">외인촌</option>
+          <option value="a244">외할머니의 뒤안 툇마루</option>
+          <option value="a245">우리가 물이 되어</option>
+          <option value="a246">우언</option>
+          <option value="a247">우포늪 왁새</option>
+          <option value="a248">운영전</option>
+          <option value="a249">웃음의 철학</option>
+          <option value="a250">원고지</option>
+          <option value="a251">원천석</option>
+          <option value="a252">제망매가</option>
+          <option value="a253">월선헌십육경가</option>
+          <option value="a254">월훈</option>
+          <option value="a255">유산가</option>
+          <option value="a256">유씨삼대록</option>
+          <option value="a257">유충렬전</option>
+          <option value="a258">유한라산기</option>
+          <option value="a259">육미당기</option>
+          <option value="a260">육장</option>
+          <option value="a261">율리유곡</option>
+          <option value="a262">율정기</option>
+          <option value="a263">은행나무</option>
+          <option value="a264">음지의 꽃</option>
+          <option value="a265">이별가</option>
+          <option value="a266">이생규장전</option>
+          <option value="a267">이정보</option>
+          <option value="a268">이조년</option>
+          <option value="a269">이향견문록 서</option>
+          <option value="a270">인동차</option>
+          <option value="a271">일동장유가</option>
+          <option value="a272">삼국 유사</option>
+          <option value="a273">임장군전</option>
+          <option value="a274">임제</option>
+          <option value="a275">임진록</option>
+          <option value="a276">자도사</option>
+          <option value="a277">자서전들 쓰십시다</option>
+          <option value="a278">자야곡</option>
+          <option value="a279">자장면</option>
+          <option value="a280">자전거 도둑</option>
+          <option value="a281">자화상 · 2</option>
+          <option value="a282">자화상</option>
+          <option value="a283">잔등</option>
+          <option value="a284">잔인한 도시</option>
+          <option value="a285">잠시 눕는 풀</option>
+          <option value="a286">장끼전</option>
+          <option value="a287">장마</option>
+          <option value="a288">장석남 배를 매며</option>
+          <option value="a289">장진주사</option>
+          <option value="a290">적막강산</option>
+          <option value="a291">적벽가</option>
+          <option value="a292">적성의전</option>
+          <option value="a293">전문가</option>
+          <option value="a294">전우치</option>
+          <option value="a295">전우치전</option>
+          <option value="a296">접동새</option>
+          <option value="a297">정석가</option>
+          <option value="a298">정수정전</option>
+          <option value="a299">고시</option>
+          <option value="a300">용비어천가</option>
+          <option value="a301">조그만 사랑 노래</option>
+          <option value="a302">조어삼매</option>
+          <option value="a303">조용</option>
+          <option value="a304">조웅전</option>
+          <option value="a305">최척전</option>
+          <option value="a306">조찬</option>
+          <option value="a307">조춘점묘</option>
+          <option value="a308">종가</option>
+          <option value="a309">주을온천행</option>
+          <option value="a310">중국인 거리</option>
+          <option value="a311">즐거운 편지</option>
+          <option value="a312">지리산 뻐꾹새</option>
+          <option value="a313">지수정가</option>
+          <option value="a314">진달래꽃</option>
+          <option value="a315">진삼국사기표</option>
+          <option value="a316">질화로</option>
+          <option value="a317">차마설</option>
+          <option value="a318">찬송</option>
+          <option value="a319">창선감의록</option>
+          <option value="a320">채봉감별곡</option>
+          <option value="a321">채전</option>
+          <option value="a322">천변풍경</option>
+          <option value="a323">청명</option>
+          <option value="a324">청산도</option>
+          <option value="a325">청산별곡</option>
+          <option value="a326">초가</option>
+          <option value="a327">초록 바람의 전언</option>
+          <option value="a328">촉규화</option>
+          <option value="a329">최고운전</option>
+          <option value="a330">추억에서</option>
+          <option value="a331">추일서정</option>
+          <option value="a332">추천사</option>
+          <option value="a333">춘면곡</option>
+          <option value="a334">춘향가</option>
+          <option value="a335">춘향이별가</option>
+          <option value="a336">춘향전</option>
+          <option value="a337">출생기</option>
+          <option value="a338">출세기</option>
+          <option value="a339">크리스마스 캐럴 5</option>
+          <option value="a340">큰산</option>
+          <option value="a341">탄궁가</option>
+          <option value="a342">태조실록</option>
+          <option value="a343">태평천하</option>
+          <option value="a344">토끼전</option>
+          <option value="a345">토막</option>
+          <option value="a346">토별가</option>
+          <option value="a347">토지</option>
+          <option value="a348">특급품</option>
+          <option value="a349">파수꾼</option>
+          <option value="a350">파초</option>
+          <option value="a351">편지</option>
+          <option value="a352">폭포</option>
+          <option value="a353">폭포와 분수</option>
+          <option value="a354">풀벌레 소리 가득 차 있었다.</option>
+          <option value="a355">풀벌레들의 작은 귀를 생각함</option>
+          <option value="a356">풍란</option>
+          <option value="a357">가지 않은 길</option>
+          <option value="a358">플라타너스</option>
+          <option value="a359">하늘과 돌멩이</option>
+          <option value="a360">한강물 얼고, 눈이 내린 날</option>
+          <option value="a361">한거십팔곡</option>
+          <option value="a362">한계령</option>
+          <option value="a363">한말 의병을 모집하는 격문</option>
+          <option value="a364">한씨연대기</option>
+          <option value="a365">향수</option>
+          <option value="a366">향아</option>
+          <option value="a367">향현</option>
+          <option value="a368">호질</option>
+          <option value="a369">홍계월전</option>
+          <option value="a370">홍길동전</option>
+          <option value="a371">홍덕보 묘지명</option>
+          <option value="a372">화단</option>
+          <option value="a373">화랑의 후예</option>
+          <option value="a374">화산댁이</option>
+          <option value="a375">황만근은 이렇게 말했다</option>
+          <option value="a376">황진이 시조</option>
+          <option value="a377">휴전선</option>
+          <option value="a378">흐르는 북</option>
+          <option value="a379">흥부전</option>
+        </select>
+        <button type="button" class="btn btn-primary" onclick="code()">선택</button>
+        <br>
+        <p id="name">수능에 나온 지문들의 제목과 년도와 작가를 정리한 사이트입니다.<br>틀리거나 누락된 내용이 있으면 3학년 안성현 학생에게 문의하세요.<br>2023 수능=2022년에 시행</p>
+      </div>
+      <div class="df">
+        <h1>작가로 검색</h1>
+        <select id="ret">
+          <option value="a1">기형도</option>
+          <option value="a2">강은교</option>
+          <option value="a3">계랑</option>
+          <option value="a4">계용묵</option>
+          <option value="a5">고은</option>
+          <option value="a6">공석옥</option>
+          <option value="a7">고정희</option>
+          <option value="a8">고재종</option>
+          <option value="a9">곽재구</option>
+          <option value="a10">권구</option>
+          <option value="a11">권섭</option>
+          <option value="a12">권근</option>
+          <option value="a13">권호문</option>
+          <option value="a14">김관식</option>
+          <option value="a15">김광규</option>
+          <option value="a16">김광균</option>
+          <option value="a17">김광섭</option>
+          <option value="a18">김광욱</option>
+          <option value="a19">김기림</option>
+          <option value="a20">김기택</option>
+          <option value="a21">김남조</option>
+          <option value="a22">김득연</option>
+          <option value="a23">김동리</option>
+          <option value="a24">김동명</option>
+          <option value="a25">김동환</option>
+          <option value="a26">김만중</option>
+          <option value="a27">김명인</option>
+          <option value="a28">김부식</option>
+          <option value="a29">김상옥</option>
+          <option value="a30">김소진</option>
+          <option value="a31">김소운</option>
+          <option value="a32">김소월</option>
+          <option value="a33">김수영</option>
+          <option value="a34">김승옥</option>
+          <option value="a35">김시습</option>
+          <option value="a36">김영랑</option>
+          <option value="a37">김영현</option>
+          <option value="a38">김용준</option>
+          <option value="a39">김원일</option>
+          <option value="a40">김유정</option>
+          <option value="a41">김인겸</option>
+          <option value="a42">김정한</option>
+          <option value="a43">김종길</option>
+          <option value="a44">김지하</option>
+          <option value="a45">김춘수</option>
+          <option value="a46">김혜순</option>
+          <option value="a47">김현승</option>
+          <option value="a48">김훈</option>
+          <option value="a49">나희덕</option>
+          <option value="a50">남공철</option>
+          <option value="a51">남영로</option>
+          <option value="a52">두보</option>
+          <option value="a53">멩사성</option>
+          <option value="a54">박경리</option>
+          <option value="a55">박규수</option>
+          <option value="a56">박남수</option>
+          <option value="a57">박두진</option>
+          <option value="a58">박목월</option>
+          <option value="a59">박봉우</option>
+          <option value="a60">박상연</option>
+          <option value="a61">박세당</option>
+          <option value="a62">박완서</option>
+          <option value="a63">박용래</option>
+          <option value="a64">박이문</option>
+          <option value="a65">박인로</option>
+          <option value="a66">박재삼</option>
+          <option value="a67">박제가</option>
+          <option value="a68">박지원</option>
+          <option value="a69">박태원</option>
+          <option value="a70">배한봉</option>
+          <option value="a71">백석</option>
+          <option value="a72">변영로</option>
+          <option value="a73">서유영</option>
+          <option value="a74">서영은</option>
+          <option value="a75">서정주</option>
+          <option value="a76">설장수</option>
+          <option value="a77">성석제</option>
+          <option value="a78">성현</option>
+          <option value="a79">손백수</option>
+          <option value="a80">송수권</option>
+          <option value="a81">송순</option>
+          <option value="a82">신경림</option>
+          <option value="a83">신경숙</option>
+          <option value="a84">신동엽</option>
+          <option value="a85">신석정</option>
+          <option value="a86">신석청</option>
+          <option value="a87">신영복</option>
+          <option value="a88">신재효</option>
+          <option value="a89">신제영</option>
+          <option value="a90">신흠</option>
+          <option value="a91">안민영</option>
+          <option value="a92">안조원</option>
+          <option value="a93">양귀자</option>
+          <option value="a94">양주동</option>
+          <option value="a95">양태사</option>
+          <option value="a96">염상섭</option>
+          <option value="a97">오규원</option>
+          <option value="a98">오상원</option>
+          <option value="a99">오세영</option>
+          <option value="a100">오영수</option>
+          <option value="a101">오영진</option>
+          <option value="a102">오장환</option>
+          <option value="a103">오정희</option>
+          <option value="a104">왕방연</option>
+          <option value="a105">원천석</option>
+          <option value="a106">월명사</option>
+          <option value="a107">위백규</option>
+          <option value="a108">유몽인</option>
+          <option value="a109">유본학</option>
+          <option value="a110">유종원</option>
+          <option value="a111">유치진</option>
+          <option value="a112">유치환</option>
+          <option value="a113">윤대성</option>
+          <option value="a114">윤동주</option>
+          <option value="a115">윤삼육</option>
+          <option value="a116">윤선도</option>
+          <option value="a117">윤오영</option>
+          <option value="a118">윤흥길</option>
+          <option value="a119">이강백</option>
+          <option value="a120">이경배</option>
+          <option value="a121">이곡</option>
+          <option value="a122">이광명</option>
+          <option value="a123">이규보</option>
+          <option value="a124">이근삼</option>
+          <option value="a125">이기영</option>
+          <option value="a126">이덕무</option>
+          <option value="a127">이문구</option>
+          <option value="a128">이문열</option>
+          <option value="a129">이명기</option>
+          <option value="a130">이범선</option>
+          <option value="a131">이상</option>
+          <option value="a132">이성복</option>
+          <option value="a133">이수익</option>
+          <option value="a134">이시영</option>
+          <option value="a135">이신의</option>
+          <option value="a136">이양하</option>
+          <option value="a137">이어령</option>
+          <option value="a138">이옥</option>
+          <option value="a139">이용악</option>
+          <option value="a140">이용휴</option>
+          <option value="a141">이육사</option>
+          <option value="a142">이이</option>
+          <option value="a143">이정보</option>
+          <option value="a144">이조년</option>
+          <option value="a145">이정환</option>
+          <option value="a146">이청준</option>
+          <option value="a147">이태준</option>
+          <option value="a148">이학규</option>
+          <option value="a149">이현보</option>
+          <option value="a150">이형기</option>
+          <option value="a151">이호철</option>
+          <option value="a152">이황</option>
+          <option value="a153">이효석</option>
+          <option value="a154">이희승</option>
+          <option value="a155">일연</option>
+          <option value="a156">임제</option>
+          <option value="a157">임철우</option>
+          <option value="a158">조우인</option>
+          <option value="a159">작자미상</option>
+          <option value="a160">장석남</option>
+          <option value="a161">전광용</option>
+          <option value="a162">전봉건</option>
+          <option value="a163">정극인</option>
+          <option value="a164">정약용</option>
+          <option value="a165">정인지</option>
+          <option value="a166">정일근</option>
+          <option value="a167">정정렬</option>
+          <option value="a168">정지상</option>
+          <option value="a169">정지용</option>
+          <option value="a170">정진권</option>
+          <option value="a171">정철</option>
+          <option value="a172">정학유</option>
+          <option value="a173">정한숙</option>
+          <option value="a174">정훈</option>
+          <option value="a175">조성기</option>
+          <option value="a176">조세희</option>
+          <option value="a177">조위</option>
+          <option value="a178">조위한</option>
+          <option value="a179">조지훈</option>
+          <option value="a180">조희룡</option>
+          <option value="a181">주세붕</option>
+          <option value="a182">차범석</option>
+          <option value="a183">채만식</option>
+          <option value="a184">천승세</option>
+          <option value="a185">최남선</option>
+          <option value="a186">최두석</option>
+          <option value="a187">최동훈</option>
+          <option value="a188">최명익</option>
+          <option value="a189">최명희</option>
+          <option value="a190">최순우</option>
+          <option value="a191">최승호</option>
+          <option value="a192">최영준</option>
+          <option value="a193">최익현</option>
+          <option value="a194">최인훈</option>
+          <option value="a195">최일남</option>
+          <option value="a196">최치원</option>
+          <option value="a197">태조실록</option>
+          <option value="a198">프로스트</option>
+          <option value="a199">하근찬</option>
+          <option value="a200">한용운</option>
+          <option value="a201">한흑구</option>
+          <option value="a202">함세덕</option>
+          <option value="a203">허균</option>
+          <option value="a204">허난설헌</option>
+          <option value="a205">허전</option>
+          <option value="a206">허준</option>
+          <option value="a207">현길언</option>
+          <option value="a208">현진건</option>
+          <option value="a209">홍순학</option>
+          <option value="a210">홍성원</option>
+          <option value="a211">홍파</option>
+          <option value="a212">황동규</option>
+          <option value="a213">황석영</option>
+          <option value="a214">황지우</option>
+          <option value="a215">황진이</option>
+          <option value="a216">황희</option>
+        </select>
+        <button type="button" class="btn btn-primary" onclick="codet()">선택</button>
+        <br>
+        <p id="namet">환영합니다!</p>
+      </div>
+      <div class="">
+        <h1>시험년도로 검색</h1>
+        <select id="bat">
+          <option value="a1">2023 수능</option>
+          <option value="a2">2023 9모</option>
+          <option value="a3">2023 6모</option>
+          <option value="a4">2022 수능</option>
+          <option value="a5">2022 9모</option>
+          <option value="a6">2022 6모</option>
+          <option value="a7">2021 수능</option>
+          <option value="a8">2021 9모</option>
+          <option value="a9">2021 6모</option>
+          <option value="a10">2020 수능</option>
+          <option value="a11">2020 9모</option>
+          <option value="a12">2020 6모</option>
+          <option value="a13">2019 수능</option>
+          <option value="a14">2019 9모</option>
+          <option value="a15">2019 6모</option>
+          <option value="a16">2018 수능</option>
+          <option value="a17">2018 9모</option>
+          <option value="a18">2018 6모</option>
+          <option value="a19">2017 수능</option>
+          <option value="a20">2017 9모</option>
+          <option value="a21">2017 6모</option>
+          <option value="a22">2016 수능</option>
+          <option value="a23">2016 9모</option>
+          <option value="a24">2016 6모</option>
+          <option value="a25">2015 수능</option>
+          <option value="a26">2015 9모</option>
+          <option value="a27">2015 6모</option>
+          <option value="a28">2014 수능</option>
+          <option value="a29">2014 9모</option>
+          <option value="a30">2014 6모</option>
+          <option value="a31">2013 수능</option>
+          <option value="a32">2013 9모</option>
+          <option value="a33">2013 6모</option>
+          <option value="a34">2012 수능</option>
+          <option value="a35">2012 9모</option>
+          <option value="a36">2012 6모</option>
+          <option value="a37">2011 수능</option>
+          <option value="a38">2011 9모</option>
+          <option value="a39">2011 6모</option>
+          <option value="a40">2010 수능</option>
+          <option value="a41">2010 9모</option>
+          <option value="a42">2010 6모</option>
+          <option value="a43">2009 수능</option>
+          <option value="a44">2009 9모</option>
+          <option value="a45">2009 6모</option>
+          <option value="a46">2008 수능</option>
+          <option value="a47">2008 9모</option>
+          <option value="a48">2008 6모</option>
+          <option value="a49">2007 수능</option>
+          <option value="a50">2007 9모</option>
+          <option value="a51">2007 6모</option>
+          <option value="a52">2006 수능</option>
+          <option value="a53">2006 9모</option>
+          <option value="a54">2006 6모</option>
+          <option value="a55">2005 수능</option>
+          <option value="a56">2005 9모</option>
+          <option value="a57">2005 6모</option>
+          <option value="a58">2004 수능</option>
+          <option value="a59">2003 수능</option>
+          <option value="a60">2002 수능</option>
+          <option value="a61">2001 수능</option>
+          <option value="a62">2000 수능</option>
+          <option value="a63">1999 수능</option>
+          <option value="a64">1998 수능</option>
+          <option value="a65">1997 수능</option>
+          <option value="a66">1996 수능</option>
+          <option value="a67">1995 수능</option>
+          <option value="a68">1994 수능1</option>
+          <option value="a69">1994 수능2</option>
+          <option value="a70">개발자</option>
+        </select>
+        <button type="button" class="btn btn-primary" onclick="codett()">선택</button>
+        <br>
+        <p id="namett">환영합니다!</p>
+      </div>
+    </div>
+  </head>
+  <body>
+    <script>
+      $('select').select2();
+    </script>
+    <script>
+function code() {
+	let fruit = $("#epic").val();
+  if(fruit==="a1"){
+  document.getElementById('name').innerHTML="1996 수능 정한숙 IYEU도"
+} else if(fruit==="a2") {
+  document.getElementById('name').innerHTML="2013 6모 황석영 가객"
+} else if(fruit==="a3") {
+  document.getElementById('name').innerHTML="2002 수능 신경림 가난한 사랑 노래"
+} else if(fruit==="a4") {
+  document.getElementById('name').innerHTML="2001 수능 작자미상 가시리<br>2017 6모 작자미상 가시리"
+} else if(fruit==="a5") {
+  document.getElementById('name').innerHTML="2005 6모 박목월 가정"
+} else if(fruit==="a6") {
+  document.getElementById('name').innerHTML="2010 수능 윤삼육 각색 장마"
+} else if(fruit==="a7") {
+  document.getElementById('name').innerHTML="2018 수능 이육사 강 건너간 노래"
+} else if(fruit==="a8") {
+  document.getElementById('name').innerHTML="2004 수능 유종원 강설"
+} else if(fruit==="a9") {
+  document.getElementById('name').innerHTML="2011 6모 김춘수 강우"
+} else if(fruit==="a10") {
+  document.getElementById('name').innerHTML="2002 수능 두보 강촌"
+} else if(fruit==="a11") {
+  document.getElementById('name').innerHTML="2022 9모 오영수 갯마을<br>2022 9모 오영수 원작 신봉승 각색 갯마을"
+} else if(fruit==="a12") {
+  document.getElementById('name').innerHTML="2010 6모 김영랑 거문고"
+} else if(fruit==="a13") {
+  document.getElementById('name').innerHTML="2022 수능 김관식 거산호 2"
+} else if(fruit==="a14") {
+  document.getElementById('name').innerHTML="2004 수능 김용준 게"
+} else if(fruit==="a15") {
+  document.getElementById('name').innerHTML="2010 9모 황지우 겨울- 나무로부터 봄- 나무에로<br>2015 9모 황지우 겨울-나무로부터 봄-나무에로"
+} else if(fruit==="a16") {
+  document.getElementById('name').innerHTML="2012 6모 윤선도 견회요"
+} else if(fruit==="a17") {
+  document.getElementById('name').innerHTML="2009 6모 이수익 결빙의 아버지<br>2018 6모 이수익 결빙의 아버지"
+} else if(fruit==="a18") {
+  document.getElementById('name').innerHTML="2016 6모 이강백 결혼"
+} else if(fruit==="a19") {
+  document.getElementById('name').innerHTML="2023 수능 김훈 겸재의 빛"
+} else if(fruit==="a20") {
+  document.getElementById('name').innerHTML="2007 수능 계랑의 시조"
+} else if(fruit==="a21") {
+  document.getElementById('name').innerHTML="2007 수능 김종길 고고"
+} else if(fruit==="a22") {
+  document.getElementById('name').innerHTML="2011 6모 허전 고공가"
+} else if(fruit==="a23") {
+  document.getElementById('name').innerHTML="2004 수능 이이 고산구곡가<br>2020 9모 이이 고산구곡가"
+} else if(fruit==="a24") {
+  document.getElementById('name').innerHTML="2018 6모 조지훈 고풍 의상"
+} else if(fruit==="a25") {
+  document.getElementById('name').innerHTML="2004 수능 백석 고향<br>2021 9모 이기영 고향"
+} else if(fruit==="a26") {
+  document.getElementById('name').innerHTML="2006 6모 오장환 고향 앞에서"
+} else if(fruit==="a27") {
+  document.getElementById('name').innerHTML="2007 6모 신경림 고향길"
+} else if(fruit==="a28") {
+  document.getElementById('name').innerHTML="2019 9모 박상연 원작, 박찬욱 외 각색 공동 경비 구역 JSA"
+} else if(fruit==="a29") {
+  document.getElementById('name').innerHTML="1999 수능 정철 관동별곡<br>2021 6모 정철 관동별곡"
+} else if(fruit==="a30") {
+  document.getElementById('name').innerHTML="2003 수능 이문구 관촌수필<br>2010 수능 이문구 관촌수필<br>2018 수능 이문구 관촌수필"
+} else if(fruit==="a31") {
+  document.getElementById('name').innerHTML="1994 수능1 최인훈 광장<br>2006 수능 최인훈 광장"
+} else if(fruit==="a32") {
+  document.getElementById('name').innerHTML="2007 수능 이육사 교목"
+} else if(fruit==="a33") {
+  document.getElementById('name').innerHTML="2012 수능 곽재구 구두 한 켤레의 시"
+} else if(fruit==="a34") {
+  document.getElementById('name').innerHTML="2017 수능 김수영 구름의 파수병"
+} else if(fruit==="a35") {
+  document.getElementById('name').innerHTML="1998 수능 김만중 구운몽<br>2007 6모 김만중 구운몽<br>2014 6모 김만중 구운몽"
+} else if(fruit==="a36") {
+  document.getElementById('name').innerHTML="2014 수능 이상 권태"
+} else if(fruit==="a37") {
+  document.getElementById('name').innerHTML="2001 수능 서정주 귀촉도"
+} else if(fruit==="a38") {
+  document.getElementById('name').innerHTML="2001 수능 허난설헌 규원가<br>2022 9모 허난설헌 규원가"
+} else if(fruit==="a39") {
+  document.getElementById('name').innerHTML="2011 수능 김명인 그 나무"
+} else if(fruit==="a40") {
+  document.getElementById('name').innerHTML="2015 6모 나희덕 그 복숭아나무 곁으로"
+} else if(fruit==="a41") {
+  document.getElementById('name').innerHTML="2023 6모 공석옥 그 시절 우리들의 집"
+} else if(fruit==="a42") {
+  document.getElementById('name').innerHTML="2002 수능 이용악 그리움<br>2021 수능 이용악 그리움"
+} else if(fruit==="a43") {
+  document.getElementById('name').innerHTML="1994 수능2 신동엽 그의 행복을 기도드리는"
+} else if(fruit==="a44") {
+  document.getElementById('name').innerHTML="2013 수능 작자미상 금방울전"
+} else if(fruit==="a45") {
+  document.getElementById('name').innerHTML="2007 6모 이문열 금시조"
+} else if(fruit==="a46") {
+  document.getElementById('name').innerHTML="2008 6모 윤동주 길<br>2011 9모 김소월 길<br>2023 9모 신경림 길"
+} else if(fruit==="a47") {
+  document.getElementById('name').innerHTML="1994 수능1 최영준 길의역사, 길의사상"
+} else if(fruit==="a48") {
+  document.getElementById('name').innerHTML="1997 수능 박경리 김 약국의 딸들"
+} else if(fruit==="a49") {
+  document.getElementById('name').innerHTML="2011 9모 작자미상 김원전"
+} else if(fruit==="a50") {
+  document.getElementById('name').innerHTML="2014 9모 전광용 꺼삐딴 리"
+} else if(fruit==="a51") {
+  document.getElementById('name').innerHTML="1999 수능 이육사 꽃"
+} else if(fruit==="a52") {
+  document.getElementById('name').innerHTML="2016 9모 신석청 꽃덤불"
+} else if(fruit==="a53") {
+  document.getElementById('name').innerHTML="2009 9모 서정주 꽃밭의 독백-사소 단장"
+} else if(fruit==="a54") {
+  document.getElementById('name').innerHTML="2001 수능 박목월 나그네"
+} else if(fruit==="a55") {
+  document.getElementById('name').innerHTML="2012 9모 하근찬 나룻배 이야기"
+} else if(fruit==="a56") {
+  document.getElementById('name').innerHTML="2003 수능 한용운 나룻배와 행인"
+} else if(fruit==="a57") {
+  document.getElementById('name').innerHTML="2016 수능 박완서 나목"
+} else if(fruit==="a58") {
+  document.getElementById('name').innerHTML="1995 수능 이양하 나무"
+} else if(fruit==="a59") {
+  document.getElementById('name').innerHTML="2009 9모 신경림 나무를 위하여"
+} else if(fruit==="a60") {
+  document.getElementById('name').innerHTML="2021 6모 손백수 나뭇잎 하나"
+} else if(fruit==="a61") {
+  document.getElementById('name').innerHTML="2009 수능 김광규 나상"
+} else if(fruit==="a62") {
+  document.getElementById('name').innerHTML="2008 6모 김소월 나의 집"
+} else if(fruit==="a63") {
+  document.getElementById('name').innerHTML="2014 수능 이형기 낙화"
+} else if(fruit==="a64") {
+  document.getElementById('name').innerHTML="2014 수능 조세희 난장이가 쏘아 올린 작은 공<br>2005 6모 조세희 난장이가 쏘아올린 작은 공<br>2009 수능 홍파 각색 난쟁이가 쏘아 올린 작은 공"
+} else if(fruit==="a65") {
+  document.getElementById('name').innerHTML="1995 수능 이상 날개<br>2008 9모 이상 날개"
+} else if(fruit==="a66") {
+  document.getElementById('name').innerHTML="2005 수능 이용악 낡은 집"
+} else if(fruit==="a67") {
+  document.getElementById('name').innerHTML="2003 수능 김영랑 내 마음을 아실 이"
+} else if(fruit==="a68") {
+  document.getElementById('name').innerHTML="2004 수능 김춘수 내가 만난 이중섭"
+} else if(fruit==="a69") {
+  document.getElementById('name').innerHTML="2006 9모 황지우 너를 기다리는 동안"
+} else if(fruit==="a70") {
+  document.getElementById('name').innerHTML="2012 9모 최두석 노래와 이야기<br>2022 9모 최두석 노래와 이야기"
+} else if(fruit==="a71") {
+  document.getElementById('name').innerHTML="2003 수능 위백규 농가<br>2016 6모 위백규 농가<br>2022 수능 위백규 농가"
+} else if(fruit==="a72") {
+  document.getElementById('name').innerHTML="2016 6모 정학유 농가월령가"
+} else if(fruit==="a73") {
+  document.getElementById('name').innerHTML="2009 6모 박인로 누항사<br>2013 9모 박인로 누항사"
+} else if(fruit==="a74") {
+  document.getElementById('name').innerHTML="2017 6모 박이문 눈"
+} else if(fruit==="a75") {
+  document.getElementById('name').innerHTML="2011 6모 임철우 눈이 오면<br>2017 9모 임철우 눈이 오면<br>2018 9모 임철우 눈이 오면"
+} else if(fruit==="a76") {
+  document.getElementById('name').innerHTML="2017 수능 이강백 느낌, 극락같은"
+} else if(fruit==="a77") {
+  document.getElementById('name').innerHTML="2009 수능 한용운 님의 침묵"
+} else if(fruit==="a78") {
+  document.getElementById('name').innerHTML="2006 6모 이조년 다정가"
+} else if(fruit==="a79") {
+  document.getElementById('name').innerHTML="2017 9모 정지용 달<br>2018 9모 정지용 달"
+} else if(fruit==="a80") {
+  document.getElementById('name').innerHTML="2022 수능 이옥 담초(談艸)"
+} else if(fruit==="a81") {
+  document.getElementById('name').innerHTML="2010 6모 최승호 대설주의보"
+} else if(fruit==="a82") {
+  document.getElementById('name').innerHTML="2022 6모 김광규 대장간의 유혹"
+} else if(fruit==="a83") {
+  document.getElementById('name').innerHTML="2012 6모 김영현 대장금"
+} else if(fruit==="a84") {
+  document.getElementById('name').innerHTML="2012 9모 작자미상 덴동어미화전가"
+} else if(fruit==="a85") {
+  document.getElementById('name').innerHTML="2005 수능 이황 도산십이곡<br>2012 9모 이황 도산십이곡<br>2023 수능 이황 도산십이곡"
+} else if(fruit==="a86") {
+  document.getElementById('name').innerHTML="2002 수능 이황 도산육곡 발"
+} else if(fruit==="a87") {
+  document.getElementById('name').innerHTML="2005 6모 김영랑 독을 차고"
+} else if(fruit==="a88") {
+  document.getElementById('name').innerHTML="2013 수능 권섭 독자왕유희유오영"
+} else if(fruit==="a89") {
+  document.getElementById('name').innerHTML="2012 수능 이태준 돌다리"
+} else if(fruit==="a90") {
+  document.getElementById('name').innerHTML="2017 6모 작자미상 동동"
+} else if(fruit==="a91") {
+  document.getElementById('name').innerHTML="2005 6모 이규보 동명왕편 서"
+} else if(fruit==="a92") {
+  document.getElementById('name').innerHTML="2000 수능 김유정 동백꽃"
+} else if(fruit==="a93") {
+  document.getElementById('name').innerHTML="2010 9모 함세덕 동승"
+} else if(fruit==="a94") {
+  document.getElementById('name').innerHTML="2008 9모 남공철 동원화수기"
+} else if(fruit==="a95") {
+  document.getElementById('name').innerHTML="2003 수능 최인훈 둥둥 낙랑둥"
+} else if(fruit==="a96") {
+  document.getElementById('name').innerHTML="2007 수능 신석정 들길에 서서"
+} else if(fruit==="a97") {
+  document.getElementById('name').innerHTML="1996 수능 이희승 딸깍발이"
+} else if(fruit==="a98") {
+  document.getElementById('name').innerHTML="2013 9모 윤동주 또 다른 고향"
+} else if(fruit==="a99") {
+  document.getElementById('name').innerHTML="2021 수능 이시영 마음의 고향2-그 언덕-<br>2013 수능 이시영 마음의 고향6 - 초설"
+} else if(fruit==="a100") {
+  document.getElementById('name').innerHTML="2005 9모 조지훈 마음의 태양"
+} else if(fruit==="a101") {
+  document.getElementById('name').innerHTML="2007 수능 김유정 만무방"
+} else if(fruit==="a102") {
+  document.getElementById('name').innerHTML="2010 수능 김시습 만복사저포기"
+} else if(fruit==="a103") {
+  document.getElementById('name').innerHTML="2007 수능 조위 만분가<br>2019 6모 조위 만분가"
+} else if(fruit==="a104") {
+  document.getElementById('name').innerHTML="2008 수능 천승세 만선"
+} else if(fruit==="a105") {
+  document.getElementById('name').innerHTML="2006 9모 염상섭 만세전"
+} else if(fruit==="a106") {
+  document.getElementById('name').innerHTML="2009 9모 안조원 만언사"
+} else if(fruit==="a107") {
+  document.getElementById('name').innerHTML="2007 9모 윤선도 만흥<br>2021 9모 윤선도 만흥"
+} else if(fruit==="a108") {
+  document.getElementById('name').innerHTML="2022 수능 윤흥길 매우 잘생긴 우산 하나"
+} else if(fruit==="a109") {
+  document.getElementById('name').innerHTML="2005 6모 신영복 매직펜과 붓"
+} else if(fruit==="a110") {
+  document.getElementById('name').innerHTML="2007 6모 안민영 매화사<br>2014 9모 안민영 매화사"
+} else if(fruit==="a111") {
+  document.getElementById('name').innerHTML="2005 수능 조지훈 멋 설"
+} else if(fruit==="a112") {
+  document.getElementById('name').innerHTML="2005 수능 이효석 메밀꽃 필 무렵"
+} else if(fruit==="a113") {
+  document.getElementById('name').innerHTML="2016 수능 멩사성 강호사시가"
+} else if(fruit==="a114") {
+  document.getElementById('name').innerHTML="2003 수능 송순 면앙정가<br>2007 6모 송순 면앙정가<br>2010 수능 송순 면앙정가"
+} else if(fruit==="a115") {
+  document.getElementById('name').innerHTML="2013 9모 김기택 멸치"
+} else if(fruit==="a116") {
+  document.getElementById('name').innerHTML="2015 6모 김정한 모래톱 이야기"
+} else if(fruit==="a117") {
+  document.getElementById('name').innerHTML="2009 9모 오상원 모반"
+} else if(fruit==="a118") {
+  document.getElementById('name').innerHTML="2009 6모 나희덕 못 위의 잠"
+} else if(fruit==="a119") {
+  document.getElementById('name').innerHTML="2018 수능 김광규 묘비명"
+} else if(fruit==="a120") {
+  document.getElementById('name').innerHTML="2000 수능 최순우 무량수전 배흘림기둥에 기대 서서"
+} else if(fruit==="a121") {
+  document.getElementById('name').innerHTML="2022 6모 홍성원 무사와 악사"
+} else if(fruit==="a122") {
+  document.getElementById('name').innerHTML="2015 수능 현진건 무영탑"
+} else if(fruit==="a123") {
+  document.getElementById('name').innerHTML="2015 9모 김승옥 무진기행"
+} else if(fruit==="a124") {
+  document.getElementById('name').innerHTML="2014 6모 채만식 미스터 방<br>2023 6모 채만식 미스터 방"
+} else if(fruit==="a125") {
+  document.getElementById('name').innerHTML="2005 9모 박지원 민옹전"
+} else if(fruit==="a126") {
+  document.getElementById('name').innerHTML="2006 6모 김기림 바다와 나비"
+} else if(fruit==="a127") {
+  document.getElementById('name').innerHTML="2020 수능 윤동주 바람이 불어"
+} else if(fruit==="a128") {
+  document.getElementById('name').innerHTML="1995 수능 유치환 바위"
+} else if(fruit==="a129") {
+  document.getElementById('name').innerHTML="2009 수능 작자미상 박씨전<br>2017 수능 작자미상 박씨전"
+} else if(fruit==="a130") {
+  document.getElementById('name').innerHTML="2022 수능 작자미상 박태보전"
+} else if(fruit==="a131") {
+  document.getElementById('name').innerHTML="2009 9모 작자미상 박흥보전"
+} else if(fruit==="a132") {
+  document.getElementById('name').innerHTML="2010 6모 정지용 발열"
+} else if(fruit==="a133") {
+  document.getElementById('name').innerHTML="2005 9모 김광규 배"
+} else if(fruit==="a134") {
+  document.getElementById('name').innerHTML="2022 9모 작자미상 배비장전"
+} else if(fruit==="a135") {
+  document.getElementById('name').innerHTML="1998 수능 변영로 백두산 등척"
+} else if(fruit==="a136") {
+  document.getElementById('name').innerHTML="2011 수능 박규수 범희문회서도원림"
+} else if(fruit==="a137") {
+  document.getElementById('name').innerHTML="1998 수능 윤동주 별 헤는 밤"
+} else if(fruit==="a138") {
+  document.getElementById('name').innerHTML="2023 9모 박두진 별-금강산시 3"
+} else if(fruit==="a139") {
+  document.getElementById('name').innerHTML="2013 9모 권구 병산육곡"
+} else if(fruit==="a140") {
+  document.getElementById('name').innerHTML="2006 6모 이청준 병신과 머저리"
+} else if(fruit==="a141") {
+  document.getElementById('name').innerHTML="2016 9모 한흑구 보리"
+} else if(fruit==="a142") {
+  document.getElementById('name').innerHTML="2007 9모 이태준 복덕방"
+} else if(fruit==="a143") {
+  document.getElementById('name').innerHTML="2016 6모 김유정 봄·봄"
+} else if(fruit==="a144") {
+  document.getElementById('name').innerHTML="1996 수능 작자미상 봉산탈춤 대본"
+} else if(fruit==="a145") {
+  document.getElementById('name').innerHTML="2006 6모 최승호 북어"
+} else if(fruit==="a146") {
+  document.getElementById('name').innerHTML="2012 수능 이광명 북찬가"
+} else if(fruit==="a147") {
+  document.getElementById('name').innerHTML="2003 수능 박제가 북학의"
+} else if(fruit==="a148") {
+  document.getElementById('name').innerHTML="2000 수능 현진건 불국사 기행"
+} else if(fruit==="a149") {
+  document.getElementById('name').innerHTML="2017 9모 차범석 불모지<br>2018 9모 차범석 불모지"
+} else if(fruit==="a150") {
+  document.getElementById('name').innerHTML="2019 9모 최명익 비 오는 날"
+} else if(fruit==="a151") {
+  document.getElementById('name').innerHTML="2018 수능 이정환 비가"
+} else if(fruit==="a152") {
+  document.getElementById('name').innerHTML="2016 9모 전봉건 사랑"
+} else if(fruit==="a153") {
+  document.getElementById('name').innerHTML="2008 수능 김수영 사령<br>2021 9모 김수영 사령"
+} else if(fruit==="a154") {
+  document.getElementById('name').innerHTML="2021 수능 서영은 사막을 건너는 법"
+} else if(fruit==="a155") {
+  document.getElementById('name').innerHTML="1998 수능 정철 사미인곡<br>2006 9모 정철 사미인곡<br>2013 6모 정철 사미인곡<br>2021 수능 정철 사미인곡"
+} else if(fruit==="a156") {
+  document.getElementById('name').innerHTML="1996 수능 박세당 사변록"
+} else if(fruit==="a157") {
+  document.getElementById('name').innerHTML="2006 6모 작자미상 사설시조<br>2011 6모 작자미상 사설시조"
+} else if(fruit==="a158") {
+  document.getElementById('name').innerHTML="2023 6모 황희 사시가"
+} else if(fruit==="a159") {
+  document.getElementById('name').innerHTML="2000 수능 김만중 사씨남정기<br>2006 9모 김만중 사씨남정기<br>2008 수능 김만중 사씨남정기<br>2018 수능 김만중 사씨남정기"
+} else if(fruit==="a160") {
+  document.getElementById('name').innerHTML="2007 6모 김상옥 사향"
+} else if(fruit==="a161") {
+  document.getElementById('name').innerHTML="1994 수능1 김소월 산<br>1996 수능 김광섭 산"
+} else if(fruit==="a162") {
+  document.getElementById('name').innerHTML="2012 수능 김동환 산 너머 남촌에는"
+} else if(fruit==="a163") {
+  document.getElementById('name').innerHTML="2021 6모 조지훈 산상의 노래"
+} else if(fruit==="a164") {
+  document.getElementById('name').innerHTML="2012 수능 함세덕 산허구리"
+} else if(fruit==="a165") {
+  document.getElementById('name').innerHTML="2013 수능 오규원 살아 있는 것은 흔들리면서- 순례11"
+} else if(fruit==="a166") {
+  document.getElementById('name').innerHTML="2001 수능 오영진 살아 있는 이중생 각하"
+} else if(fruit==="a167") {
+  document.getElementById('name').innerHTML="1994 수능1 염상섭 삼대<br>1999 수능 염상섭 삼대<br>2017 6모 염상섭 삼대"
+} else if(fruit==="a168") {
+  document.getElementById('name').innerHTML="1996 수능 김소월 삼수갑산"
+} else if(fruit==="a169") {
+  document.getElementById('name').innerHTML="2015 수능 박인로 상사곡"
+} else if(fruit==="a170") {
+  document.getElementById('name').innerHTML="2002 수능 정극인 상춘곡<br>2008 9모 정극인 상춘곡<br>2011 수능 정극인 상춘곡<br>2014 수능 정극인 상춘곡<br>2020 9모 정극인 상춘곡"
+} else if(fruit==="a171") {
+  document.getElementById('name').innerHTML="2014 9모 고정희 상한 영혼을 위하여"
+} else if(fruit==="a172") {
+  document.getElementById('name').innerHTML="2012 9모 박남수 새 1<br>2007 9모 김지하 새<br>2020 수능 김기택 새"
+} else if(fruit==="a173") {
+  document.getElementById('name').innerHTML="1994 수능1 유치환 생명의 서"
+} else if(fruit==="a174") {
+  document.getElementById('name').innerHTML="2019 수능 김춘수 샤갈의 마을에 내리는 눈"
+} else if(fruit==="a175") {
+  document.getElementById('name').innerHTML="2019 6모 작자미상 서경별곡"
+} else if(fruit==="a176") {
+  document.getElementById('name').innerHTML="2006 6모 작자미상 서동지전"
+} else if(fruit==="a177") {
+  document.getElementById('name').innerHTML="1995 수능 윤동주 서시<br>2001 수능 윤동주 서시"
+} else if(fruit==="a178") {
+  document.getElementById('name').innerHTML="2011 6모 이성복 서해"
+} else if(fruit==="a179") {
+  document.getElementById('name').innerHTML="1994 수능2 조지훈 석문"
+} else if(fruit==="a180") {
+  document.getElementById('name').innerHTML="2011 수능 고은 선제리 아낙네들"
+} else if(fruit==="a181") {
+  document.getElementById('name').innerHTML="2005 9모 김남조 설일"
+} else if(fruit==="a182") {
+  document.getElementById('name').innerHTML="2016 6모 고은 성묘"
+} else if(fruit==="a183") {
+  document.getElementById('name').innerHTML="2005 9모 정철 성산별곡<br>2013 수능 정철 성산별곡"
+} else if(fruit==="a184") {
+  document.getElementById('name').innerHTML="2011 6모 김종길 성탄제"
+} else if(fruit==="a185") {
+  document.getElementById('name').innerHTML="2016 수능 유치진 소"
+} else if(fruit==="a186") {
+  document.getElementById('name').innerHTML="2010 9모 이육사 소년에게"
+} else if(fruit==="a187") {
+  document.getElementById('name').innerHTML="2015 수능 작자미상 소대성전"
+} else if(fruit==="a188") {
+  document.getElementById('name').innerHTML="2008 6모 박태원 소설가 구보 씨의 일일"
+} else if(fruit==="a189") {
+  document.getElementById('name').innerHTML="2023 9모 박인로 소유정가"
+} else if(fruit==="a190") {
+  document.getElementById('name').innerHTML="2023 6모 작자미상 소현성록"
+} else if(fruit==="a191") {
+  document.getElementById('name').innerHTML="2006 수능 정철 속미인곡<br>2014 6모 정철 속미인곡"
+} else if(fruit==="a192") {
+  document.getElementById('name').innerHTML="1998 수능 정지상 송인"
+} else if(fruit==="a193") {
+  document.getElementById('name').innerHTML="2010 6모 작자미상 수궁가"
+} else if(fruit==="a194") {
+  document.getElementById('name').innerHTML="2012 9모 이용휴 수정가"
+} else if(fruit==="a195") {
+  document.getElementById('name').innerHTML="2012 6모 김광균 수철리"
+} else if(fruit==="a196") {
+  document.getElementById('name').innerHTML="2014 9모 작자미상 숙영낭자전"
+} else if(fruit==="a197") {
+  document.getElementById('name').innerHTML="2007 9모 작자미상 숙향전"
+} else if(fruit==="a198") {
+  document.getElementById('name').innerHTML="2010 수능 조지훈 승무"
+} else if(fruit==="a199") {
+  document.getElementById('name').innerHTML="2017 수능 박경리 시장과 전장"
+} else if(fruit==="a200") {
+  document.getElementById('name').innerHTML="2001 수능 작자미상 시조"
+} else if(fruit==="a201") {
+  document.getElementById('name').innerHTML="2014 6모 작자미상 시집살이 노래"
+} else if(fruit==="a202") {
+  document.getElementById('name').innerHTML="2013 수능 이양하 신록 예찬"
+} else if(fruit==="a203") {
+  document.getElementById('name').innerHTML="2009 6모 현길언 신열"
+} else if(fruit==="a204") {
+  document.getElementById('name').innerHTML="2021 수능 신흠"
+} else if(fruit==="a205") {
+  document.getElementById('name').innerHTML="2004 수능 이옥 심생전"
+} else if(fruit==="a206") {
+  document.getElementById('name').innerHTML="1994 수능2 작자미상 심청전<br>2012 6모 작자미상 심청전<br>2021 9모 작자미상 심청전<br>2005 6모 작자미상 심청전(경판본)"
+} else if(fruit==="a207") {
+  document.getElementById('name').innerHTML="1998 수능 최남선 심춘순례"
+} else if(fruit==="a208") {
+  document.getElementById('name').innerHTML="2006 6모 윤오영 쓰고 싶고 읽고 싶은 글"
+} else if(fruit==="a209") {
+  document.getElementById('name').innerHTML="2023 수능 최명희 쓰러지는 빛"
+} else if(fruit==="a210") {
+  document.getElementById('name').innerHTML="1998 수능 신석정 아직 촛불을 켤 때가 아닙니다"
+} else if(fruit==="a211") {
+  document.getElementById('name').innerHTML="2016 수능 박남수 아침 이미지"
+} else if(fruit==="a212") {
+  document.getElementById('name').innerHTML="2015 9모 김승옥 안개"
+} else if(fruit==="a213") {
+  document.getElementById('name').innerHTML="2013 6모 한용운 알 수 없어요"
+} else if(fruit==="a214") {
+  document.getElementById('name').innerHTML="2006 수능 양태사 야청도의성"
+} else if(fruit==="a215") {
+  document.getElementById('name').innerHTML="1994 수능2 박지원 양반전"
+} else if(fruit==="a216") {
+  document.getElementById('name').innerHTML="2011 9모 최인훈 어디서 무엇이 되어 만나랴"
+} else if(fruit==="a217") {
+  document.getElementById('name').innerHTML="2007 6모 박재삼 어떤 귀로"
+} else if(fruit==="a218") {
+  document.getElementById('name').innerHTML="2009 6모 이학규 어떤 사람에게"
+} else if(fruit==="a219") {
+  document.getElementById('name').innerHTML="2012 9모 정일근 어머니의 그릇"
+} else if(fruit==="a220") {
+  document.getElementById('name').innerHTML="2011 6모 이옥 어부"
+} else if(fruit==="a221") {
+  document.getElementById('name').innerHTML="2005 6모 이현보 어부단가<br>2010 9모 이현보 어부단가"
+} else if(fruit==="a222") {
+  document.getElementById('name').innerHTML="2000 수능 윤선도 어부사시사"
+} else if(fruit==="a223") {
+  document.getElementById('name').innerHTML="2008 9모 설장수 어옹"
+} else if(fruit==="a224") {
+  document.getElementById('name').innerHTML="1997 수능 유몽인 어우야담"
+} else if(fruit==="a225") {
+  document.getElementById('name').innerHTML="2020 수능 권근 어촌기"
+} else if(fruit==="a226") {
+  document.getElementById('name').innerHTML="2005 9모 박완서 엄마의 말뚝 2"
+} else if(fruit==="a227") {
+  document.getElementById('name').innerHTML="2009 6모 백석 여승"
+} else if(fruit==="a228") {
+  document.getElementById('name').innerHTML="1994 수능2 채만식 역로"
+} else if(fruit==="a229") {
+  document.getElementById('name').innerHTML="2009 수능 김승옥 역사"
+} else if(fruit==="a230") {
+  document.getElementById('name').innerHTML="2022 6모 김기림 연륜"
+} else if(fruit==="a231") {
+  document.getElementById('name').innerHTML="2017 수능 홍순학 연행가"
+} else if(fruit==="a232") {
+  document.getElementById('name').innerHTML="2013 9모 작자미상 열녀춘향수절가"
+} else if(fruit==="a233") {
+  document.getElementById('name').innerHTML="2021 수능 유본학 옛집 정승초당을 둘러보고 쓰다"
+} else if(fruit==="a234") {
+  document.getElementById('name').innerHTML="2018 6모 주세붕 오륜가"
+} else if(fruit==="a235") {
+  document.getElementById('name').innerHTML="2019 수능 이범선 원작, 이종기 각색 오발탄<br>2002 수능 이범선 오발탄(나소은 이종기 각색)"
+} else if(fruit==="a236") {
+  document.getElementById('name').innerHTML="1995 수능 윤선도 오우가"
+} else if(fruit==="a237") {
+  document.getElementById('name').innerHTML="2016 9모 작자미상 옥단춘전"
+} else if(fruit==="a238") {
+  document.getElementById('name').innerHTML="2010 9모 남영로 옥루몽"
+} else if(fruit==="a239") {
+  document.getElementById('name').innerHTML="2019 6모 작자미상 옹고집전"
+} else if(fruit==="a240") {
+  document.getElementById('name').innerHTML="2008 수능 김광균 와사등"
+} else if(fruit==="a241") {
+  document.getElementById('name').innerHTML="2014 수능 왕방연"
+} else if(fruit==="a242") {
+  document.getElementById('name').innerHTML="2010 6모 신경숙 외딴 방"
+} else if(fruit==="a243") {
+  document.getElementById('name').innerHTML="2000 수능 김광균 외인촌"
+} else if(fruit==="a244") {
+  document.getElementById('name').innerHTML="2004 수능 서정주 외할머니의 뒤안 툇마루<br>2016 6모 서정주 외할머니의 뒤안 툇마루"
+} else if(fruit==="a245") {
+  document.getElementById('name').innerHTML="2003 수능 강은교 우리가 물이 되어<br>2017 6모 강은교 우리가 물이 되어"
+} else if(fruit==="a246") {
+  document.getElementById('name').innerHTML="2021 9모 이덕무 우언"
+} else if(fruit==="a247") {
+  document.getElementById('name').innerHTML="2019 6모 배한봉 우포늪 왁새"
+} else if(fruit==="a248") {
+  document.getElementById('name').innerHTML="2011 수능 작자미상 운영전"
+} else if(fruit==="a249") {
+  document.getElementById('name').innerHTML="1997 수능 이희승 웃음의 철학"
+} else if(fruit==="a250") {
+  document.getElementById('name').innerHTML="2006 9모 이근삼 원고지<br>2014 9모 이근삼 원고지"
+} else if(fruit==="a251") {
+  document.getElementById('name').innerHTML="2014 수능 원천석"
+} else if(fruit==="a252") {
+  document.getElementById('name').innerHTML="1997 수능 월명사 제망매가<br>2008 6모 월명사 제망매가"
+} else if(fruit==="a253") {
+  document.getElementById('name').innerHTML="2020 수능 신제영 월선헌십육경가"
+} else if(fruit==="a254") {
+  document.getElementById('name').innerHTML="2008 9모 박용래 월훈"
+} else if(fruit==="a255") {
+  document.getElementById('name').innerHTML="2004 수능 작자미상 유산가"
+} else if(fruit==="a256") {
+  document.getElementById('name').innerHTML="2020 수능 작자미상 유씨삼대록"
+} else if(fruit==="a257") {
+  document.getElementById('name').innerHTML="2006 수능 작자미상 유충렬전<br>2015 9모 작자미상 유충렬전"
+} else if(fruit==="a258") {
+  document.getElementById('name').innerHTML="1998 수능 최익현 유한라산기"
+} else if(fruit==="a259") {
+  document.getElementById('name').innerHTML="2012 9모 서유영 육미당기"
+} else if(fruit==="a260") {
+  document.getElementById('name').innerHTML="2011 9모 이신의 육장"
+} else if(fruit==="a261") {
+  document.getElementById('name').innerHTML="2011 수능 김광욱 율리유곡<br>2022 6모 김광욱 율리유곡"
+} else if(fruit==="a262") {
+  document.getElementById('name').innerHTML="2015 6모 계용묵 율정기"
+} else if(fruit==="a263") {
+  document.getElementById('name').innerHTML="2005 수능 곽재구 은행나무"
+} else if(fruit==="a264") {
+  document.getElementById('name').innerHTML="2023 수능 나희덕 음지의 꽃"
+} else if(fruit==="a265") {
+  document.getElementById('name').innerHTML="1997 수능 박목월 이별가"
+} else if(fruit==="a266") {
+  document.getElementById('name').innerHTML="2001 수능 김시습 이생규장전"
+} else if(fruit==="a267") {
+  document.getElementById('name').innerHTML="2015 6모 이정보"
+} else if(fruit==="a268") {
+  document.getElementById('name').innerHTML="2015 6모 이조년"
+} else if(fruit==="a269") {
+  document.getElementById('name').innerHTML="2006 수능 조희룡 이향견문록 서"
+} else if(fruit==="a270") {
+  document.getElementById('name').innerHTML="2006 수능 정지용 인동차"
+} else if(fruit==="a271") {
+  document.getElementById('name').innerHTML="2019 수능 김인겸 일동장유가"
+} else if(fruit==="a272") {
+  document.getElementById('name').innerHTML="1994 수능1 일연 삼국 유사"
+} else if(fruit==="a273") {
+  document.getElementById('name').innerHTML="2019 수능 작자미상 임장군전"
+} else if(fruit==="a274") {
+  document.getElementById('name').innerHTML="2014 수능 임제"
+} else if(fruit==="a275") {
+  document.getElementById('name').innerHTML="2008 6모 작자미상 임진록<br>2013 6모 작자미상 임진록"
+} else if(fruit==="a276") {
+  document.getElementById('name').innerHTML="2023 6모 조우인 자도사"
+} else if(fruit==="a277") {
+  document.getElementById('name').innerHTML="2020 9모 이청준 자서전들 쓰십시다"
+} else if(fruit==="a278") {
+  document.getElementById('name').innerHTML="1996 수능 이육사 자야곡"
+} else if(fruit==="a279") {
+  document.getElementById('name').innerHTML="1997 수능 정진권 자장면"
+} else if(fruit==="a280") {
+  document.getElementById('name').innerHTML="2020 수능 김소진 자전거 도둑"
+} else if(fruit==="a281") {
+  document.getElementById('name').innerHTML="2013 9모 오세영 자화상 · 2"
+} else if(fruit==="a282") {
+  document.getElementById('name').innerHTML="2011 수능 윤동주 자화상"
+} else if(fruit==="a283") {
+  document.getElementById('name').innerHTML="2016 9모 허준 잔등"
+} else if(fruit==="a284") {
+  document.getElementById('name').innerHTML="2010 9모 이청준 잔인한 도시"
+} else if(fruit==="a285") {
+  document.getElementById('name').innerHTML="2011 9모 김원일 잠시 눕는 풀"
+} else if(fruit==="a286") {
+  document.getElementById('name').innerHTML="2020 9모 작자미상 장끼전"
+} else if(fruit==="a287") {
+  document.getElementById('name').innerHTML="2001 수능 윤흥길 장마"
+} else if(fruit==="a288") {
+  document.getElementById('name').innerHTML="2013 6모 작자미상 장석남 배를 매며"
+} else if(fruit==="a289") {
+  document.getElementById('name').innerHTML="2002 수능 정철 장진주사"
+} else if(fruit==="a290") {
+  document.getElementById('name').innerHTML="2011 9모 백석 적막강산"
+} else if(fruit==="a291") {
+  document.getElementById('name').innerHTML="2007 수능 작자미상 적벽가"
+} else if(fruit==="a292") {
+  document.getElementById('name').innerHTML="2018 6모 작자미상 적성의전"
+} else if(fruit==="a293") {
+  document.getElementById('name').innerHTML="2023 6모 기형도 전문가"
+} else if(fruit==="a294") {
+  document.getElementById('name').innerHTML="2021 6모 최동훈 전우치"
+} else if(fruit==="a295") {
+  document.getElementById('name').innerHTML="2008 9모 작자미상 전우치전<br>2021 6모 작자미상 전우치전"
+} else if(fruit==="a296") {
+  document.getElementById('name').innerHTML="2014 6모 김소월 접동새"
+} else if(fruit==="a297") {
+  document.getElementById('name').innerHTML="2015 9모 작자미상 정석가"
+} else if(fruit==="a298") {
+  document.getElementById('name').innerHTML="2023 9모 작자미상 정수정전"
+} else if(fruit==="a299") {
+  document.getElementById('name').innerHTML="2009 6모 정약용 고시"
+} else if(fruit==="a300") {
+  document.getElementById('name').innerHTML="2016 수능 정인지 외 용비어천가"
+} else if(fruit==="a301") {
+  document.getElementById('name').innerHTML="2006 수능 황동규 조그만 사랑 노래"
+} else if(fruit==="a302") {
+  document.getElementById('name').innerHTML="2013 9모 김용준 조어삼매<br>2022 6모 김용준 조어삼매"
+} else if(fruit==="a303") {
+  document.getElementById('name').innerHTML="2020 6모 성현 조용"
+} else if(fruit==="a304") {
+  document.getElementById('name').innerHTML="2009 6모 작자미상 조웅전<br>2020 6모 작자미상 조웅전"
+} else if(fruit==="a305") {
+  document.getElementById('name').innerHTML="2017 6모 조위한 최척전<br>2023 수능 조위한 최척전"
+} else if(fruit==="a306") {
+  document.getElementById('name').innerHTML="2015 수능 정지용 조찬"
+} else if(fruit==="a307") {
+  document.getElementById('name').innerHTML="2006 수능 이상 조춘점묘"
+} else if(fruit==="a308") {
+  document.getElementById('name').innerHTML="2022 9모 오장환 종가"
+} else if(fruit==="a309") {
+  document.getElementById('name').innerHTML="2019 6모 김기림 주을온천행"
+} else if(fruit==="a310") {
+  document.getElementById('name').innerHTML="2004 수능 오정희 중국인 거리"
+} else if(fruit==="a311") {
+  document.getElementById('name').innerHTML="1997 수능 황동규 즐거운 편지"
+} else if(fruit==="a312") {
+  document.getElementById('name').innerHTML="2010 수능 송수권 지리산 뻐꾹새"
+} else if(fruit==="a313") {
+  document.getElementById('name').innerHTML="2023 수능 김득연 지수정가"
+} else if(fruit==="a314") {
+  document.getElementById('name').innerHTML="1999 수능 김소월 진달래꽃"
+} else if(fruit==="a315") {
+  document.getElementById('name').innerHTML="2005 6모 김부식 진삼국사기표"
+} else if(fruit==="a316") {
+  document.getElementById('name').innerHTML="2007 수능 양주동 질화로"
+} else if(fruit==="a317") {
+  document.getElementById('name').innerHTML="2018 6모 이곡 차마설"
+} else if(fruit==="a318") {
+  document.getElementById('name').innerHTML="1994 수능2 한용운 찬송"
+} else if(fruit==="a319") {
+  document.getElementById('name').innerHTML="2003 수능 조성기 창선감의록"
+} else if(fruit==="a320") {
+  document.getElementById('name').innerHTML="2022 6모 작자미상 채봉감별곡"
+} else if(fruit==="a321") {
+  document.getElementById('name').innerHTML="2023 수능 유치환 채전"
+} else if(fruit==="a322") {
+  document.getElementById('name').innerHTML="2013 수능 박태원 천변풍경<br>2019 수능 박태원 천변풍경"
+} else if(fruit==="a323") {
+  document.getElementById('name').innerHTML="2020 9모 김영랑 청명"
+} else if(fruit==="a324") {
+  document.getElementById('name').innerHTML="2006 수능 박두진 청산도"
+} else if(fruit==="a325") {
+  document.getElementById('name').innerHTML="2000 수능 작자미상 청산별곡"
+} else if(fruit==="a326") {
+  document.getElementById('name').innerHTML="2022 수능 이육사 초가"
+} else if(fruit==="a327") {
+  document.getElementById('name').innerHTML="2020 9모 고재종 초록 바람의 전언"
+} else if(fruit==="a328") {
+  document.getElementById('name').innerHTML="2015 6모 최치원 촉규화"
+} else if(fruit==="a329") {
+  document.getElementById('name').innerHTML="2005 수능 작자미상 최고운전<br>2021 수능 작자미상 최고운전"
+} else if(fruit==="a330") {
+  document.getElementById('name').innerHTML="2002 수능 박재삼 추억에서<br>2007 6모 박재삼 추억에서<br>2019 9모 박재삼 추억에서"
+} else if(fruit==="a331") {
+  document.getElementById('name').innerHTML="2020 6모 김광균 추일서정"
+} else if(fruit==="a332") {
+  document.getElementById('name').innerHTML="2007 9모 서정주 추천사"
+} else if(fruit==="a333") {
+  document.getElementById('name').innerHTML="2009 수능 작자미상 춘면곡"
+} else if(fruit==="a334") {
+  document.getElementById('name').innerHTML="1995 수능 정정렬 춘향가<br>1999 수능 작자미상 춘향가"
+} else if(fruit==="a335") {
+  document.getElementById('name').innerHTML="2017 9모 작자미상 춘향이별가<br>2018 9모 작자미상 춘향이별가"
+} else if(fruit==="a336") {
+  document.getElementById('name').innerHTML="2017 9모 작자미상 춘향전"
+} else if(fruit==="a337") {
+  document.getElementById('name').innerHTML="2019 수능 유치환 출생기"
+} else if(fruit==="a338") {
+  document.getElementById('name').innerHTML="2013 6모 윤대성 출세기"
+} else if(fruit==="a339") {
+  document.getElementById('name').innerHTML="2023 9모 최인훈 크리스마스 캐럴 5"
+} else if(fruit==="a340") {
+  document.getElementById('name').innerHTML="2018 6모 이호철 큰산"
+} else if(fruit==="a341") {
+  document.getElementById('name').innerHTML="2016 9모 정훈 탄궁가<br>2022 수능 정훈 탄궁가"
+} else if(fruit==="a342") {
+  document.getElementById('name').innerHTML="2008 수능 태조실록"
+} else if(fruit==="a343") {
+  document.getElementById('name').innerHTML="1998 수능 채만식 태평천하"
+} else if(fruit==="a344") {
+  document.getElementById('name').innerHTML="2016 수능 작자미상 토끼전"
+} else if(fruit==="a345") {
+  document.getElementById('name').innerHTML="2007 9모 유치진 토막"
+} else if(fruit==="a346") {
+  document.getElementById('name').innerHTML="2002 수능 신재효 토별가"
+} else if(fruit==="a347") {
+  document.getElementById('name').innerHTML="2020 6모 박경리 토지"
+} else if(fruit==="a348") {
+  document.getElementById('name').innerHTML="1999 수능 김소운 특급품"
+} else if(fruit==="a349") {
+  document.getElementById('name').innerHTML="2009 9모 이경배 파수꾼"
+} else if(fruit==="a350") {
+  document.getElementById('name').innerHTML="2012 6모 김동명 파초<br>2015 수능 이태준 파초"
+} else if(fruit==="a351") {
+  document.getElementById('name').innerHTML="2023 9모 백석 편지"
+} else if(fruit==="a352") {
+  document.getElementById('name').innerHTML="1994 수능1 김수영 폭포<br>2013 수능 김수영 폭포"
+} else if(fruit==="a353") {
+  document.getElementById('name').innerHTML="2005 6모 이어령 폭포와 분수"
+} else if(fruit==="a354") {
+  document.getElementById('name').innerHTML="2008 9모 이용악 풀벌레 소리 가득 차 있었다."
+} else if(fruit==="a355") {
+  document.getElementById('name').innerHTML="2016 수능 김기택 풀벌레들의 작은 귀를 생각함"
+} else if(fruit==="a356") {
+  document.getElementById('name').innerHTML="2018 수능 이명기 풍란"
+} else if(fruit==="a357") {
+  document.getElementById('name').innerHTML="2001 수능 프로스트 가지 않은 길"
+} else if(fruit==="a358") {
+  document.getElementById('name').innerHTML="2017 9모 김현승 플라타너스<br>2018 9모 김현승 플라타너스"
+} else if(fruit==="a359") {
+  document.getElementById('name').innerHTML="2020 6모 오규원 하늘과 돌멩이"
+} else if(fruit==="a360") {
+  document.getElementById('name').innerHTML="2021 9모 김혜순 한강물 얼고, 눈이 내린 날"
+} else if(fruit==="a361") {
+  document.getElementById('name').innerHTML="2008 수능 권호문 한거십팔곡"
+} else if(fruit==="a362") {
+  document.getElementById('name').innerHTML="2019 6모 양귀자 한계령"
+} else if(fruit==="a363") {
+  document.getElementById('name').innerHTML="1998 수능 작자미상 한말 의병을 모집하는 격문"
+} else if(fruit==="a364") {
+  document.getElementById('name').innerHTML="2008 6모 황석영 원작, 김석만 · 오인두 각색 한씨연대기"
+} else if(fruit==="a365") {
+  document.getElementById('name').innerHTML="2000 수능 정지용 향수"
+} else if(fruit==="a366") {
+  document.getElementById('name').innerHTML="2023 6모 신동엽 향아"
+} else if(fruit==="a367") {
+  document.getElementById('name').innerHTML="2017 6모 박두진 향현"
+} else if(fruit==="a368") {
+  document.getElementById('name').innerHTML="2012 수능 박지원 호질"
+} else if(fruit==="a369") {
+  document.getElementById('name').innerHTML="2016 6모 작자미상 홍계월전"
+} else if(fruit==="a370") {
+  document.getElementById('name').innerHTML="1996 수능 허균 홍길동전<br>2014 수능 허균 홍길동전<br>2019 9모 허균 홍길동전"
+} else if(fruit==="a371") {
+  document.getElementById('name').innerHTML="2007 6모 박지원 홍덕보 묘지명"
+} else if(fruit==="a372") {
+  document.getElementById('name').innerHTML="2005 9모 이태준 화단"
+} else if(fruit==="a373") {
+  document.getElementById('name').innerHTML="2002 수능 김동리 화랑의 후예"
+} else if(fruit==="a374") {
+  document.getElementById('name').innerHTML="2012 6모 오영수 화산댁이"
+} else if(fruit==="a375") {
+  document.getElementById('name').innerHTML="2021 6모 성석제 황만근은 이렇게 말했다."
+} else if(fruit==="a376") {
+  document.getElementById('name').innerHTML="1998 수능 황진이 황진이 시조"
+} else if(fruit==="a377") {
+  document.getElementById('name').innerHTML="2019 6모 박봉우 휴전선"
+} else if(fruit==="a378") {
+  document.getElementById('name').innerHTML="2008 수능 최일남 흐르는 북"
+} else if(fruit==="a379") {
+  document.getElementById('name').innerHTML="1994 수능1 작자미상 흥부전<br>2015 6모 작자미상 흥부전"
+} else {
+  document.getElementById('name').innerHTML="오류"
+}
+}
+function codet() {
+	let fruit = $("#ret").val();
+  if(fruit==="a1"){
+  document.getElementById('namet').innerHTML="2023 6모 기형도 전문가"
+} else if(fruit==="a2") {
+  document.getElementById('namet').innerHTML="2003 수능 강은교 우리가 물이 되어<br>2017 6모 강은교 우리가 물이 되어"
+} else if(fruit==="a3") {
+  document.getElementById('namet').innerHTML="2007 수능 계랑의 시조"
+} else if(fruit==="a4") {
+  document.getElementById('namet').innerHTML="2015 6모 계용묵 율정기"
+} else if(fruit==="a5") {
+  document.getElementById('namet').innerHTML="2011 수능 고은 선제리 아낙네들<br>2016 6모 고은 성묘"
+} else if(fruit==="a6") {
+  document.getElementById('namet').innerHTML="2023 6모 공석옥 그 시절 우리들의 집"
+} else if(fruit==="a7") {
+  document.getElementById('namet').innerHTML="2014 9모 고정희 상한 영혼을 위하여"
+} else if(fruit==="a8") {
+  document.getElementById('namet').innerHTML="2020 9모 고재종 초록 바람의 전언"
+} else if(fruit==="a9") {
+  document.getElementById('namet').innerHTML="2012 수능 곽재구 구두 한 켤레의 시<br>2005 수능 곽재구 은행나무"
+} else if(fruit==="a10") {
+  document.getElementById('namet').innerHTML="2013 9모 권구 병산육곡"
+} else if(fruit==="a11") {
+  document.getElementById('namet').innerHTML="2013 수능 권섭 독자왕유희유오영"
+} else if(fruit==="a12") {
+  document.getElementById('namet').innerHTML="2020 수능 권근 어촌기"
+} else if(fruit==="a13") {
+  document.getElementById('namet').innerHTML="2019 9모 권호문 한거십팔곡<br>2008 수능 권호문 한거십팔곡"
+} else if(fruit==="a14") {
+  document.getElementById('namet').innerHTML="2022 수능 김관식 거산호 2"
+} else if(fruit==="a15") {
+  document.getElementById('namet').innerHTML="2009 수능 김광규 나뭇잎 하나<br>2005 9모 김광규 배<br>2018 수능 김광규 묘비명<br>2022 6모 김광규 대장간의 유혹"
+} else if(fruit==="a16") {
+  document.getElementById('namet').innerHTML="2012 6모 김광균 수철리<br>2008 수능 김광균 와사등<br>2000 수능 김광균 외인촌<br>2020 6모 김광균 추일서정"
+} else if(fruit==="a17") {
+  document.getElementById('namet').innerHTML="1996 수능 김광섭 산"
+} else if(fruit==="a18") {
+  document.getElementById('namet').innerHTML="2011 수능 김광욱 율리유곡<br>2022 6모 김광욱 율리유곡"
+} else if(fruit==="a19") {
+  document.getElementById('namet').innerHTML="2006 6모 김기림 바다와 나비<br>2022 6모 김기림 연륜<br>2019 6모 김기림 주을온천행"
+} else if(fruit==="a20") {
+  document.getElementById('namet').innerHTML="2013 9모 김기택 멸치<br>2020 수능 김기택 새<br>2016 수능 김기택 풀벌레들의 작은 귀를 생각함"
+} else if(fruit==="a21") {
+  document.getElementById('namet').innerHTML="2005 9모 김남조 설일"
+} else if(fruit==="a22") {
+  document.getElementById('namet').innerHTML="2023 수능 김득연 지수정가"
+} else if(fruit==="a23") {
+  document.getElementById('namet').innerHTML="2002 수능 김동리 화랑의 후예"
+} else if(fruit==="a24") {
+  document.getElementById('namet').innerHTML="2012 6모 김동명 파초"
+} else if(fruit==="a25") {
+  document.getElementById('namet').innerHTML="2012 수능 김동환 산 너머 남촌에는"
+} else if(fruit==="a26") {
+  document.getElementById('namet').innerHTML="1998 수능 김만중 구운몽<br>2007 6모 김만중 구운몽<br>2014 6모 김만중 구운몽<br>2000 수능 김만중 사씨남정기<br>2006 9모 김만중 사씨남정기<br>2008 수능 김만중 사씨남정기<br>2018 수능 김만중 사씨남정기"
+} else if(fruit==="a27") {
+  document.getElementById('namet').innerHTML="2011 수능 김명인 그 나무"
+} else if(fruit==="a28") {
+  document.getElementById('namet').innerHTML="2005 6모 김부식 진삼국사기표"
+} else if(fruit==="a29") {
+  document.getElementById('namet').innerHTML="2007 6모 김상옥 사향"
+} else if(fruit==="a30") {
+  document.getElementById('namet').innerHTML="2020 수능 김소진 자전거 도둑"
+} else if(fruit==="a31") {
+  document.getElementById('namet').innerHTML="1999 수능 김소운 특급품"
+} else if(fruit==="a32") {
+  document.getElementById('namet').innerHTML="2011 9모 김소월 길<br>2008 6모 김소월 나의 집<br>1994 수능1 김소월 산<br>1996 수능 김소월 삼수갑산<br>2014 6모 김소월 접동새<br>1999 수능 김소월 진달래꽃"
+} else if(fruit==="a33") {
+  document.getElementById('namet').innerHTML="2017 수능 김수영 구름의 파수병<br>2008 수능 김수영 사령<br>2013 수능 김수영 폭포<br>2021 9모 김수영 사령<br>1994 수능1 김수영 폭포"
+} else if(fruit==="a34") {
+  document.getElementById('namet').innerHTML="2015 9모 김승옥 무진기행<br>2015 9모 김승옥 안개<br>2009 수능 김승옥 역사"
+} else if(fruit==="a35") {
+  document.getElementById('namet').innerHTML="2010 수능 김시습 만복사저포기<br>2001 수능 김시습 이생규장전"
+} else if(fruit==="a36") {
+  document.getElementById('namet').innerHTML="2003 수능 김영랑 내 마음을 아실 이<br>2010 6모 김영랑 거문고<br>2020 9모 김영랑 청명<br>2005 6모 김영랑 독을 차고"
+} else if(fruit==="a37") {
+  document.getElementById('namet').innerHTML="2012 6모 김영현 대장금"
+} else if(fruit==="a38") {
+  document.getElementById('namet').innerHTML="2004 수능 김용준 게<br>2022 6모 김용준 조어삼매<br>2013 9모 김용준 조어삼매"
+} else if(fruit==="a39") {
+  document.getElementById('namet').innerHTML="2011 9모 김원일 잠시 눕는 풀"
+} else if(fruit==="a40") {
+  document.getElementById('namet').innerHTML="2000 수능 김유정 동백꽃<br>2007 수능 김유정 만무방<br>2016 6모 김유정 봄·봄"
+} else if(fruit==="a41") {
+  document.getElementById('namet').innerHTML="2019 수능 김인겸 일동장유가"
+} else if(fruit==="a42") {
+  document.getElementById('namet').innerHTML="2015 6모 김정한 모래톱 이야기"
+} else if(fruit==="a43") {
+  document.getElementById('namet').innerHTML="2007 수능 김종길 고고<br>2011 6모 김종길 성탄제"
+} else if(fruit==="a44") {
+  document.getElementById('namet').innerHTML="2007 9모 김지하 새"
+} else if(fruit==="a45") {
+  document.getElementById('namet').innerHTML="2011 6모 김춘수 강우<br>2019 수능 김춘수 샤갈의 마을에 내리는 눈<br>2004 수능 김춘수 내가 만난 이중섭"
+} else if(fruit==="a46") {
+  document.getElementById('namet').innerHTML="2021 9모 김혜순 한강물 얼고, 눈이 내린 날"
+} else if(fruit==="a47") {
+  document.getElementById('namet').innerHTML="2017 9모 김현승 플라타너스<br>2018 9모 김현승 플라타너스"
+} else if(fruit==="a48") {
+  document.getElementById('namet').innerHTML="2023 수능 김훈 겸재의 빛"
+} else if(fruit==="a49") {
+  document.getElementById('namet').innerHTML="2023 수능 나희덕 음지의 꽃<br>2015 6모 나희덕 그 복숭아나무 곁으로<br>2009 6모 나희덕 못 위의 잠"
+} else if(fruit==="a50") {
+  document.getElementById('namet').innerHTML="2008 9모 남공철 동원화수기"
+} else if(fruit==="a51") {
+  document.getElementById('namet').innerHTML="2010 9모 남영로 옥루몽"
+} else if(fruit==="a52") {
+  document.getElementById('namet').innerHTML="2002 수능 두보 강촌"
+} else if(fruit==="a53") {
+  document.getElementById('namet').innerHTML="2016 수능 멩사성 강호사시가"
+} else if(fruit==="a54") {
+  document.getElementById('namet').innerHTML="2020 6모 박경리 토지<br>1997 수능 박경리 김 약국의 딸들 <br>2017 수능 박경리 시장과 전장"
+} else if(fruit==="a55") {
+  document.getElementById('namet').innerHTML="2011 수능 박규수 범희문회서도원림"
+} else if(fruit==="a56") {
+  document.getElementById('namet').innerHTML="2012 9모 박남수 새 1<br>2016 수능 박남수 아침 이미지"
+} else if(fruit==="a57") {
+  document.getElementById('namet').innerHTML="2006 수능 박두진 청산도<br>2017 6모 박두진 향현<br>2023 9모 박두진 별-금강산시 3"
+} else if(fruit==="a58") {
+  document.getElementById('namet').innerHTML="2005 6모 박목월 가정<br>2001 수능 박목월 나그네<br>1997 수능 박목월 이별가"
+} else if(fruit==="a59") {
+  document.getElementById('namet').innerHTML="2019 6모 박봉우 휴전선"
+} else if(fruit==="a60") {
+  document.getElementById('namet').innerHTML="2019 9모 박상연 원작, 박찬욱 외 각색 공동 경비 구역 JSA"
+} else if(fruit==="a61") {
+  document.getElementById('namet').innerHTML="1996 수능 박세당 사변록"
+} else if(fruit==="a62") {
+  document.getElementById('namet').innerHTML="2016 수능 박완서 나목<br>2005 9모 박완서 엄마의 말뚝 2"
+} else if(fruit==="a63") {
+  document.getElementById('namet').innerHTML="2008 9모 박용래 월훈"
+} else if(fruit==="a64") {
+  document.getElementById('namet').innerHTML="2017 6모 박이문 눈"
+} else if(fruit==="a65") {
+  document.getElementById('namet').innerHTML="2013 9모 박인로 누항사<br>2009 6모 박인로 누항사<br>2015 수능 박인로 상사곡<br>2023 9모 박인로 소유정가"
+} else if(fruit==="a66") {
+  document.getElementById('namet').innerHTML="2006 9모 박재삼 수정가<br>2007 6모 박재삼 어떤 귀로<br>2002 수능 박재삼 추억에서<br>2007 6모 박재삼 추억에서<br>2019 9모 박재삼 추억에서"
+} else if(fruit==="a67") {
+  document.getElementById('namet').innerHTML="2003 수능 박제가 북학의"
+} else if(fruit==="a68") {
+  document.getElementById('namet').innerHTML="2005 9모 박지원 민옹전<br>1994 수능2 박지원 양반전<br>2012 수능 박지원 호질<br>2007 6모 박지원 홍덕보 묘지명"
+} else if(fruit==="a69") {
+  document.getElementById('namet').innerHTML="2008 6모 박태원 소설가 구보 씨의 일일<br>2013 수능 박태원 천변풍경<br>2019 수능 박태원 천변풍경"
+} else if(fruit==="a70") {
+  document.getElementById('namet').innerHTML="2019 6모 배한봉 우포늪 왁새"
+} else if(fruit==="a71") {
+  document.getElementById('namet').innerHTML="2004 수능 백석 고향<br>2009 6모 백석 여승<br>2011 9모 백석 적막강산<br>2023 9모 백석 편지"
+} else if(fruit==="a72") {
+  document.getElementById('namet').innerHTML="1998 수능 변영로 백두산 등척"
+} else if(fruit==="a73") {
+  document.getElementById('namet').innerHTML="2012 9모 서유영 육미당기"
+} else if(fruit==="a74") {
+  document.getElementById('namet').innerHTML="2021 수능 서영은 사막을 건너는 법"
+} else if(fruit==="a75") {
+  document.getElementById('namet').innerHTML="2001 수능 서정주 귀촉도<br>2009 9모 서정주 꽃밭의 독백-사소 단장<br>2004 수능 서정주 외할머니의 뒤안 툇마루<br>2016 6모 서정주 외할머니의 뒤안 툇마루<br>2007 9모 서정주 추천사"
+} else if(fruit==="a76") {
+  document.getElementById('namet').innerHTML="2008 9모 설장수 어옹"
+} else if(fruit==="a77") {
+  document.getElementById('namet').innerHTML="2021 6모 성석제 황만근은 이렇게 말했다."
+} else if(fruit==="a78") {
+  document.getElementById('namet').innerHTML="2020 6모 성현 조용"
+} else if(fruit==="a79") {
+  document.getElementById('namet').innerHTML="2021 6모 손백수 나무의 수사학 1"
+} else if(fruit==="a80") {
+  document.getElementById('namet').innerHTML="2010 수능 송수권 지리산 뻐꾹새"
+} else if(fruit==="a81") {
+  document.getElementById('namet').innerHTML="2003 수능 송순 면앙정가<br>2007 6모 송순 면앙정가<br>2010 수능 송순 면앙정가"
+} else if(fruit==="a82") {
+  document.getElementById('namet').innerHTML="2002 수능 신경림 가난한 사랑 노래<br>2007 6모 신경림 고향길<br>2023 9모 신경림 길<br>2009 9모 신경림 나무를 위하여"
+} else if(fruit==="a83") {
+  document.getElementById('namet').innerHTML="2010 6모 신경숙 외딴 방"
+} else if(fruit==="a84") {
+  document.getElementById('namet').innerHTML="1994 수능2 신동엽 그의 행복을 기도드리는<br>2023 6모 신동엽 향아"
+} else if(fruit==="a85") {
+  document.getElementById('namet').innerHTML="2007 수능 신석정 들길에 서서<br>1998 수능 신석정 아직 촛불을 켤 때가 아닙니다"
+} else if(fruit==="a86") {
+  document.getElementById('namet').innerHTML="2016 9모 신석청 꽃덤불"
+} else if(fruit==="a87") {
+  document.getElementById('namet').innerHTML="2005 6모 신영복 매직펜과 붓"
+} else if(fruit==="a88") {
+  document.getElementById('namet').innerHTML="2002 수능 신재효 토별가"
+} else if(fruit==="a89") {
+  document.getElementById('namet').innerHTML="2020 수능 신제영 월선헌십육경가"
+} else if(fruit==="a90") {
+  document.getElementById('namet').innerHTML="2021 수능 신흠"
+} else if(fruit==="a91") {
+  document.getElementById('namet').innerHTML="2007 6모 안민영 매화사<br>2014 9모 안민영 매화사"
+} else if(fruit==="a92") {
+  document.getElementById('namet').innerHTML="2009 9모 안조원 만언사"
+} else if(fruit==="a93") {
+  document.getElementById('namet').innerHTML="2019 6모 양귀자 한계령"
+} else if(fruit==="a94") {
+  document.getElementById('namet').innerHTML="2007 수능 양주동 질화로"
+} else if(fruit==="a95") {
+  document.getElementById('namet').innerHTML="2006 수능 양태사 야청도의성"
+} else if(fruit==="a96") {
+  document.getElementById('namet').innerHTML="2006 9모 염상섭 만세전<br>1994 수능1 염상섭 삼대<br>1999 수능 염상섭 삼대<br>2017 6모 염상섭 삼대"
+} else if(fruit==="a97") {
+  document.getElementById('namet').innerHTML="2020 6모 오규원 하늘과 돌멩이<br>2013 수능 오규원 살아 있는 것은 흔들리면서- 순례11"
+} else if(fruit==="a98") {
+  document.getElementById('namet').innerHTML="2009 9모 오상원 모반"
+} else if(fruit==="a99") {
+  document.getElementById('namet').innerHTML="2013 9모 오세영 자화상 · 2"
+} else if(fruit==="a100") {
+  document.getElementById('namet').innerHTML="2012 6모 오영수 화산댁이<br>2022 9모 오영수 갯마을<br>2022 9모 오영수 원작, 신봉승 각색 갯마을"
+} else if(fruit==="a101") {
+  document.getElementById('namet').innerHTML="2001 수능 오영진 살아 있는 이중생 각하"
+} else if(fruit==="a102") {
+  document.getElementById('namet').innerHTML="2006 6모 오장환 고향 앞에서<br>2022 9모 오장환 종가"
+} else if(fruit==="a103") {
+  document.getElementById('namet').innerHTML="2004 수능 오정희 중국인 거리"
+} else if(fruit==="a104") {
+  document.getElementById('namet').innerHTML="2014 수능 왕방연"
+} else if(fruit==="a105") {
+  document.getElementById('namet').innerHTML="2014 수능 원천석"
+} else if(fruit==="a106") {
+  document.getElementById('namet').innerHTML="2008 6모 월명사 제망매가<br>1997 수능 월명사 제망매가"
+} else if(fruit==="a107") {
+  document.getElementById('namet').innerHTML="2016 6모 위백규 농가<br>2003 수능 위백규 농가<br>2022 수능 위백규 농가"
+} else if(fruit==="a108") {
+  document.getElementById('namet').innerHTML="1997 수능 유몽인 어우야담"
+} else if(fruit==="a109") {
+  document.getElementById('namet').innerHTML="2021 수능 유본학 옛집 정승초당을 둘러보고 쓰다"
+} else if(fruit==="a110") {
+  document.getElementById('namet').innerHTML="2004 수능 유종원 강설"
+} else if(fruit==="a111") {
+  document.getElementById('namet').innerHTML="2016 수능 유치진 소<br>2007 9모 유치진 토막"
+} else if(fruit==="a112") {
+  document.getElementById('namet').innerHTML="1995 수능 유치환 바위<br>2023 수능 유치환 채전<br>2019 수능 유치환 출생기<br>1994 수능1 유치환 생명의 서"
+} else if(fruit==="a113") {
+  document.getElementById('namet').innerHTML="2013 6모 윤대성 출세기"
+} else if(fruit==="a114") {
+  document.getElementById('namet').innerHTML="2008 6모 윤동주 길<br>2013 9모 윤동주 또 다른 고향<br>1998 수능 윤동주 별 헤는 밤<br>1995 수능 윤동주 서시<br>2001 수능 윤동주 서시<br>2020 수능 윤동주 바람이 불어<br>2011 수능 윤동주 자화상"
+} else if(fruit==="a115") {
+  document.getElementById('namet').innerHTML="2010 수능 윤삼육 각색 장마"
+} else if(fruit==="a116") {
+  document.getElementById('namet').innerHTML="2012 6모 윤선도 견회요<br>2007 9모 윤선도 만흥<br>2021 9모 윤선도 만흥<br>2000 수능 윤선도 어부사시사<br>1995 수능 윤선도 오우가"
+} else if(fruit==="a117") {
+  document.getElementById('namet').innerHTML="2006 6모 윤오영 쓰고 싶고 읽고 싶은 글"
+} else if(fruit==="a118") {
+  document.getElementById('namet').innerHTML="2001 수능 윤흥길 장마<br>2022 수능 윤흥길 매우 잘생긴 우산 하나"
+} else if(fruit==="a119") {
+  document.getElementById('namet').innerHTML="2016 6모 이강백 결혼<br>2017 수능 이강백 느낌, 극락같은"
+} else if(fruit==="a120") {
+  document.getElementById('namet').innerHTML="2009 9모 이경배 파수꾼"
+} else if(fruit==="a121") {
+  document.getElementById('namet').innerHTML="2018 6모 이곡 차마설"
+} else if(fruit==="a122") {
+  document.getElementById('namet').innerHTML="2012 수능 이광명 북찬가"
+} else if(fruit==="a123") {
+  document.getElementById('namet').innerHTML="2005 6모 이규보 동명왕편 서"
+} else if(fruit==="a124") {
+  document.getElementById('namet').innerHTML="2006 9모 이근삼 원고지<br>2014 9모 이근삼 원고지"
+} else if(fruit==="a125") {
+  document.getElementById('namet').innerHTML="2021 9모 이기영 고향"
+} else if(fruit==="a126") {
+  document.getElementById('namet').innerHTML="2021 9모 이덕무 우언"
+} else if(fruit==="a127") {
+  document.getElementById('namet').innerHTML="2003 수능 이문구 관촌수필<br>2010 수능 이문구 관촌수필<br>2018 수능 이문구 관촌수필"
+} else if(fruit==="a128") {
+  document.getElementById('namet').innerHTML="2007 6모 이문열 금시조"
+} else if(fruit==="a129") {
+  document.getElementById('namet').innerHTML="2018 수능 이명기 풍란"
+} else if(fruit==="a130") {
+  document.getElementById('namet').innerHTML="2002 수능 이범선 오발탄(나소은 이종기 각색)<br>2019 수능 이범선 원작, 이종기 각색 오발탄"
+} else if(fruit==="a131") {
+  document.getElementById('namet').innerHTML="2014 수능 이상 권태<br>1995 수능 이상 날개<br>2008 9모 이상 날개<br>2006 수능 이상 조춘점묘"
+} else if(fruit==="a132") {
+  document.getElementById('namet').innerHTML="2011 6모 이성복 서해"
+} else if(fruit==="a133") {
+  document.getElementById('namet').innerHTML="2018 6모 이수익 결빙의 아버지<br>2009 6모 이수익 결빙의 아버지"
+} else if(fruit==="a134") {
+  document.getElementById('namet').innerHTML="2013 수능 이시영 마음의 고향6 – 초설<br>2021 수능 이시영 마음의 고향2-그 언덕-"
+} else if(fruit==="a135") {
+  document.getElementById('namet').innerHTML="2011 9모 이신의 단가 육장"
+} else if(fruit==="a136") {
+  document.getElementById('namet').innerHTML="1995 수능 이양하 나무<br>2013 수능 이양하 신록 예찬"
+} else if(fruit==="a137") {
+  document.getElementById('namet').innerHTML="2005 6모 이어령 폭포와 분수"
+} else if(fruit==="a138") {
+  document.getElementById('namet').innerHTML="2004 수능 이옥 심생전<br>2011 6모 이옥 어부<br>2022 수능 이옥 담초(談艸)"
+} else if(fruit==="a139") {
+  document.getElementById('namet').innerHTML="2002 수능 이용악 그리움<br>2005 수능 이용악 낡은 집<br>2021 수능 이용악 그리움<br>2008 9모 이용악 풀벌레 소리 가득 차 있었다."
+} else if(fruit==="a140") {
+  document.getElementById('namet').innerHTML="2012 9모 이용휴 수려기"
+} else if(fruit==="a141") {
+  document.getElementById('namet').innerHTML="2007 수능 이육사 교목<br>1999 수능 이육사 꽃<br>2018 수능 이육사 강 건너간 노래<br>2022 수능 이육사 초가<br>2010 9모 이육사 소년에게<br>1996 수능 이육사 자야곡"
+} else if(fruit==="a142") {
+  document.getElementById('namet').innerHTML="2004 수능 이이 고산구곡가<br>2020 9모 이이 고산구곡가"
+} else if(fruit==="a143") {
+  document.getElementById('namet').innerHTML="2015 6모 이정보"
+} else if(fruit==="a144") {
+  document.getElementById('namet').innerHTML="2015 6모 이조년<br>2006 6모 이조년 다정가"
+} else if(fruit==="a145") {
+  document.getElementById('namet').innerHTML="2018 수능 이정환 비가"
+} else if(fruit==="a146") {
+  document.getElementById('namet').innerHTML="2006 6모 이청준 병신과 머저리<br>2010 9모 이청준 잔인한 도시<br>2020 9모 이청준 자서전들 쓰십시다"
+} else if(fruit==="a147") {
+  document.getElementById('namet').innerHTML="2012 수능 이태준 돌다리<br>2007 9모 이태준 복덕방<br>2015 수능 이태준 파초<br>2005 9모 이태준 화단"
+} else if(fruit==="a148") {
+  document.getElementById('namet').innerHTML="2009 6모 이학규 어떤 사람에게"
+} else if(fruit==="a149") {
+  document.getElementById('namet').innerHTML="2005 6모 이현보 어부단가<br>2010 9모 이현보 어부단가"
+} else if(fruit==="a150") {
+  document.getElementById('namet').innerHTML="2014 수능 이형기 낙화"
+} else if(fruit==="a151") {
+  document.getElementById('namet').innerHTML="2011 수능 이호철 나상<br>2018 6모 이호철 큰산"
+} else if(fruit==="a152") {
+  document.getElementById('namet').innerHTML="2005 수능 이황 도산십이곡<br>2023 수능 이황 도산십이곡<br>2012 9모 이황 도산십이곡<br>2002 수능 이황 도산육곡 발"
+} else if(fruit==="a153") {
+  document.getElementById('namet').innerHTML="2005 수능 이효석 메밀꽃 필 무렵"
+} else if(fruit==="a154") {
+  document.getElementById('namet').innerHTML="1996 수능 이희승 딸깍발이<br>1997 수능 이희승 웃음의 철학"
+} else if(fruit==="a155") {
+  document.getElementById('namet').innerHTML="1994 수능1 일연 삼국 유사"
+} else if(fruit==="a156") {
+  document.getElementById('namet').innerHTML="2014 수능 임제"
+} else if(fruit==="a157") {
+  document.getElementById('namet').innerHTML="2011 6모 임철우 눈이 오면<br>2017 9모 임철우 눈이 오면<br>2018 9모 임철우 눈이 오면"
+} else if(fruit==="a158") {
+  document.getElementById('namet').innerHTML="2023 6모 조우인 자도사"
+} else if(fruit==="a159") {
+  document.getElementById('namet').innerHTML="2023 6모 작자미상 소현성록<br>2023 9모 작자미상 정수정전 <br>2001 수능 작자미상 가시리<br>2017 6모 작자미상 가시리<br>2013 수능 작자미상 금방울전<br>2011 9모 작자미상 김원전<br>2012 9모 작자미상 덴동어미화전가<br>2017 6모 작자미상 동동<br>2009 수능 작자미상 박씨전<br>2017 수능 작자미상 박씨전<br>2009 9모 작자미상 박흥보전<br>1996 수능 작자미상 봉산탈춤 대본<br>2006 6모 작자미상 사설시조<br>2011 6모 작자미상 사설시조<br>2019 6모 작자미상 서경별곡<br>2006 6모 작자미상 서동지전<br>2015 수능 작자미상 소대성전<br>2010 6모 작자미상 수궁가<br>2014 9모 작자미상 숙영낭자전<br>2007 9모 작자미상 숙향전<br>2001 수능 작자미상 시조<br>2014 6모 작자미상 시집살이 노래<br>1994 수능2 작자미상 심청전<br>2012 6모 작자미상 심청전<br>2005 6모 작자미상 심청전(경판본)<br>2013 9모 작자미상 열녀춘향수절가<br>2016 9모 작자미상 옥단춘전<br>2019 6모 작자미상 옹고집전<br>2011 수능 작자미상 운영전<br>2004 수능 작자미상 유산가<br>2006 수능 작자미상 유충렬전<br>2015 9모 작자미상 유충렬전<br>2008 6모 작자미상 임진록<br>2013 6모 작자미상 임진록<br>2018 6모 작자미상 적성의전<br>2015 9모 작자미상 정석가<br>2009 6모 작자미상 조웅전<br>2000 수능 작자미상 청산별곡<br>2005 수능 작자미상 최고운전<br>2009 수능 작자미상 춘면곡<br>1999 수능 작자미상 춘향가<br>2017 9모 작자미상 춘향이별가<br>2018 9모 작자미상 춘향이별가<br>2017 9모 작자미상 춘향전<br>2016 수능 작자미상 토끼전<br>1998 수능 작자미상 한말 의병을 모집하는 격문<br>2016 6모 작자미상 홍계월전<br>1994 수능1 작자미상 흥부전<br>2015 6모 작자미상 흥부전<br>2022 수능 작자미상 박태보전<br>2022 9모 작자미상 배비장전<br>2021 9모 작자미상 심청전<br>2020 수능 작자미상 유씨삼대록<br>2019 수능 작자미상 임장군전<br>2020 9모 작자미상 장끼전<br>2021 6모 작자미상 전우치전<br>2020 6모 작자미상 조웅전<br>2022 6모 작자미상 채봉감별곡<br>2021 수능 작자미상 최고운전<br>2007 수능 작자미상 적벽가<br>2008 9모 작자미상 전우치전"
+} else if(fruit==="a160") {
+  document.getElementById('namet').innerHTML="2013 6모 장석남 배를 매며"
+} else if(fruit==="a161") {
+  document.getElementById('namet').innerHTML="2014 9모 전광용 꺼삐딴 리"
+} else if(fruit==="a162") {
+  document.getElementById('namet').innerHTML="2016 9모 전봉건 사랑"
+} else if(fruit==="a163") {
+  document.getElementById('namet').innerHTML="2020 9모 정극인 상춘곡<br>2002 수능 정극인 상춘곡<br>2008 9모 정극인 상춘곡<br>2011 수능 정극인 상춘곡<br>2014 수능 정극인 상춘곡"
+} else if(fruit==="a164") {
+  document.getElementById('namet').innerHTML="2009 6모 정약용 고시"
+} else if(fruit==="a165") {
+  document.getElementById('namet').innerHTML="2016 수능 정인지 외 용비어천가"
+} else if(fruit==="a166") {
+  document.getElementById('namet').innerHTML="2012 9모 정일근 어머니의 그릇"
+} else if(fruit==="a167") {
+  document.getElementById('namet').innerHTML="1995 수능 정정렬 춘향가"
+} else if(fruit==="a168") {
+  document.getElementById('namet').innerHTML="1998 수능 정지상 송인"
+} else if(fruit==="a169") {
+  document.getElementById('namet').innerHTML="2015 수능 정지용 조찬<br>2017 9모 정지용 달<br>2018 9모 정지용 달<br>2010 6모 정지용 발열<br>2006 수능 정지용 인동차<br>2000 수능 정지용 향수"
+} else if(fruit==="a170") {
+  document.getElementById('namet').innerHTML="1997 수능 정진권 자장면"
+} else if(fruit==="a171") {
+  document.getElementById('namet').innerHTML="1999 수능 정철 관동별곡<br>1998 수능 정철 사미인곡<br>2006 9모 정철 사미인곡<br>2013 6모 정철 사미인곡<br>2005 9모 정철 성산별곡<br>2021 6모 정철 관동별곡<br>2021 수능 정철 사미인곡<br>2013 수능 정철 성산별곡<br>2006 수능 정철 속미인곡<br>2014 6모 정철 속미인곡<br>2002 수능 정철 장진주사"
+} else if(fruit==="a172") {
+  document.getElementById('namet').innerHTML="2016 6모 정학유 농가월령가"
+} else if(fruit==="a173") {
+  document.getElementById('namet').innerHTML="1996 수능 정한숙 IYEU 도"
+} else if(fruit==="a174") {
+  document.getElementById('namet').innerHTML="2016 9모 정훈 탄궁가<br>2022 수능 정훈 탄궁가"
+} else if(fruit==="a175") {
+  document.getElementById('namet').innerHTML="2003 수능 조성기 창선감의록"
+} else if(fruit==="a176") {
+  document.getElementById('namet').innerHTML="2014 수능 조세희 난장이가 쏘아 올린 작은 공<br>2005 6모 조세희 난장이가 쏘아올린 작은 공"
+} else if(fruit==="a177") {
+  document.getElementById('namet').innerHTML="2019 6모 조위 만분가<br>2007 수능 조위 만분가"
+} else if(fruit==="a178") {
+  document.getElementById('namet').innerHTML="2017 6모 조위한 최척전<br>2023 수능 조위한 최척전"
+} else if(fruit==="a179") {
+  document.getElementById('namet').innerHTML="2018 6모 조지훈 고풍 의상<br>2005 9모 조지훈 마음의 태양<br>2005 수능 조지훈 멋 설<br>1994 수능2 조지훈 석문<br>2010 수능 조지훈 승무<br>2021 6모 조지훈 산상의 노래"
+} else if(fruit==="a180") {
+  document.getElementById('namet').innerHTML="2006 수능 조희룡 이향견문록 서"
+} else if(fruit==="a181") {
+  document.getElementById('namet').innerHTML="2018 6모 주세붕 오륜가"
+} else if(fruit==="a182") {
+  document.getElementById('namet').innerHTML="2017 9모 차범석 불모지<br>2018 9모 차범석 불모지"
+} else if(fruit==="a183") {
+  document.getElementById('namet').innerHTML="2023 6모 채만식 미스터 방<br>2014 6모 채만식 미스터 방<br>1994 수능2 채만식 역로<br>1998 수능 채만식 태평천하"
+} else if(fruit==="a184") {
+  document.getElementById('namet').innerHTML="2008 수능 천승세 만선"
+} else if(fruit==="a185") {
+  document.getElementById('namet').innerHTML="1998 수능 최남선 심춘순례"
+} else if(fruit==="a186") {
+  document.getElementById('namet').innerHTML="2012 9모 최두석 노래와 이야기<br>2022 9모 최두석 노래와 이야기"
+} else if(fruit==="a187") {
+  document.getElementById('namet').innerHTML="2021 6모 최동훈 전우치"
+} else if(fruit==="a188") {
+  document.getElementById('namet').innerHTML="2019 9모 최명익 비 오는 날"
+} else if(fruit==="a189") {
+  document.getElementById('namet').innerHTML="2023 수능 최명희 쓰러지는 빛"
+} else if(fruit==="a190") {
+  document.getElementById('namet').innerHTML="2000 수능 최순우 무량수전 배흘림기둥에 기대 서서"
+} else if(fruit==="a191") {
+  document.getElementById('namet').innerHTML="2010 6모 최승호 대설주의보<br>2006 6모 최승호 북어"
+} else if(fruit==="a192") {
+  document.getElementById('namet').innerHTML="1994 수능1 최영준 길의역사, 길의사상"
+} else if(fruit==="a193") {
+  document.getElementById('namet').innerHTML="1998 수능 최익현 유한라산기"
+} else if(fruit==="a194") {
+  document.getElementById('namet').innerHTML="2023 9모 최인훈 크리스마스 캐럴 5<br>1994 수능1 최인훈 광장<br>2006 수능 최인훈 광장<br>2003 수능 최인훈 둥둥 낙랑둥<br>2011 9모 최인훈 어디서 무엇이 되어 만나랴"
+} else if(fruit==="a195") {
+  document.getElementById('namet').innerHTML="2008 수능 최일남 흐르는 북"
+} else if(fruit==="a196") {
+  document.getElementById('namet').innerHTML="2015 6모 최치원 촉규화"
+} else if(fruit==="a197") {
+  document.getElementById('namet').innerHTML="2008 수능 태조실록"
+} else if(fruit==="a198") {
+  document.getElementById('namet').innerHTML="2001 수능 프로스트 가지 않은 길"
+} else if(fruit==="a199") {
+  document.getElementById('namet').innerHTML="2012 9모 하근찬 나룻배 이야기"
+} else if(fruit==="a200") {
+  document.getElementById('namet').innerHTML="2009 수능 한용운 님의 침묵<br>2003 수능 한용운 나룻배와 행인<br>2013 6모 한용운 알 수 없어요<br>1994 수능2 한용운 찬송"
+} else if(fruit==="a201") {
+  document.getElementById('namet').innerHTML="2016 9모 한흑구 보리"
+} else if(fruit==="a202") {
+  document.getElementById('namet').innerHTML="2010 9모 함세덕 동승<br>2012 수능 함세덕 산허구리"
+} else if(fruit==="a203") {
+  document.getElementById('namet').innerHTML="1996 수능 허균 홍길동전<br>2014 수능 허균 홍길동전<br>2019 9모 허균 홍길동전"
+} else if(fruit==="a204") {
+  document.getElementById('namet').innerHTML="2001 수능 허난설헌 규원가<br>2022 9모 허난설헌 규원가"
+} else if(fruit==="a205") {
+  document.getElementById('namet').innerHTML="2011 6모 허전 고공가"
+} else if(fruit==="a206") {
+  document.getElementById('namet').innerHTML="2016 9모 허준 잔등"
+} else if(fruit==="a207") {
+  document.getElementById('namet').innerHTML="2009 6모 현길언 신열"
+} else if(fruit==="a208") {
+  document.getElementById('namet').innerHTML="2015 수능 현진건 무영탑<br>2000 수능 현진건 불국사 기행"
+} else if(fruit==="a209") {
+  document.getElementById('namet').innerHTML="2017 수능 홍순학 연행가"
+} else if(fruit==="a210") {
+  document.getElementById('namet').innerHTML="2022 6모 홍성원 무사와 악사"
+} else if(fruit==="a211") {
+  document.getElementById('namet').innerHTML="2009 수능 홍파 각색 난쟁이가 쏘아 올린 작은 공"
+} else if(fruit==="a212") {
+  document.getElementById('namet').innerHTML="2006 수능 황동규 조그만 사랑 노래<br>1997 수능 황동규 즐거운 편지"
+} else if(fruit==="a213") {
+  document.getElementById('namet').innerHTML="2013 6모 황석영 가객<br>2008 6모 황석영 원작, 김석만 · 오인두 각색 한씨연대기"
+} else if(fruit==="a214") {
+  document.getElementById('namet').innerHTML="2010 9모 황지우 겨울- 나무로부터 봄- 나무에로<br>2015 9모 황지우 겨울- 나무로부터 봄- 나무에로<br>2006 9모 황지우 너를 기다리는 동안"
+} else if(fruit==="a215") {
+  document.getElementById('namet').innerHTML="1998 수능 황진이 시조"
+} else if(fruit==="a216") {
+  document.getElementById('namet').innerHTML="2023 6모 황희 사시가"
+} else {
+  document.getElementById('namet').innerHTML="오류"
+}
+}
+function codett() {
+	let fruit = $("#bat").val();
+  if(fruit==="a1"){
+  document.getElementById('namett').innerHTML="2023 수능 조위한 최척전<br>2023 수능 이황 도산십이곡<br>2023 수능 김득연 지수정가<br>2023 수능 김훈 겸재의 빛<br>2023 수능 최명희 쓰러지는 빛<br>2023 수능 유치환 채전<br>2023 수능 나희덕 음지의 꽃"
+} else if(fruit==="a2") {
+  document.getElementById('namett').innerHTML="2023 9모 작자미상 정수정전<br>2023 9모 박두진 별-금강산시 3<br>2023 9모 신경림 길<br>2023 9모 백석 편지<br>2023 9모 최인군 크리스마스 캐럴 5<br>2023 9모 박인로 소유정가"
+} else if(fruit==="a3") {
+  document.getElementById('namett').innerHTML="2023 6모 작자미상 소현성록<br>2023 6모 황희 사시가<br>2023 6모 조우인 자도사<br>2023 6모 공석옥 그 시절 우리들의 집<br>2023 6모 채만식 미스터 방<br>2023 6모 신동엽 향아<br>2023 6모 기형도 전문가"
+} else if(fruit==="a4") {
+  document.getElementById('namett').innerHTML="2022 수능 이육사 초가<br>2022 수능 김관식 거산호 2<br>2022 수능 이옥 담초(談艸)<br>2022 수능 윤흥길 매우 잘생긴 우산 하나<br>2022 수능 작자미상 박태보전<br>2022 수능 정훈 탄궁가<br>2022 수능 위백규 농가"
+} else if(fruit==="a5") {
+  document.getElementById('namett').innerHTML="2022 9모 작자미상 배비장전<br>2022 9모 오영수 갯마을<br>2022 9모 오영수 원작, 신봉승 각색 갯마을<br>2022 9모 오장환 종가<br>2022 9모 최두석 노래와 이야기<br>2022 9모 허난설헌 규원가"
+} else if(fruit==="a6") {
+  document.getElementById('namett').innerHTML="2022 6모 홍성원 무사와 악사<br>2022 6모 김광욱 율리유곡<br>2022 6모 김용준 조어삼매<br>2022 6모 작자미상 채봉감별곡<br>2022 6모 김기림 연륜<br>2022 6모 김광규 대장간의 유혹"
+} else if(fruit==="a7") {
+  document.getElementById('namett').innerHTML="2021 수능 서영은 사막을 건너는 법<br>2021 수능 작자미상 최고운전<br>2021 수능 정철 사미인곡<br>2021 수능 신흠<br>2021 수능 유본학 옛집 정승초당을 둘러보고 쓰다<br>2021 수능 이용악 그리움<br>2021 수능 이시영 마음의 고향2-그 언덕-"
+} else if(fruit==="a8") {
+  document.getElementById('namett').innerHTML="2021 9모 이기영 고향<br>2021 9모 작자미상 심청전<br>2021 9모 윤선도 만흥<br>2021 9모 이덕무 우언<br>2021 9모 김수영 사령<br>2021 9모 김혜순 한강물 얼고, 눈이 내린 날"
+} else if(fruit==="a9") {
+  document.getElementById('namett').innerHTML="2021 6모 조지훈 산상의 노래<br>2021 6모 성석제 황만근은 이렇게 말했다.<br>2021 6모 정철 관동별곡<br>2021 6모 작자미상 전우치전<br>2021 6모 최동훈 전우치<br>2021 6모 손백수 나무의 수사학 1"
+} else if(fruit==="a10") {
+  document.getElementById('namett').innerHTML="2020 수능 신제영 월선헌십육경가<br>2020 수능 권근 어촌기<br>2020 수능 김소진 자전거 도둑<br>2020 수능 작자미상 유씨삼대록<br>2020 수능 윤동주 바람이 불어<br>2020 수능 김기택 새"
+} else if(fruit==="a11") {
+  document.getElementById('namett').innerHTML="2020 9모 정극인 상춘곡<br>2020 9모 이이 고산구곡가<br>2020 9모 작자미상 장끼전<br>2020 9모 김영랑 청명<br>2020 9모 고재종 초록 바람의 전언<br>2020 9모 이청준 자서전들 쓰십시다"
+} else if(fruit==="a12") {
+  document.getElementById('namett').innerHTML="2020 6모 박경리 토지<br>2020 6모 작자미상 조웅전<br>2020 6모 성현 조용<br>2020 6모 김광균 추일서정<br>2020 6모 오규원 하늘과 돌멩이"
+} else if(fruit==="a13") {
+  document.getElementById('namett').innerHTML="2019 수능 박태원 천변풍경<br>2019 수능 이범선 원작, 이종기 각색 오발탄<br>2019 수능 유치환 출생기<br>2019 수능 김춘수 샤갈의 마을에 내리는 눈<br>2019 수능 작자미상 임장군전<br>2019 수능 김인겸 일동장유가"
+} else if(fruit==="a14") {
+  document.getElementById('namett').innerHTML="2019 9모 권호문 한거십팔곡<br>2019 9모 박재삼 추억에서<br>2019 9모 허균 홍길동전<br>2019 9모 박상연 원작, 박찬욱 외 각색 공동 경비 구역 JSA<br>2019 9모 최명익 비 오는 날"
+} else if(fruit==="a15") {
+  document.getElementById('namett').innerHTML="2019 6모 박봉우 휴전선<br>2019 6모 배한봉 우포늪 왁새<br>2019 6모 김기림 주을온천행<br>2019 6모 조위 만분가<br>2019 6모 작자미상 서경별곡<br>2019 6모 작자미상 옹고집전<br>2019 6모 양귀자 한계령"
+} else if(fruit==="a16") {
+  document.getElementById('namett').innerHTML="2018 수능 이육사 강 건너간 노래<br>2018 수능 김광규 묘비명<br>2018 수능 김만중 사씨남정기<br>2018 수능 이정환 비가<br>2018 수능 이명기 풍란<br>2018 수능 이문구 관촌수필"
+} else if(fruit==="a17") {
+  document.getElementById('namett').innerHTML="2018 9모 김현승 플라타너스<br>2018 9모 정지용 달<br>2018 9모 차범석 불모지<br>2018 9모 작자미상 춘향이별가<br>2018 9모 임철우 눈이 오면"
+} else if(fruit==="a18") {
+  document.getElementById('namett').innerHTML="2018 6모 조지훈 고풍 의상<br>2018 6모 이수익 결빙의 아버지<br>2018 6모 작자미상 적성의전<br>2018 6모 이호철 큰산<br>2018 6모 주세붕 오륜가<br>2018 6모 이곡 차마설"
+} else if(fruit==="a19") {
+  document.getElementById('namett').innerHTML="2017 수능 작자미상 박씨전<br>2017 수능 박경리 시장과 전장<br>2017 수능 김수영 구름의 파수병<br>2017 수능 이강백 느낌, 극락같은<br>2017 수능 홍순학 연행가"
+} else if(fruit==="a20") {
+  document.getElementById('namett').innerHTML="2017 9모 김현승 플라타너스<br>2017 9모 정지용 달<br>2017 9모 차범석 불모지<br>2017 9모 작자미상 춘향전<br>2017 9모 작자미상 춘향이별가<br>2017 9모 임철우 눈이 오면"
+} else if(fruit==="a21") {
+  document.getElementById('namett').innerHTML="2017 6모 작자미상 가시리<br>2017 6모 작자미상 동동<br>2017 6모 박두진 향현<br>2017 6모 강은교 우리가 물이 되어<br>2017 6모 박이문 눈<br>2017 6모 염상섭 삼대<br>2017 6모 조위한 최척전"
+} else if(fruit==="a22") {
+  document.getElementById('namett').innerHTML="2016 수능 박완서 나목<br>2016 수능 유치진 소<br>2016 수능 작자미상 토끼전<br>2016 수능 정인지 외 용비어천가<br>2016 수능 멩사성 강호사시가<br>2016 수능 박남수 아침 이미지<br>2016 수능 김기택 풀벌레들의 작은 귀를 생각함"
+} else if(fruit==="a23") {
+  document.getElementById('namett').innerHTML="2016 9모 작자미상 옥단춘전<br>2016 9모 신석청 꽃덤불<br>2016 9모 전봉건 사랑<br>2016 9모 한흑구 보리<br>2016 9모 허준 잔등<br>2016 9모 정훈 탄궁가"
+} else if(fruit==="a24") {
+  document.getElementById('namett').innerHTML="2016 6모 위백규 농가<br>2016 6모 정학유 농가월령가<br>2016 6모 김유정 봄·봄<br>2016 6모 작자미상 홍계월전<br>2016 6모 고은 성묘<br>2016 6모 서정주 외할머니의 뒤안 툇마루<br>2016 6모 이강백 결혼"
+} else if(fruit==="a25") {
+  document.getElementById('namett').innerHTML="2015 수능 정지용 조찬<br>2015 수능 이태준 파초<br>2015 수능 작자미상 소대성전<br>2015 수능 헌진건 무영탑<br>2015 수능 막인로 상사곡"
+} else if(fruit==="a26") {
+  document.getElementById('namett').innerHTML="2015 9모 황지우 겨울-나무로부터 봄-나무에로<br>2015 9모 김승옥 무진기행<br>2015 9모 김승옥 안개<br>2015 9모 작자미상 유충렬전<br>2015 9모 작자미상 정석가"
+} else if(fruit==="a27") {
+  document.getElementById('namett').innerHTML="2015 6모 나희덕 그 복숭아나무 곁으로<br>2015 6모 계용묵 율정기<br>2015 6모 김정한 모래톱 이야기<br>2015 6모 작자미상 흥부전<br>2015 6모 이정보<br>2015 6모 이조년<br>2015 6모 최치원 촉규화"
+} else if(fruit==="a28") {
+  document.getElementById('namett').innerHTML="2014 수능 이형기 낙화<br>2014 수능 조세희 난장이가 쏘아 올린 작은 공<br>2014 수능 왕방연<br>2014 수능 임제<br>2014 수능 원천석<br>2014 수능 정극인 상춘곡<br>2014 수능 허균 홍길동전<br>2014 수능 이상 권태"
+} else if(fruit==="a29") {
+  document.getElementById('namett').innerHTML="2014 9모 고정희 상한 영혼을 위하여<br>2014 9모 전광용 꺼삐딴 리<br>2014 9모 안민영 매화사<br>2014 9모 작자미상 숙영낭자전<br>2014 9모 이근삼 원고지"
+} else if(fruit==="a30") {
+  document.getElementById('namett').innerHTML="2014 6모 채만식 미스터 방<br>2014 6모 작자미상 시집살이 노래<br>2014 6모 정철 속미인곡<br>2014 6모 김만중 구운몽<br>2014 6모 김소월 접동새"
+} else if(fruit==="a31") {
+  document.getElementById('namett').innerHTML="2013 수능 김수영 폭포<br>2013 수능 오규원 살아 있는 것은 흔들리면서- 순례11<br>2013 수능 이시영 마음의 고향6 - 초설<br>2013 수능 작자미상 금방울전<br>2013 수능 박태원 천변풍경<br>2013 수능 정철 성산별곡<br>2013 수능 권섭 독자왕유희유오영<br>2013 수능 이양하 신록 예찬"
+} else if(fruit==="a32") {
+  document.getElementById('namett').innerHTML="2013 9모 작자미상 열녀춘향수절가<br>2013 9모 윤동주 또 다른 고향<br>2013 9모 오세영 자화상 · 2<br>2013 9모 김기택 멸치<br>2013 9모 박인로 누항사<br>2013 9모 권구 병산육곡<br>2013 9모  김용준 조어삼매"
+} else if(fruit==="a33") {
+  document.getElementById('namett').innerHTML="2013 6모 한용운 알 수 없어요<br>2013 6모 장석남 배를 매며<br>2013 6모 정철 사미인곡<br>2013 6모 황석영 가객<br>2013 6모 작자미상 임진록<br>2013 6모 윤대성 출세기"
+} else if(fruit==="a34") {
+  document.getElementById('namett').innerHTML="2012 수능 이태준 돌다리<br>2012 수능 박지원 호질<br>2012 수능 곽재구 구두 한 켤레의 시<br>2012 수능 김동환 산 너머 남촌에는<br>2012 수능 이광명 북찬가<br>2012 수능 함세덕 산허구리"
+} else if(fruit==="a35") {
+  document.getElementById('namett').innerHTML="2012 9모 하근찬 나룻배 이야기<br>2012 9모 박남수 새 1<br>2012 9모 정일근 어머니의 그륵<br>2012 9모 최두석 노래와 이야기<br>2012 9모 이용휴 수려기<br>2012 9모 작자미상 덴동어미화전가<br>2012 9모 이황 도산십이곡<br>2012 9모 서유영 육미당기"
+} else if(fruit==="a36") {
+  document.getElementById('namett').innerHTML="2012 6모 김동명 파초<br>2012 6모 김광균 수철리<br>2012 6모 윤선도 견회요<br>2012 6모 오영수 화산댁이<br>2012 6모 김영현 대장금<br>2012 6모 작자미상 심청전"
+} else if(fruit==="a37") {
+  document.getElementById('namett').innerHTML="2011 수능 윤동주 자화상<br>2011 수능 고은 선제리 아낙네들<br>2011 수능 김명인 그 나무<br>2011 수능 정극인 상춘곡<br>2011 수능 김광욱 율리유곡<br>2011 수능 박규수 범희문회서도원림<br>2011 수능 이호철 나상<br>2011 수능 작자미상 운영전"
+} else if(fruit==="a38") {
+  document.getElementById('namett').innerHTML="2011 9모 김소월 길<br>2011 9모 백석 적막강산<br>2011 9모 이신의 단가 육장<br>2011 9모 작자미상 김원전<br>2011 9모 최인훈 어디서 무엇이 되어 만나랴<br>2011 9모 김원일 잠시 눕는 풀"
+} else if(fruit==="a39") {
+  document.getElementById('namett').innerHTML="2011 6모 김춘수 강우<br>2011 6모 김종길 성탄제<br>2011 6모 이성복 서해<br>2011 6모 임철우 눈이 오면<br>2011 6모 작자미상 사설시조<br>2011 6모 허전 고공가<br>2011 6모 이옥 어부"
+} else if(fruit==="a40") {
+  document.getElementById('namett').innerHTML="2010 수능 김시습 만복사저포기<br>2010 수능 윤삼육 각색  장마<br>2010 수능 조지훈 승무<br>2010 수능 송수권 지리산 뻐꾹새<br>2010 수능 송순 면앙정가<br>2010 수능 이문구 관촌수필"
+} else if(fruit==="a41") {
+  document.getElementById('namett').innerHTML="2010 9모 이육사 소년에게<br>2010 9모 황지우 겨울- 나무로부터 봄- 나무에로<br>2010 9모 이현보 어부단가<br>2010 9모 남영로 옥루몽<br>2010 9모 이청준 잔인한 도시<br>2010 9모 함세덕 동승"
+} else if(fruit==="a42") {
+  document.getElementById('namett').innerHTML="2010 6모 정지용 발열<br>2010 6모 김영랑 거문고<br>2010 6모 최승호 대설주의보<br>2010 6모 신경숙 외딴 방<br>2010 6모 작자미상 수궁가"
+} else if(fruit==="a43") {
+  document.getElementById('namett').innerHTML="2009 수능 김승옥 역사<br>2009 수능 한용운 님의 침묵<br>2009 수능 김광규 나뭇잎 하나<br>2009 수능 작자미상 춘면곡<br>2009 수능 홍파 각색 난쟁이가 쏘아 올린 작은 공<br>2009 수능 작자미상 박씨전"
+} else if(fruit==="a44") {
+  document.getElementById('namett').innerHTML="2009 9모 작자미상 박흥보전<br>2009 9모 서정주 꽃밭의 독백-사소 단장<br>2009 9모 안조원 만언사<br>2009 9모 신경림 나무를 위하여<br>2009 9모 이경배 파수꾼<br>2009 9모 오상원 모반"
+} else if(fruit==="a45") {
+  document.getElementById('namett').innerHTML="2009 6모 백석 여승<br>2009 6모 이수익 결빙의 아버지<br>2009 6모 나희덕 못 위의 잠<br>2009 6모 현길언 신열<br>2009 6모 작자미상 조웅전<br>2009 6모 정약용 고시<br>2009 6모 박인로 누항사<br>2009 6모 이학규 어떤 사람에게"
+} else if(fruit==="a46") {
+  document.getElementById('namett').innerHTML="2008 수능 김광균 와사등<br>2008 수능 권호문 한거십팔곡<br>2008 수능 김수영 사령<br>2008 수능 태조실록<br>2008 수능 김만중 사씨남정기<br>2008 수능 천승세 만선<br>2008 수능 최일남 흐르는 북"
+} else if(fruit==="a47") {
+  document.getElementById('namett').innerHTML="2008 9모 이용악 풀벌레 소리 가득 차 있었다.<br>2008 9모 박용래 월훈<br>2008 9모 정극인 상춘곡<br>2008 9모 설장수 어옹<br>2008 9모 남공철 동원화수기<br>2008 9모 작자미상 전우치전<br>2008 9모 이상 날개"
+} else if(fruit==="a48") {
+  document.getElementById('namett').innerHTML="2008 6모 김소월 나의 집<br>2008 6모 윤동주 길<br>2008 6모 월명사 제망매가<br>2008 6모 박태원 소설가 구보 씨의 일일<br>2008 6모 황석영 원작, 김석만 · 오인두 각색 한씨연대기<br>2008 6모 작자미상 임진록"
+} else if(fruit==="a49") {
+  document.getElementById('namett').innerHTML="2007 수능 김유정 만무방<br>2007 수능 이육사 교목<br>2007 수능 신석정 들길에 서서<br>2007 수능 김종길 고고<br>2007 수능 작자미상 적벽가<br>2007 수능 계랑의 시조<br>2007 수능 조위 만분가<br>2007 수능 양주동 질화로"
+} else if(fruit==="a50") {
+  document.getElementById('namett').innerHTML="2007 9모 이태준 복덕방<br>2007 9모 서정주 추천사<br>2007 9모 김지하 새<br>2007 9모 윤선도 만흥<br>2007 9모 작자미상 숙향전<br>2007 9모 유치진 토막"
+} else if(fruit==="a51") {
+  document.getElementById('namett').innerHTML="2007 6모 신경림 고향길<br>2007 6모 김상옥 사향<br>2007 6모 박재삼 어떤 귀로<br>2007 6모 박재삼 추억에서<br>2007 6모 김만중 구운몽<br>2007 6모 안민영 매화사<br>2007 6모 송순 면앙정가<br>2007 6모 박지원 홍덕보 묘지명<br>2007 6모 이문열 금시조"
+} else if(fruit==="a52") {
+  document.getElementById('namett').innerHTML="2006 수능 정지용 인동차<br>2006 수능 박두진 청산도<br>2006 수능 황동규 조그만 사랑 노래<br>2006 수능 양태사 야청도의성<br>2006 수능 정철 속미인곡<br>2006 수능 이상 조춘점묘<br>2006 수능 조희룡 이향견문록 서<br>2006 수능 작자미상 유충렬전<br>2006 수능 최인훈 광장"
+} else if(fruit==="a53") {
+  document.getElementById('namett').innerHTML="2006 9모 정철 사미인곡<br>2006 9모 박재삼 수정가<br>2006 9모 황지우 너를 기다리는 동안<br>2006 9모 김만중 사씨남정기<br>2006 9모 염상섭 만세전<br>2006 9모 이근삼 원고지"
+} else if(fruit==="a54") {
+  document.getElementById('namett').innerHTML="2006 6모 김기림 바다와 나비<br>2006 6모 최승호 복어<br>2006 6모 오장환 고향 앞에서<br>2006 6모 작자미상 서동지전<br>2006 6모 이청준 병신과 머저리<br>2006 6모 이조년 다정가<br>2006 6모 작자미상 사설시조<br>2006 6모 윤오영 쓰고 싶고 읽고 싶은 글"
+} else if(fruit==="a55") {
+  document.getElementById('namett').innerHTML="2005 수능 이용악 낡은 집<br>2005 수능 곽재구 은행나무<br>2005 수능 작자미상 최고운전<br>2005 수능 조지훈 멋 설<br>2005 수능 이황 도산십이곡<br>2005 수능 이효석 메밀꽃 필 무렵"
+} else if(fruit==="a56") {
+  document.getElementById('namett').innerHTML="2005 9모 조지훈 마음의 태양<br>2005 9모 김남조 설일<br>2005 9모 김광규 배<br>2005 9모 박완서 엄마의 말뚝 2<br>2005 9모 이태준 화단<br>2005 9모 정철 성산별곡<br>2005 9모 박지원 민옹전"
+} else if(fruit==="a57") {
+  document.getElementById('namett').innerHTML="2005 6모 신영복 매직펜과 붓<br>2005 6모 이어령 폭포와 분수<br>2005 6모 김부식 진삼국사기표<br>2005 6모 이규보 동명왕편 서<br>2005 6모 조세희 난장이가 쏘아올린 작은 공<br>2005 6모 이현보 어부단가<br>2005 6모 김영랑 독을 차고<br>2005 6모 박목월 가정<br>2005 6모 작자미상 심청전(경판본)"
+} else if(fruit==="a58") {
+  document.getElementById('namett').innerHTML="2004 수능 백석 고향<br>2004 수능 김춘수 내가 만난 이중섭<br>2004 수능 서정주 외할머니의 뒤안 툇마루<br>2004 수능 이옥 심생전<br>2004 수능 오정희 중국인 거리<br>2004 수능 유종원 강설<br>2004 수능 이이 고산구곡가<br>2004 수능 작자미상 유산가<br>2004 수능 김용준 게"
+} else if(fruit==="a59") {
+  document.getElementById('namett').innerHTML="2003 수능 한용운 나룻배와 행인<br>2003 수능 김영랑 내 마음을 아실 이<br>2003 수능 강은교 우리가 물이 되어<br>2003 수능 박제가 북학의<br>2003 수능 송순 면앙정가<br>2003 수능 위백규 농가<br>2003 수능 조성기 창선감의록<br>2003 수능 최인훈 둥둥 낙랑둥<br>2003 수능 이문구 관촌수필"
+} else if(fruit==="a60") {
+  document.getElementById('namett').innerHTML="2002 수능 신경림 가난한 사랑 노래<br>2002 수능 박재삼 추억에서<br>2002 수능 이용악 그리움<br>2002 수능 김동리 화랑의 후예<br>2002 수능 두보 강촌<br>2002 수능 정철 장진주사<br>2002 수능 정극인 상춘곡<br>2002 수능 이황 도산육곡 발<br>2002 수능 신재효 토별가<br>2002 수능 이범선 오발탄(나소은 이종기 각색)"
+} else if(fruit==="a61") {
+  document.getElementById('namett').innerHTML="2001 수능 윤동주 서시<br>2001 수능 서정주 귀촉도<br>2001 수능 박목월 나그네<br>2001 수능 프로스트 가지 않은 길<br>2001 수능 김시습 이생규장전<br>2001 수능 작자미상 가시리<br>2001 수능 작자미상 홍랑의 시조<br>2001 수능 작자미상 시조<br>2001 수능 허난설헌 규원가<br>2001 수능 윤홍길 장마<br>2001 수능 오영진 살아 있는 이중생 각하"
+} else if(fruit==="a62") {
+  document.getElementById('namett').innerHTML="2000 수능 현진건 불국사 기행<br>2000 수능 최순우 무량수전 배흘림기둥에 기대 서서<br>2000 수능 작자미상 청산별곡<br>2000 수능 윤선도 어부사시사<br>2000 수능 정지용 향수<br>2000 수능 김광균 외인촌<br>2000 수능 김만중 사씨남정기<br>2000 수능 김유정 동백꽃"
+} else if(fruit==="a63") {
+  document.getElementById('namett').innerHTML="1999 수능 김소월 진달래꽃<br>1999 수능 이육사 꽃<br>1999 수능 김소운 특급품<br>1999 수능 염상섭 삼대<br>1999 수능 작자미상 춘향가<br>1999 수능 정철 관동별곡"
+} else if(fruit==="a64") {
+  document.getElementById('namett').innerHTML="1998 수능 신석정 아직 촛불을 켤 때가 아닙니다<br>1998 수능 윤동주 별 헤는 밤<br>1998 수능 변영로 백두산 등척<br>1998 수능 최남선 심춘순례<br>1998 수능 최익현 유한라산기<br>1998 수능 채만식 태평천하<br>1998 수능 작자미상 한말 의병을 모집하는 격문<br>1998 수능 김만중 구운몽<br>1998 수능 정지상 송인<br>1998 수능 황진이 시조<br>1998 수능 정철 사미인곡"
+} else if(fruit==="a65") {
+  document.getElementById('namett').innerHTML="1997 수능 월명사 제망매가<br>1997 수능 박목월 이별가<br>1997 수능 황동규 즐거운 편지<br>1997 수능 박경리 김 약국의 딸들<br>1997 수능 이희승 웃음의 철학<br>1997 수능 정진권 자장면<br>1997 수능 유몽인 어우야담"
+} else if(fruit==="a66") {
+  document.getElementById('namett').innerHTML="1996 수능 이육사 자야곡<br>1996 수능 김소월 삼수갑산<br>1996 수능 김광섭 산<br>1996 수능 정한숙 IYEU 도<br>1996 수능 박세당 사변록<br>1996 수능 이희승 딸깍발이<br>1996 수능 작자미상 봉산탈춤 대본<br>1996 수능 허균 홍길동전"
+} else if(fruit==="a67") {
+  document.getElementById('namett').innerHTML="1995 수능 이상 날개<br>1995 수능 정정렬 춘향가<br>1995 수능 윤선도 오우가<br>1995 수능 윤동주 서시<br>1995 수능 유치환 바위<br>1995 수능 이양하 나무"
+} else if(fruit==="a68") {
+  document.getElementById('namett').innerHTML="1994 수능1 김소월 산<br>1994 수능1 유치환 생명의 서<br>1994 수능1 김수영 폭포<br>1994 수능1 염상섭 삼대<br>1994 수능1 최인훈 광장<br>1994 수능1 최영준 길의역사, 길의사상<br>1994 수능1 작자미상 흥부전<br>1994 수능1 일연 삼국 유사"
+} else if(fruit==="a69") {
+  document.getElementById('namett').innerHTML="1994 수능2 한용운 찬송<br>1994 수능2 조지훈 석문<br>1994 수능2 신동엽 그의 행복을 기도드리는<br>1994 수능2 채만식 역로<br>1994 수능2 박지원 양반전<br>1994 수능2 작자미상 심청전"
+} else if(fruit==="a70") {
+  document.getElementById('namett').innerHTML="전설적이고, 절대적이고, 다정하고, 이타적이고,<br>자애롭고, 간지가 나고, 상냥하고, 빛나고, 자애롭고,<br>배려를 좋아하고, 우아하고, 신성하고, 멋지고, 아름답고,<br>영광이 있고, 반짝이고, 위대하고, 환상적이고,<br>천하무적이고, 다른것과 대채할수 없고, 정의롭고,<br>기발하고, 독창적이고, 지식이 높고, 충실하고,<br>발랄하고, 당당하고, 장엄한 그 이름 '안 성 현'<br>과 나약한 코딩러 이상훈 입니다."
+} else {
+  document.getElementById('namett').innerHTML="오류"
+}
+}
+</script>
+<style media="screen">
+  .grid {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+}
+  h1 {
+    font-size: 35px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+</style>
+  </body>
+</html>
