@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강화도 맛집 투표 사이트</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .voting-section {
+            margin-bottom: 40px;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .restaurant-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .restaurant-card.selected {
+            border-color: #4CAF50;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .restaurant-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .restaurant-name {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .restaurant-type {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 8px;
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .restaurant-location {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .restaurant-description {
+            font-size: 0.8em;
+            color: #777;
+            margin-bottom: 10px;
+            font-style: italic;
+            line-height: 1.3;
+        }
+
+        .restaurant-card.selected .restaurant-type {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .restaurant-card.selected .restaurant-location {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .restaurant-card.selected .restaurant-description {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .restaurant-specialties {
+            font-size: 0.75em;
+            color: #555;
+            margin: 10px 0;
+            text-align: left;
+            line-height: 1.4;
+        }
+
+        .restaurant-features {
+            font-size: 0.7em;
+            color: #666;
+            margin: 8px 0;
+            text-align: left;
+            line-height: 1.3;
+        }
+
+        .restaurant-card.selected .restaurant-specialties,
+        .restaurant-card.selected .restaurant-features {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .vote-count {
+            background: #f0f0f0;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .restaurant-card.selected .vote-count {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .selected-indicator {
+            background: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1em;
+            margin: 15px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .vote-button {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .vote-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .vote-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .results-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+        }
+
+        .results-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .results-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-emoji {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+
+        .result-info {
+            flex-grow: 1;
+        }
+
+        .result-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .result-details {
+            font-size: 0.8em;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .result-bar {
+            height: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .result-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            transition: width 0.5s ease;
+        }
+
+        .result-count {
+            margin-left: 15px;
+            font-weight: bold;
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .winner-announcement {
+            text-align: center;
+            margin: 20px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 15px;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+            display: none;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* 플로팅 관리자 패널 스타일 */
+        .floating-admin {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .floating-admin-toggle {
+            width: 50px;
+            height: 50px;
+            background: #f44336;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .floating-admin-toggle:hover {
+            background: #d32f2f;
+            transform: scale(1.1);
+        }
+
+        .floating-admin-panel {
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            width: 320px;
+            max-height: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .floating-admin-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .floating-admin-button {
+            width: 100%;
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .floating-admin-button:hover {
+            background: #d32f2f;
+        }
+
+        .floating-admin-tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .floating-admin-tab {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 10px 8px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .floating-admin-tab.active {
+            background: #f44336;
+            color: white;
+        }
+
+        .floating-admin-tab-content {
+            display: none;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .floating-admin-tab-content.active {
+            display: block;
+        }
+
+        #floatingAdminLogin {
+            padding: 15px;
+        }
+
+        .floating-ip-record {
+            background: #f8f9fa;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 6px;
+            border-left: 3px solid #007bff;
+            font-size: 11px;
+        }
+
+        .floating-ip-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 10px;
+        }
+
+        .floating-history-item {
+            background: #f8f9fa;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 6px;
+            font-size: 11px;
+            border-left: 3px solid #4CAF50;
+        }
+
+        @media (max-width: 768px) {
+            .floating-admin-panel {
+                width: 280px;
+                right: -10px;
+            }
+            
+            .floating-admin-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .food-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>강화도 맛집 투표 사이트</h1>
+        
+        <div class="voting-section">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <span class="selected-indicator" id="selectedIndicator" style="display: none;">
+                    선택된 맛집: 0개
+                </span>
+            </div>
+            
+            <div class="food-grid" id="foodGrid">
+                <!-- 맛집 카드들이 여기에 동적으로 생성됩니다 -->
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="vote-button" id="voteButton" onclick="vote()" disabled>
+                    🗳️ 투표하기
+                </button>
+            </div>
+        </div>
+
+        <div class="winner-announcement" id="winnerAnnouncement">
+            <!-- 당첨 결과가 여기에 표시됩니다 -->
+        </div>
+
+        <div class="results-section">
+            <h2 class="results-title">📊 투표 결과</h2>
+            <div class="results-chart" id="resultsChart">
+                <!-- 투표 결과 차트가 여기에 표시됩니다 -->
+            </div>
+        </div>
+
+        <!-- 오른쪽 하단 관리자 로그인 -->
+        <div class="floating-admin" id="floatingAdmin">
+            <div class="floating-admin-toggle" onclick="toggleFloatingAdmin()">🔐</div>
+            <div class="floating-admin-panel" id="floatingAdminPanel" style="display: none;">
+                <div id="floatingAdminLogin">
+                    <input type="password" class="floating-admin-input" id="floatingAdminPassword" placeholder="비밀번호">
+                    <button class="floating-admin-button" onclick="floatingAdminLogin()">로그인</button>
+                </div>
+                
+                <div class="floating-admin-content" id="floatingAdminContent" style="display: none;">
+                    <div class="floating-admin-tabs">
+                        <button class="floating-admin-tab active" onclick="showFloatingAdminTab('delete', this)">삭제</button>
+                        <button class="floating-admin-tab" onclick="showFloatingAdminTab('ip', this)">IP</button>
+                        <button class="floating-admin-tab" onclick="showFloatingAdminTab('history', this)">기록</button>
+                    </div>
+                    
+                    <div class="floating-admin-tab-content active" id="floatingDeleteTab">
+                        <button class="floating-admin-button" onclick="adminReset()">데이터 삭제</button>
+                    </div>
+                    
+                    <div class="floating-admin-tab-content" id="floatingIpTab">
+                        <div id="floatingIpRecords">
+                            <!-- IP 기록이 여기에 표시됩니다 -->
+                        </div>
+                    </div>
+                    
+                    <div class="floating-admin-tab-content" id="floatingHistoryTab">
+                        <div id="floatingVoteHistory">
+                            <!-- 투표 기록이 여기에 표시됩니다 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 강화도 맛집 데이터
+        const restaurants = [
+            { 
+                id: 1, 
+                name: '금문도', 
+                type: '중식당', 
+                location: '강화읍 강화터미널 2층', 
+                image: 'food/z1.png',
+                description: '강화도 특산물을 활용한 독특한 중식 요리로 유명한 예약 필수 맛집',
+                specialties: ['백짬뽕 (사자발약쑥 면)', '속노랑 간짜장 (고구마튀김)', '강화 순무 탕수육'],
+                features: ['테이블링 예약 시스템', '키오스크 주문', '강화도 특선메뉴', '깔끔한 인테리어', '가성비 좋음']
+            },
+            { 
+                id: 2, 
+                name: '이유가', 
+                type: '한식당', 
+                location: '선원면 시리미로 하천길', 
+                image: 'food/z2.png',
+                description: '청국장 비빔밥과 시래기국밥 전문 현지인 추천 맛집',
+                specialties: ['청국장 비빔밥 (8000원)', '시래기국밥 (8000원)'],
+                features: ['일요일 정기휴무', '오전 7시~오후 2시', '반찬 리필 가능', '주차 가능']
+            },
+            { 
+                id: 3, 
+                name: '조양방직', 
+                type: '카페', 
+                location: '강화읍 향나무길5번길 12', 
+                image: 'food/z3.png',
+                description: '옛 방직공장을 카페로 개조한 강화도 대표 관광지 카페',
+                specialties: ['아메리카노 (7000원)', '디저트류', '딸기수플레케이크'],
+                features: ['무료 주차', '오전 11시~오후 8시', '포토스팟 다수', '박물관 공간', '야외석 운영']
+            },
+            { 
+                id: 4, 
+                name: '마니산산채', 
+                type: '한정식', 
+                location: '화도면 해안남로 1182', 
+                image: 'food/z4.png',
+                description: '144년 전통 고옥에서 즐기는 10가지 약초반찬과 3년 숙성 된장의 건강한 한정식',
+                specialties: ['산채비빔밥 (쑥밥)', '산채솥밥 (일일 100그릇 한정)', '떡갈비', '3년 숙성 된장찌개'],
+                features: ['1879년 고옥 건물', '각종 방송 출연', '웨이팅 필수', '강화도 특산물 사용', '건강식']
+            },
+            { 
+                id: 5, 
+                name: '칼국수 맛있는집', 
+                type: '한식당', 
+                location: '화도면 마니산로 569-1', 
+                image: 'food/z5.png',
+                description: '수제 만두와 칼칼한 육개장 전골로 유명한 강화도 대표 칼국수 맛집',
+                specialties: ['육개장 만두전골 (30,000원)', '수제 만두', '칼국수'],
+                features: ['매장 앞 넉넉한 주차공간', '매주 화요일 정기휴무', '평일 09:00-19:30', '주말 08:30-20:00', '해장 추천']
+            },
+            { 
+                id: 6, 
+                name: '강화국수', 
+                type: '국수전문점', 
+                location: '강화읍 관청리 488-1', 
+                image: 'food/z6.png',
+                description: '60년 전통의 강화도 대표 국수집, 수요미식회 출연 맛집',
+                specialties: ['비빔국수', '잔치국수', '콩국수 (여름철 별미)', '미소만두 (2층)'],
+                features: ['1950년대부터 영업', '2대째 운영', '맷돌로 직접 간 콩국물', '맞은편 공터 주차', '빠른 회전율']
+            },
+            { 
+                id: 7, 
+                name: '그 외에 - 물고기', 
+                type: '횟집', 
+                location: '찾아보면 있음', 
+            },
+            { 
+                id: 8, 
+                name: '그 외에 - 바베큐', 
+                type: '고기집', 
+                location: '찾아보면 있음', 
+            }
+        ];
+
+        let selectedRestaurants = []; // 다중 선택용 배열
+        let votes = {};
+        let voteHistory = [];
+        let userIP = ''; // 사용자 IP
+        let isAdminLoggedIn = false;
+        
+        // 관리자 비밀번호
+        const ADMIN_PASSWORD = "D1"; 
+
+        // JSONBin.io 설정
+        const JSONBIN_API_KEY = '$2a$10$KXEEt8SZ7YpLpGQbZVchR.roHocYXTuSYAj0L5fMH164EheWIm9gC'; // 실제 API 키
+        const JSONBIN_BIN_ID = ''; // 생성될 BIN ID가 여기에 저장됩니다
+        const JSONBIN_BASE_URL = 'https://api.jsonbin.io/v3/b';
+
+        // 웹 저장소에서 데이터 로드
+        async function loadDataFromWeb() {
+            try {
+                // 처음 사용시 또는 BIN ID가 없을 때 기본값 설정
+                if (!JSONBIN_BIN_ID) {
+                    console.log('새로운 데이터베이스 초기화...');
+                    restaurants.forEach(restaurant => {
+                        votes[restaurant.id] = 0;
+                    });
+                    await saveDataToWeb(); // 초기 데이터 생성
+                    return;
+                }
+
+                const response = await fetch(`${JSONBIN_BASE_URL}/${JSONBIN_BIN_ID}/latest`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Master-Key': JSONBIN_API_KEY,
+                        'X-Bin-Meta': 'false'
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    votes = data.votes || {};
+                    voteHistory = data.voteHistory || [];
+                    
+                    // 새 맛집이 추가된 경우 초기화
+                    restaurants.forEach(restaurant => {
+                        if (!votes[restaurant.id]) {
+                            votes[restaurant.id] = 0;
+                        }
+                    });
+                    
+                    console.log('✅ 웹에서 데이터 로드 완료');
+                } else {
+                    throw new Error('데이터 로드 실패');
+                }
+            } catch (error) {
+                console.log('⚠️ 웹 데이터 로드 실패, 로컬 데이터 사용:', error);
+                loadDataFromLocal(); // 백업으로 로컬 데이터 사용
+            }
+        }
+
+        // 웹 저장소에 데이터 저장
+        async function saveDataToWeb() {
+            try {
+                const dataToSave = {
+                    votes: votes,
+                    voteHistory: voteHistory,
+                    lastUpdated: new Date().toISOString(),
+                    version: '1.0'
+                };
+
+                let url = JSONBIN_BASE_URL;
+                let method = 'POST';
+                
+                // BIN ID가 있으면 업데이트, 없으면 새로 생성
+                if (JSONBIN_BIN_ID) {
+                    url += `/${JSONBIN_BIN_ID}`;
+                    method = 'PUT';
+                }
+
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': JSONBIN_API_KEY,
+                        'X-Bin-Name': '강화도 맛집 투표 데이터',
+                        'X-Bin-Private': 'false'
+                    },
+                    body: JSON.stringify(dataToSave)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    if (method === 'POST') {
+                        // 새로 생성된 경우 BIN ID 저장 (실제로는 코드에 하드코딩 필요)
+                        console.log('🆕 새 BIN 생성됨. BIN ID:', result.metadata.id);
+                        console.log('⚠️ 이 BIN ID를 코드의 JSONBIN_BIN_ID 변수에 복사하세요!');
+                    }
+                    console.log('✅ 웹에 데이터 저장 완료');
+                    
+                    // 백업으로 로컬에도 저장
+                    saveDataToLocal();
+                } else {
+                    throw new Error('데이터 저장 실패');
+                }
+            } catch (error) {
+                console.error('❌ 웹 저장 실패:', error);
+                // 백업으로 로컬에만 저장
+                saveDataToLocal();
+                alert('⚠️ 온라인 저장에 실패했습니다. 로컬에만 저장됩니다.');
+            }
+        }
+
+        // 로컬 스토리지에서 데이터 로드 (백업용)
+        function loadDataFromLocal() {
+            const savedVotes = localStorage.getItem('ganghwaRestaurants_permanent');
+            const savedHistory = localStorage.getItem('ganghwaHistory_permanent');
+            
+            if (savedVotes) {
+                votes = JSON.parse(savedVotes);
+            } else {
+                restaurants.forEach(restaurant => {
+                    votes[restaurant.id] = 0;
+                });
+            }
+            
+            if (savedHistory) {
+                voteHistory = JSON.parse(savedHistory);
+            }
+        }
+
+        // 로컬 스토리지에 데이터 저장 (백업용)
+        function saveDataToLocal() {
+            localStorage.setItem('ganghwaRestaurants_permanent', JSON.stringify(votes));
+            localStorage.setItem('ganghwaHistory_permanent', JSON.stringify(voteHistory));
+        }
+
+        // 사용자 IP 가져오기
+        async function getUserIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                userIP = data.ip;
+            } catch (error) {
+                // IP를 가져올 수 없는 경우 로컬 식별자 사용
+                userIP = 'Local-' + Math.random().toString(36).substr(2, 9);
+            }
+        }
+
+        // 선택된 개수 업데이트
+        function updateSelectedIndicator() {
+            const indicator = document.getElementById('selectedIndicator');
+            if (selectedRestaurants.length > 0) {
+                indicator.style.display = 'inline-block';
+                indicator.textContent = `선택된 맛집: ${selectedRestaurants.length}개`;
+            } else {
+                indicator.style.display = 'none';
+            }
+        }
+
+        // 맛집 카드 생성
+        function createRestaurantCards() {
+            const foodGrid = document.getElementById('foodGrid');
+            foodGrid.innerHTML = '';
+
+            restaurants.forEach(restaurant => {
+                const card = document.createElement('div');
+                card.className = 'restaurant-card';
+                card.onclick = () => selectRestaurant(restaurant.id);
+                
+                if (selectedRestaurants.includes(restaurant.id)) {
+                    card.classList.add('selected');
+                }
+                
+                card.innerHTML = `
+                    ${restaurant.image ? 
+                        `<img src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                         <div class="restaurant-image" style="display: none;">사진 준비중</div>` :
+                        `<div class="restaurant-image">사진 준비중</div>`
+                    }
+                    <div class="restaurant-name">${restaurant.name}</div>
+                    <div class="restaurant-type">${restaurant.type}</div>
+                    <div class="restaurant-location">📍 ${restaurant.location}</div>
+                    ${restaurant.description ? `<div class="restaurant-description">${restaurant.description}</div>` : ''}
+                    ${restaurant.specialties ? `
+                        <div class="restaurant-specialties" style="font-size: 0.75em; color: #555; margin: 10px 0; text-align: left;">
+                            <strong>대표메뉴:</strong><br>
+                            ${restaurant.specialties.slice(0, 3).map(item => `• ${item}`).join('<br>')}
+                            ${restaurant.specialties.length > 3 ? `<br>• 외 ${restaurant.specialties.length - 3}개 메뉴` : ''}
+                        </div>
+                    ` : ''}
+                    ${restaurant.features ? `
+                        <div class="restaurant-features" style="font-size: 0.7em; color: #666; margin: 8px 0; text-align: left;">
+                            ${restaurant.features.slice(0, 3).map(item => `• ${item}`).join('<br>')}
+                            ${restaurant.features.length > 3 ? `<br>• 외 ${restaurant.features.length - 3}개` : ''}
+                        </div>
+                    ` : ''}
+                    <div class="vote-count">${votes[restaurant.id] || 0}표</div>
+                `;
+                
+                card.id = `restaurant-${restaurant.id}`;
+                foodGrid.appendChild(card);
+            });
+        }
+
+        // 맛집 선택 (다중 선택 가능)
+        function selectRestaurant(restaurantId) {
+            const index = selectedRestaurants.indexOf(restaurantId);
+            const card = document.getElementById(`restaurant-${restaurantId}`);
+            
+            if (index > -1) {
+                // 이미 선택된 경우 제거
+                selectedRestaurants.splice(index, 1);
+                card.classList.remove('selected');
+            } else {
+                // 새로 선택
+                selectedRestaurants.push(restaurantId);
+                card.classList.add('selected');
+            }
+            
+            updateSelectedIndicator();
+            updateVoteButton();
+        }
+
+        // 투표 버튼 상태 업데이트
+        function updateVoteButton() {
+            const voteButton = document.getElementById('voteButton');
+            if (selectedRestaurants.length > 0) {
+                voteButton.disabled = false;
+                voteButton.textContent = `🗳️ ${selectedRestaurants.length}개 투표하기`;
+            } else {
+                voteButton.disabled = true;
+                voteButton.textContent = '🗳️ 투표하기';
+            }
+        }
+
+        // 투표하기
+        async function vote() {
+            if (selectedRestaurants.length === 0) return;
+
+            try {
+                // IP가 없으면 먼저 가져오기
+                if (!userIP) {
+                    await getUserIP();
+                }
+
+                let voteMessage = '';
+                const now = new Date();
+                
+                selectedRestaurants.forEach(restaurantId => {
+                    const restaurant = restaurants.find(r => r.id === restaurantId);
+                    votes[restaurantId] = (votes[restaurantId] || 0) + 1;
+
+                    // 투표 기록 추가 (IP 포함)
+                    voteHistory.unshift({
+                        restaurant: restaurant.name,
+                        type: restaurant.type,
+                        location: restaurant.location,
+                        ip: userIP,
+                        timestamp: now.toLocaleString('ko-KR')
+                    });
+                    
+                    voteMessage += `${restaurant.name} `;
+                });
+
+                // 최대 500개 기록만 유지
+                if (voteHistory.length > 500) {
+                    voteHistory = voteHistory.slice(0, 500);
+                }
+
+                // 웹 저장소에 저장 (실패 시 로컬 저장소 백업)
+                await saveDataToWeb();
+                updateDisplay();
+                
+                // 선택 초기화
+                selectedRestaurants = [];
+                document.querySelectorAll('.restaurant-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+                updateVoteButton();
+                updateSelectedIndicator();
+
+                alert(`${voteMessage}에 투표했습니다!`);
+
+            } catch (error) {
+                console.error('투표 저장 중 오류:', error);
+                alert('투표는 완료되었지만 저장 중 오류가 발생했습니다.');
+            }
+        }
+
+        // 결과 차트 업데이트
+        function updateResultsChart() {
+            const resultsChart = document.getElementById('resultsChart');
+            resultsChart.innerHTML = '';
+
+            const maxVotes = Math.max(...Object.values(votes));
+            if (maxVotes === 0) {
+                resultsChart.innerHTML = '<div style="text-align: center; color: #666; padding: 20px;">아직 투표가 없습니다.</div>';
+                return;
+            }
+
+            const sortedRestaurants = restaurants.sort((a, b) => (votes[b.id] || 0) - (votes[a.id] || 0));
+
+            sortedRestaurants.forEach(restaurant => {
+                const voteCount = votes[restaurant.id] || 0;
+                const percentage = maxVotes > 0 ? (voteCount / maxVotes) * 100 : 0;
+
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                resultItem.innerHTML = `
+                    <span class="result-emoji">🍽️</span>
+                    <div class="result-info">
+                        <div class="result-name">${restaurant.name}</div>
+                        <div class="result-details">${restaurant.type} · ${restaurant.location}</div>
+                        <div class="result-bar">
+                            <div class="result-fill" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
+                    <span class="result-count">${voteCount}표</span>
+                `;
+                resultsChart.appendChild(resultItem);
+            });
+        }
+
+        // 플로팅 관리자 패널 토글
+        function toggleFloatingAdmin() {
+            const panel = document.getElementById('floatingAdminPanel');
+            if (panel.style.display === 'none' || panel.style.display === '') {
+                panel.style.display = 'block';
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+
+        // 플로팅 관리자 로그인
+        function floatingAdminLogin() {
+            const password = document.getElementById('floatingAdminPassword').value;
+            
+            if (password === ADMIN_PASSWORD) {
+                isAdminLoggedIn = true;
+                document.getElementById('floatingAdminLogin').style.display = 'none';
+                document.getElementById('floatingAdminContent').style.display = 'block';
+                
+                updateFloatingIPRecords();
+                updateFloatingVoteHistory();
+                alert('✅ 관리자 로그인 성공!');
+            } else {
+                alert('❌ 비밀번호가 틀렸습니다!');
+                document.getElementById('floatingAdminPassword').value = '';
+            }
+        }
+
+        // 플로팅 관리자 탭 전환
+        function showFloatingAdminTab(tabName, element) {
+            if (!isAdminLoggedIn) return;
+
+            // 모든 탭 비활성화
+            document.querySelectorAll('.floating-admin-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.floating-admin-tab-content').forEach(content => content.classList.remove('active'));
+
+            // 선택된 탭 활성화
+            element.classList.add('active');
+            document.getElementById('floating' + tabName.charAt(0).toUpperCase() + tabName.slice(1) + 'Tab').classList.add('active');
+
+            if (tabName === 'ip') {
+                updateFloatingIPRecords();
+            } else if (tabName === 'history') {
+                updateFloatingVoteHistory();
+            }
+        }
+
+        // 플로팅 IP 기록 업데이트
+        function updateFloatingIPRecords() {
+            const ipRecords = document.getElementById('floatingIpRecords');
+            ipRecords.innerHTML = '';
+
+            if (voteHistory.length === 0) {
+                ipRecords.innerHTML = '<div style="text-align: center; color: #666; padding: 15px; font-size: 11px;">IP 기록 없음</div>';
+                return;
+            }
+
+            // IP별 그룹화
+            const ipGroups = {};
+            voteHistory.forEach(record => {
+                if (!ipGroups[record.ip]) {
+                    ipGroups[record.ip] = [];
+                }
+                ipGroups[record.ip].push(record);
+            });
+
+            // 투표 수 기준으로 정렬
+            const sortedIPs = Object.keys(ipGroups).sort((a, b) => ipGroups[b].length - ipGroups[a].length);
+
+            sortedIPs.slice(0, 10).forEach(ip => {
+                const ipGroup = ipGroups[ip];
+                const ipRecord = document.createElement('div');
+                ipRecord.className = 'floating-ip-record';
+                
+                ipRecord.innerHTML = `
+                    <div class="floating-ip-header">IP: ${ip} (${ipGroup.length}회)</div>
+                    <div>${ipGroup.slice(0, 3).map(record => 
+                        `${record.restaurant}`
+                    ).join(', ')}${ipGroup.length > 3 ? ` +${ipGroup.length - 3}개` : ''}</div>
+                `;
+                
+                ipRecords.appendChild(ipRecord);
+            });
+        }
+
+        // 플로팅 투표 기록 업데이트
+        function updateFloatingVoteHistory() {
+            const historyDiv = document.getElementById('floatingVoteHistory');
+            historyDiv.innerHTML = '';
+
+            if (voteHistory.length === 0) {
+                historyDiv.innerHTML = '<div style="text-align: center; color: #666; padding: 15px; font-size: 11px;">투표 기록 없음</div>';
+                return;
+            }
+
+            voteHistory.slice(0, 15).forEach(record => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'floating-history-item';
+                historyItem.innerHTML = `
+                    <div style="font-weight: bold; margin-bottom: 3px;">${record.restaurant}</div>
+                    <div style="font-size: 10px; color: #666;">${record.timestamp}</div>
+                `;
+                historyDiv.appendChild(historyItem);
+            });
+        }
+
+        // 화면 업데이트
+        function updateDisplay() {
+            createRestaurantCards();
+            updateResultsChart();
+            updateSelectedIndicator();
+        }
+
+        // 관리자 전용 완전 리셋
+        async function adminReset() {
+            if (!isAdminLoggedIn) {
+                alert('❌ 관리자 로그인이 필요합니다!');
+                return;
+            }
+            
+            if (confirm('⚠️ 정말로 모든 투표 데이터를 영구적으로 삭제하시겠습니까?\n\n이 작업은 되돌릴 수 없습니다!')) {
+                if (confirm('🔴 마지막 확인: 정말 삭제하시겠습니까?')) {
+                    try {
+                        votes = {};
+                        voteHistory = [];
+                        selectedRestaurants = [];
+                        
+                        restaurants.forEach(restaurant => {
+                            votes[restaurant.id] = 0;
+                        });
+                        
+                        // 웹 저장소에서 삭제 (실패 시 로컬 저장소만 삭제)
+                        await saveDataToWeb();
+                        
+                        // 로컬 저장소에서도 삭제
+                        localStorage.removeItem('ganghwaRestaurants_permanent');
+                        localStorage.removeItem('ganghwaHistory_permanent');
+                        
+                        updateDisplay();
+                        alert('✅ 모든 데이터가 영구적으로 삭제되었습니다.');
+                        
+                    } catch (error) {
+                        console.error('데이터 삭제 중 오류:', error);
+                        alert('⚠️ 웹 데이터 삭제 중 오류가 발생했지만 로컬 데이터는 삭제되었습니다.');
+                    }
+                }
+            }
+        }
+
+        // 페이지 로드 시 초기화
+        window.onload = async function() {
+            await getUserIP();
+            await loadDataFromWeb();
+            updateDisplay();
+        };
+    </script>
+</body>
+</html>
