@@ -602,7 +602,7 @@
 
         // JSONBin.io 설정
         const JSONBIN_ACCESS_KEY = '$2a$10$w.PCpkS9Xsjul4.s4Xiafuaz2rrAipQ1O15xfhk44MCW82ApSPUTG'; // X-Access-Key 값
-        const JSONBIN_BIN_ID = '689351757b4b8670d8aeb1cd'; // 생성될 BIN ID가 여기에 저장됩니다
+        const JSONBIN_BIN_ID = '689351757b4b8670d8aeb1cd'; // 생성된 BIN ID
         const JSONBIN_BASE_URL = 'https://api.jsonbin.io/v3/b';
 
         // 웹 저장소에서 데이터 로드
@@ -1034,27 +1034,55 @@
             if (confirm('⚠️ 정말로 모든 투표 데이터를 영구적으로 삭제하시겠습니까?\n\n이 작업은 되돌릴 수 없습니다!')) {
                 if (confirm('🔴 마지막 확인: 정말 삭제하시겠습니까?')) {
                     try {
+                        // 1. 먼저 메모리에서 데이터 초기화
                         votes = {};
                         voteHistory = [];
                         selectedRestaurants = [];
                         
+                        // 2. votes 객체를 0으로 초기화
                         restaurants.forEach(restaurant => {
                             votes[restaurant.id] = 0;
                         });
                         
-                        // 웹 저장소에서 삭제 (실패 시 로컬 저장소만 삭제)
-                        await saveDataToWeb();
-                        
-                        // 로컬 저장소에서도 삭제
+                        // 3. 로컬 저장소 즉시 삭제
                         localStorage.removeItem('ganghwaRestaurants_permanent');
                         localStorage.removeItem('ganghwaHistory_permanent');
                         
+                        // 4. 화면 즉시 업데이트
                         updateDisplay();
-                        alert('✅ 모든 데이터가 영구적으로 삭제되었습니다.');
+                        updateFloatingIPRecords();
+                        updateFloatingVoteHistory();
+                        
+                        // 5. 웹 저장소에 초기화된 데이터 강제 저장
+                        const resetData = {
+                            votes: votes,
+                            voteHistory: [],
+                            lastUpdated: new Date().toISOString(),
+                            version: '1.0',
+                            resetAt: new Date().toISOString()
+                        };
+
+                        const response = await fetch(`${JSONBIN_BASE_URL}/${JSONBIN_BIN_ID}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-Access-Key': JSONBIN_ACCESS_KEY,
+                                'X-Bin-Name': 'Ganghwa-Restaurant-Voting-Data',
+                                'X-Bin-Private': 'false'
+                            },
+                            body: JSON.stringify(resetData)
+                        });
+
+                        if (response.ok) {
+                            console.log('✅ 웹 데이터 초기화 완료');
+                            alert('✅ 모든 데이터가 영구적으로 삭제되었습니다.\n페이지를 새로고침해서 확인해보세요.');
+                        } else {
+                            throw new Error('웹 데이터 초기화 실패');
+                        }
                         
                     } catch (error) {
                         console.error('데이터 삭제 중 오류:', error);
-                        alert('⚠️ 웹 데이터 삭제 중 오류가 발생했지만 로컬 데이터는 삭제되었습니다.');
+                        alert('⚠️ 온라인 데이터 삭제 중 오류가 발생했지만\n로컬 데이터는 삭제되었습니다.\n페이지를 새로고침 해보세요.');
                     }
                 }
             }
