@@ -481,8 +481,10 @@
             <div class="floating-admin-toggle" onclick="toggleFloatingAdmin()">🔐</div>
             <div class="floating-admin-panel" id="floatingAdminPanel" style="display: none;">
                 <div id="floatingAdminLogin">
-                    <input type="password" class="floating-admin-input" id="floatingAdminPassword" placeholder="비밀번호">
-                    <button class="floating-admin-button" onclick="floatingAdminLogin()">로그인</button>
+                    <form onsubmit="floatingAdminLogin(); return false;">
+                        <input type="password" class="floating-admin-input" id="floatingAdminPassword" placeholder="비밀번호">
+                        <button type="submit" class="floating-admin-button">로그인</button>
+                    </form>
                 </div>
                 
                 <div class="floating-admin-content" id="floatingAdminContent" style="display: none;">
@@ -670,7 +672,7 @@
                     headers: {
                         'Content-Type': 'application/json',
                         'X-Master-Key': JSONBIN_API_KEY,
-                        'X-Bin-Name': '강화도 맛집 투표 데이터',
+                        'X-Bin-Name': 'Ganghwa-Restaurant-Voting-Data',
                         'X-Bin-Private': 'false'
                     },
                     body: JSON.stringify(dataToSave)
