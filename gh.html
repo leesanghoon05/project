@@ -601,7 +601,7 @@
         const ADMIN_PASSWORD = "D1"; 
 
         // JSONBin.io 설정
-        const JSONBIN_API_KEY = '$2a$10$w.PCpkS9Xsjul4.s4Xiafuaz2rrAipQ1O15xfhk44MCW82ApSPUTG'; // 실제 API 키
+        const JSONBIN_ACCESS_KEY = '$2a$10$w.PCpkS9Xsjul4.s4Xiafuaz2rrAipQ1O15xfhk44MCW82ApSPUTG'; // X-Access-Key 값
         const JSONBIN_BIN_ID = ''; // 생성될 BIN ID가 여기에 저장됩니다
         const JSONBIN_BASE_URL = 'https://api.jsonbin.io/v3/b';
 
@@ -621,7 +621,7 @@
                 const response = await fetch(`${JSONBIN_BASE_URL}/${JSONBIN_BIN_ID}/latest`, {
                     method: 'GET',
                     headers: {
-                        'X-Master-Key': JSONBIN_API_KEY,
+                        'X-Access-Key': JSONBIN_ACCESS_KEY,
                         'X-Bin-Meta': 'false'
                     }
                 });
@@ -671,7 +671,7 @@
                     method: method,
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-Master-Key': JSONBIN_API_KEY,
+                        'X-Access-Key': JSONBIN_ACCESS_KEY,
                         'X-Bin-Name': 'Ganghwa-Restaurant-Voting-Data',
                         'X-Bin-Private': 'false'
                     },
