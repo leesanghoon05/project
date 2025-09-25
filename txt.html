@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간단 메모장</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .write-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .memo-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .memo-item {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .memo-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .memo-header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+        }
+
+        .memo-date {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .memo-content {
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .memo-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">📝 메모장</h1>
+        <div class="controls">
+            <button class="btn" onclick="openWriteModal()">✍️ 작성</button>
+            <button class="btn" onclick="loadMemos()">🔄 새로고침</button>
+        </div>
+    </div>
+
+    <!-- 작성 모달 -->
+    <div class="write-modal" id="writeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>메모 작성</h3>
+                <button class="close-btn" onclick="closeWriteModal()">&times;</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="contentTextarea">내용</label>
+                <textarea id="contentTextarea" placeholder="메모 내용을 입력하세요..."></textarea>
+            </div>
+            
+            <button class="btn" onclick="saveMemo()" style="width: 100%;">💾 저장</button>
+        </div>
+    </div>
+
+    <!-- 수정/제거 모달 -->
+    <div class="write-modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>메모 수정</h3>
+                <button class="close-btn" onclick="closeEditModal()">&times;</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="editContentTextarea">내용</label>
+                <textarea id="editContentTextarea" placeholder="메모 내용을 입력하세요..."></textarea>
+            </div>
+            
+            <div style="display: flex; gap: 10px;">
+                <button class="btn" onclick="updateMemo()" style="flex: 1;">✏️ 수정</button>
+                <button class="btn" onclick="deleteMemo()" style="flex: 1; background: #dc3545;">🗑️ 삭제</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 메모 목록 -->
+    <div class="loading" id="loadingDiv">📡 메모를 불러오는 중...</div>
+    <div class="memo-container" id="memoContainer" style="display: none;"></div>
+
+    <script>
+        const JSONBIN_ACCESS_KEY = '$2a$10$w.PCpkS9Xsjul4.s4Xiafuaz2rrAipQ1O15xfhk44MCW82ApSPUTG';
+        const JSONBIN_BIN_ID = '689351757b4b8670d8aeb1cd';
+        const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+
+        let memos = [];
+        let isOfflineMode = false;
+
+        // 로컬 저장소에서 백업 불러오기
+        function loadLocalBackup() {
+            try {
+                const backup = localStorage.getItem('memos_backup');
+                return backup ? JSON.parse(backup) : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        // 로컬 저장소에 백업 저장
+        function saveLocalBackup() {
+            try {
+                localStorage.setItem('memos_backup', JSON.stringify(memos));
+            } catch (error) {
+                console.error('로컬 백업 저장 실패:', error);
+            }
+        }
+
+        // 오프라인 모드 상태 표시
+        function updateOfflineStatus() {
+            const title = document.querySelector('.title');
+            if (isOfflineMode) {
+                title.textContent = '📝 메모장 (오프라인 모드)';
+                title.style.color = '#dc3545';
+            } else {
+                title.textContent = '📝 메모장';
+                title.style.color = '#333';
+            }
+        }
+
+        // 메모 불러오기
+        async function loadMemos() {
+            try {
+                document.getElementById('loadingDiv').style.display = 'block';
+                document.getElementById('memoContainer').style.display = 'none';
+
+                const response = await fetch(JSONBIN_URL, {
+                    method: 'GET',
+                    headers: {
+                        'X-Access-Key': JSONBIN_ACCESS_KEY
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    memos = data.record.notes || [];
+                    isOfflineMode = false;
+                    saveLocalBackup(); // 성공 시 백업 저장
+                } else if (response.status === 429) {
+                    // API 한도 초과
+                    console.warn('API 한도 초과, 오프라인 모드로 전환');
+                    memos = loadLocalBackup();
+                    isOfflineMode = true;
+                } else {
+                    throw new Error(`API 오류: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('로드 오류:', error);
+                console.warn('오프라인 모드로 전환');
+                memos = loadLocalBackup();
+                isOfflineMode = true;
+            } finally {
+                document.getElementById('loadingDiv').style.display = 'none';
+                updateOfflineStatus();
+                displayMemos();
+            }
+        }
+
+        // 메모 표시
+        function displayMemos() {
+            const container = document.getElementById('memoContainer');
+            container.style.display = 'grid';
+
+            if (memos.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>📝 메모가 없습니다</h3>
+                        <p>첫 번째 메모를 작성해보세요!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // 최신순 정렬
+            const sortedMemos = [...memos].reverse();
+
+            container.innerHTML = sortedMemos.map(memo => `
+                <div class="memo-item" onclick="openEditModal(${memo.id})">
+                    <div class="memo-header">
+                        <div class="memo-date">${formatDate(memo.timestamp)}</div>
+                    </div>
+                    <div class="memo-content">${escapeHtml(memo.content).replace(/\n/g, '<br>')}</div>
+                </div>
+            `).join('');
+        }
+
+        // 작성 모달 열기
+        function openWriteModal() {
+            document.getElementById('writeModal').style.display = 'block';
+            document.getElementById('contentTextarea').focus();
+        }
+
+        // 작성 모달 닫기
+        function closeWriteModal() {
+            document.getElementById('writeModal').style.display = 'none';
+            document.getElementById('contentTextarea').value = '';
+        }
+
+        // 수정 모달 열기
+        let currentEditingId = null;
+        function openEditModal(memoId) {
+            const memo = memos.find(m => m.id === memoId);
+            if (!memo) return;
+
+            currentEditingId = memoId;
+            document.getElementById('editContentTextarea').value = memo.content;
+            document.getElementById('editModal').style.display = 'block';
+            document.getElementById('editContentTextarea').focus();
+        }
+
+        // 수정 모달 닫기
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+            document.getElementById('editContentTextarea').value = '';
+            currentEditingId = null;
+        }
+
+        // 메모 저장
+        async function saveMemo() {
+            const content = document.getElementById('contentTextarea').value.trim();
+
+            if (!content) {
+                alert('메모 내용을 입력하세요!');
+                return;
+            }
+
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = '💾 저장 중...';
+
+            try {
+                const newMemo = {
+                    id: Date.now(),
+                    content: content,
+                    timestamp: new Date().toISOString()
+                };
+
+                memos.push(newMemo);
+
+                if (isOfflineMode) {
+                    // 오프라인 모드: 로컬에만 저장
+                    saveLocalBackup();
+                    closeWriteModal();
+                    displayMemos();
+                } else {
+                    // 온라인 모드: 서버에 저장 시도
+                    const response = await fetch(JSONBIN_URL, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Access-Key': JSONBIN_ACCESS_KEY
+                        },
+                        body: JSON.stringify({ notes: memos })
+                    });
+
+                    if (response.ok) {
+                        saveLocalBackup(); // 성공 시 백업도 저장
+                        closeWriteModal();
+                        displayMemos();
+                    } else if (response.status === 429) {
+                        // API 한도 초과시 오프라인 모드로 전환
+                        isOfflineMode = true;
+                        saveLocalBackup();
+                        updateOfflineStatus();
+                        closeWriteModal();
+                        displayMemos();
+                        alert('⚠️ API 한도 초과로 오프라인 모드로 전환되었습니다.\n로컬에 저장되었습니다.');
+                    } else {
+                        throw new Error('저장 실패');
+                    }
+                }
+            } catch (error) {
+                console.error('저장 오류:', error);
+                // 오프라인 모드로 전환하여 로컬에 저장
+                isOfflineMode = true;
+                saveLocalBackup();
+                updateOfflineStatus();
+                closeWriteModal();
+                displayMemos();
+                alert('⚠️ 네트워크 오류로 오프라인 모드로 전환되었습니다.\n로컬에 저장되었습니다.');
+            } finally {
+                button.disabled = false;
+                button.textContent = '💾 저장';
+            }
+        }
+
+        // 메모 수정
+        async function updateMemo() {
+            const content = document.getElementById('editContentTextarea').value.trim();
+
+            if (!content) {
+                alert('메모 내용을 입력하세요!');
+                return;
+            }
+
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = '✏️ 수정 중...';
+
+            try {
+                const memoIndex = memos.findIndex(m => m.id === currentEditingId);
+                if (memoIndex === -1) throw new Error('메모를 찾을 수 없습니다.');
+
+                memos[memoIndex].content = content;
+                memos[memoIndex].timestamp = new Date().toISOString();
+
+                if (isOfflineMode) {
+                    saveLocalBackup();
+                    closeEditModal();
+                    displayMemos();
+                } else {
+                    const response = await fetch(JSONBIN_URL, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Access-Key': JSONBIN_ACCESS_KEY
+                        },
+                        body: JSON.stringify({ notes: memos })
+                    });
+
+                    if (response.ok) {
+                        saveLocalBackup();
+                        closeEditModal();
+                        displayMemos();
+                    } else {
+                        isOfflineMode = true;
+                        saveLocalBackup();
+                        updateOfflineStatus();
+                        closeEditModal();
+                        displayMemos();
+                        alert('⚠️ API 오류로 오프라인 모드로 전환되었습니다.');
+                    }
+                }
+            } catch (error) {
+                console.error('수정 오류:', error);
+                isOfflineMode = true;
+                saveLocalBackup();
+                updateOfflineStatus();
+                closeEditModal();
+                displayMemos();
+                alert('⚠️ 네트워크 오류로 오프라인 모드로 전환되었습니다.');
+            } finally {
+                button.disabled = false;
+                button.textContent = '✏️ 수정';
+            }
+        }
+
+        // 메모 삭제
+        async function deleteMemo() {
+            if (!confirm('정말로 이 메모를 삭제하시겠습니까?')) {
+                return;
+            }
+
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = '🗑️ 삭제 중...';
+
+            try {
+                const memoIndex = memos.findIndex(m => m.id === currentEditingId);
+                if (memoIndex === -1) throw new Error('메모를 찾을 수 없습니다.');
+
+                memos.splice(memoIndex, 1);
+
+                if (isOfflineMode) {
+                    saveLocalBackup();
+                    closeEditModal();
+                    displayMemos();
+                } else {
+                    const response = await fetch(JSONBIN_URL, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Access-Key': JSONBIN_ACCESS_KEY
+                        },
+                        body: JSON.stringify({ notes: memos })
+                    });
+
+                    if (response.ok) {
+                        saveLocalBackup();
+                        closeEditModal();
+                        displayMemos();
+                    } else {
+                        isOfflineMode = true;
+                        saveLocalBackup();
+                        updateOfflineStatus();
+                        closeEditModal();
+                        displayMemos();
+                        alert('⚠️ API 오류로 오프라인 모드로 전환되었습니다.');
+                    }
+                }
+            } catch (error) {
+                console.error('삭제 오류:', error);
+                isOfflineMode = true;
+                saveLocalBackup();
+                updateOfflineStatus();
+                closeEditModal();
+                displayMemos();
+                alert('⚠️ 네트워크 오류로 오프라인 모드로 전환되었습니다.');
+            } finally {
+                button.disabled = false;
+                button.textContent = '🗑️ 삭제';
+            }
+        }
+
+        // HTML 이스케이프
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // 날짜 포맷
+        function formatDate(isoString) {
+            const date = new Date(isoString);
+            const now = new Date();
+            const diff = now - date;
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(diff / 3600000);
+            const days = Math.floor(diff / 86400000);
+
+            if (minutes < 1) return '방금 전';
+            if (minutes < 60) return `${minutes}분 전`;
+            if (hours < 24) return `${hours}시간 전`;
+            if (days < 7) return `${days}일 전`;
+            
+            return date.toLocaleDateString('ko-KR');
+        }
+
+        // 모달 바깥 클릭 시 닫기
+        document.getElementById('writeModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeWriteModal();
+            }
+        });
+
+        document.getElementById('editModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEditModal();
+            }
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeWriteModal();
+                closeEditModal();
+            }
+        });
+
+        // 페이지 로드 시 실행
+        window.addEventListener('load', loadMemos);
+    </script>
+</body>
+</html>
