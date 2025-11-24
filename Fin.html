@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>final Chaple</title>
+    
+    <!-- fullPage.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css">
+    
+    <style>
+        @font-face {
+            font-family: 'YesMyungjo';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/YESMyoungjo-Regular.woff') format('woff');
+            font-weight: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'YesMyungjo';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/YESMyoungjo-Bold.woff') format('woff');
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'YesMyungjo', serif;
+            background: #fafafa;
+        }
+        
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* fullPage 컨테이너 */
+        #fullpage {
+            position: relative;
+            margin-right: 270px;
+        }
+
+        /* 우측 고정 컨테이너 (empty4 스타일 그대로) */
+        .right-fixed-container {
+            position: fixed;
+            top: 20px;
+            right: 0;
+            width: 270px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 28px;
+            background: rgba(230, 245, 250, 0.95);
+            box-shadow: -2px 0 10px rgba(0,0,0,0.08);
+            padding: 24px 18px 24px 18px;
+            border-radius: 18px 0 0 18px;
+        }
+        
+        .right-fixed-container .group {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: center;
+            margin: 0;
+            border-radius: 10px;
+            height: 80px;
+            padding: 0;
+        }
+        
+        .right-fixed-container .score-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+        }
+        
+        .right-fixed-container .updown-col {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            margin-right: 12px;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .right-fixed-container button.up,
+        .right-fixed-container button.down {
+            width: 44px;
+            height: 36px;
+            margin: 0;
+            font-size: 20px;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .right-fixed-container button.up:hover,
+        .right-fixed-container button.down:hover {
+            background: #e0e0e0;
+        }
+        
+        .right-fixed-container .score-box {
+            flex: 1;
+            width: auto;
+            min-width: 80px;
+            font-size: 26px;
+            padding: 16px 0;
+            margin: 0;
+            text-align: center;
+            background: #f0f0f0;
+            border: 1.5px solid #bbb;
+            border-radius: 8px;
+        }
+        
+        .right-fixed-container .back-button {
+            width: 100%;
+            margin: 0;
+            margin-top: 16px;
+            font-size: 22px;
+            border-radius: 8px;
+            padding: 16px 0;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            transition: background 0.2s;
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .right-fixed-container .back-button:hover {
+            background-color: #d32f2f;
+        }
+
+        .right-fixed-container .change-team-button {
+            width: 100%;
+            margin: 0;
+            margin-top: 12px;
+            font-size: 20px;
+            border-radius: 8px;
+            padding: 14px 0;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            transition: background 0.2s;
+            background-color: #0277BD;
+            color: white;
+        }
+        
+        .right-fixed-container .change-team-button:hover {
+            background-color: #01579B;
+        }
+
+        /* 각 섹션 스타일 */
+        .section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden !important;
+        }
+
+        .section:nth-child(1) { background: #D2DCB6; }
+        
+        /* fullPage.js 워터마크 숨기기 */
+        .fp-watermark {
+            display: none !important;
+        }
+
+        /* 섹션 내용 컨테이너 */
+        .content {
+            text-align: center;
+        }
+
+        .content h1 {
+            font-size: 6vw;
+            margin-bottom: 2vw;
+            color: white;
+        }
+
+        .content p {
+            font-size: 2vw;
+            opacity: 0.9;
+            color: white;
+        }
+        
+        /* 버튼 그리드 */
+        #special-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 1.5vh 1.5vw;
+            width: 80vw;
+            height: 85vh;
+            max-width: none;
+        }
+        
+        .special {
+            width: 100%;
+            height: 100%;
+            font-size: 5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #A1BC98;
+            background: #F1F3E0;
+            color: #778873;
+            transition: all 0.3s ease;
+            border-radius: 16px;
+            font-weight: bold;
+            user-select: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .special:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            background: #F1F3E0;
+            filter: brightness(1.05);
+        }
+        
+        .special:active,
+        .special.x {
+            background: rgba(241, 243, 224, 0.4);
+            color: rgba(0, 126, 110, 0.3);
+            border-color: rgba(115, 175, 111, 0.4);
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 섹션 헤더 */
+        .section-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 60px;
+        }
+
+        .section-header::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .section-title {
+            font-size: 5em;
+            font-weight: bold;
+            margin: 0;
+            float: left;
+        }
+
+        .section-date {
+            font-size: 2.3em;
+            opacity: 0.85;
+            font-weight: 600;
+            float: right;
+        }
+
+        .recreation-area {
+            padding: 0 60px;
+            height: calc(100vh - 200px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: #333;
+        }
+
+        /* 봄 테마 */
+        .spring-theme {
+            background: linear-gradient(135deg, #F9F5F6 0%, #F8E8EE 50%, #FDCEDF 100%);
+            color: #F2BED1;
+        }
+        
+        .spring-theme .section-title {
+            color: #F38181;
+        }
+        
+        .spring-theme .section-date {
+            color: #F2BED1;
+        }
+        
+        .spring-theme .recreation-area {
+            color: #333;
+        }
+        
+        /* 벚꽃 이미지 스타일 */
+        .cherry-blossom-img {
+            max-width: 85%;
+            max-height: 72vh;
+            cursor: pointer;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            object-fit: contain;
+        }
+        
+        .cherry-blossom-img:hover {
+            transform: scale(1.02);
+        }
+        
+        /* 떨어지는 벚꽃 애니메이션 */
+        .falling-petal {
+            position: absolute;
+            font-size: 3em;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 여름 테마 */
+        .summer-theme {
+            background: linear-gradient(135deg, #E3F2FD 0%, #B2EBF2 100%);
+            color: #00796B;
+        }
+
+        /* 가을 테마 */
+        .autumn-theme {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFECB3 50%, #FFCC80 100%);
+            color: #FFB74D;
+        }
+        
+        .autumn-theme .section-title {
+            color: #E65100;
+        }
+        
+        .autumn-theme .section-date {
+            color: #FFB74D;
+        }
+        
+        .autumn-theme .recreation-area {
+            color: #333;
+        }
+        
+        /* 새 보물찾기 레이아웃 */
+        .treasure-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .treasure-side {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .treasure-box {
+            width: 320px;
+            height: 220px;
+            background: linear-gradient(135deg, #FFF4E6, #FFE9CC);
+            border: 3px solid #FFB366;
+            border-radius: 12px;
+            font-size: 1.4em;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .treasure-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .treasure-box.opened {
+            background: linear-gradient(135deg, #fff, #f5f5f5);
+            cursor: default;
+        }
+
+        .treasure-image {
+            max-width: 65%;
+            max-height: 60vh;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+            object-fit: contain;
+        }
+
+        /* 물건 가격 맞추기 스타일 */
+        .price-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            position: relative;
+        }
+
+        .price-image {
+            max-width: 80%;
+            max-height: 72vh;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+            object-fit: contain;
+        }
+
+        .price-cover {
+            position: absolute;
+            right: 0%;
+            top: 60%;
+            transform: translateY(-50%);
+            width: 55%;
+            height: 50vh;
+            background: linear-gradient(135deg, #FFF3E0, #FFECB3);
+            border: 3px solid #FFB74D;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: #E65100;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .price-cover:hover {
+            background: linear-gradient(135deg, #FFECB3, #FFE082);
+            transform: translateY(-50%) scale(1.02);
+        }
+
+        .price-cover.revealed {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* 이미지 퀴즈 스타일 */
+        .quiz-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 100;
+            cursor: pointer;
+            transition: opacity 0.4s ease;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quiz-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .quiz-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .quiz-content {
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quiz-content.hidden {
+            opacity: 0;
+        }
+
+        .quiz-questions {
+            font-size: 1.6em;
+            line-height: 2.2;
+            color: #333;
+            text-align: left;
+        }
+
+        /* 상식퀴즈 스타일 */
+        .quiz-question {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1565C0;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quiz-option {
+            background: linear-gradient(135deg, #FFFFFF, #E3F2FD);
+            border: 3px solid #42A5F5;
+            border-radius: 15px;
+            padding: 25px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1565C0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(66, 165, 245, 0.4);
+        }
+
+        .quiz-option.correct {
+            background: linear-gradient(135deg, #C8E6C9, #81C784);
+            border-color: #4CAF50;
+            color: #1B5E20;
+        }
+
+        .quiz-option.wrong {
+            background: linear-gradient(135deg, #FFCDD2, #EF9A9A);
+            border-color: #F44336;
+            color: #B71C1C;
+        }
+
+        /* 4글자 단어 이어말하기 스타일 */
+        .word-display {
+            font-size: 4em;
+            font-weight: bold;
+            color: #1565C0;
+            margin: 40px 0;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .word-display:hover {
+            transform: scale(1.05);
+        }
+
+        .word-info {
+            font-size: 1.4em;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        /* 점수 획득 섹션 스타일 */
+        .score-section-title {
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #305669;
+            padding: 20px 30px;
+            background: #CBF1F5;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(113, 201, 206, 0.25);
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            text-align: center;
+            z-index: 10;
+            border: 3px solid #A6E3E9;
+        }
+
+        #score-buttons {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 1.5vh 1.5vw;
+            width: 90vw;
+            height: 85vh;
+            padding: 120px 5vw 20px 5vw;
+            box-sizing: border-box;
+        }
+
+        #score-buttons button {
+            font-size: 4em;
+            font-weight: bold;
+            color: #305669;
+            background: #CBF1F5;
+            border: 4px solid #A6E3E9;
+            border-radius: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(113, 201, 206, 0.2);
+            transition: all 0.3s ease;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            white-space: pre-line;
+            text-align: center;
+        }
+
+        #score-buttons button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(113, 201, 206, 0.3);
+            background: #E3FDFD;
+            filter: brightness(1.05);
+        }
+
+        #score-buttons button:active,
+        #score-buttons button.clicked {
+            background: rgba(203, 241, 245, 0.4);
+            color: rgba(48, 86, 105, 0.3);
+            border-color: rgba(166, 227, 233, 0.4);
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(113, 201, 206, 0.15);
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+    <!-- 조 개수 설정 모달 -->
+    <div id="team-setup-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;justify-content:center;align-items:center;">
+        <div style="background:linear-gradient(135deg, #E1F5FE, #B3E5FC);padding:48px;border-radius:20px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,0.3);">
+            <h2 style="margin-bottom:32px;font-size:2.4em;color:#0277BD;">조 개수를 설정해주세요</h2>
+            <input type="number" id="team-count-input" min="0" max="10" value="0" style="width:200px;padding:16px;font-size:2em;text-align:center;border:3px solid #0277BD;border-radius:12px;margin-bottom:32px;">
+            <br>
+            <button onclick="initializeTeams()" style="padding:18px 48px;font-size:1.8em;background:#0277BD;color:white;border:none;border-radius:12px;cursor:pointer;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.2);transition:background 0.3s;">확인</button>
+        </div>
+    </div>
+
+    <!-- 우측 고정 컨테이너 -->
+    <div class="right-fixed-container">
+        <!-- 동적으로 생성될 조 점수판 -->
+        <div id="teams-container"></div>
+        <!-- 돌아가기 버튼 -->
+        <button class="back-button" onclick="scrollToTop()">돌아가기</button>
+        <button class="score-gain-button" onclick="goToScoreSection()" style="width:100%;margin-top:12px;font-size:22px;border-radius:8px;padding:16px 0;font-weight:bold;border:none;cursor:pointer;background-color:#ff9800;color:white;box-shadow:0 4px 8px rgba(0,0,0,0.08);transition:background 0.2s;">
+            ⭐ 점수 획득
+        </button>
+        <!-- 조 개수 변경 버튼 -->
+        <button class="change-team-button" onclick="showTeamSetupModal()">조 개수 변경</button>
+    </div>
+
+    <!-- fullPage 컨테이너 -->
+    <div id="fullpage">
+        <!-- Section 1: 버튼 그리드 -->
+        <div class="section">
+            <div id="special-buttons"></div>
+        </div>
+
+        <!-- Section 2: 넌센스퀴즈 (1번 버튼) -->
+        <div class="section summer-theme">
+            <div class="section-header">
+                <h2 class="section-title">넌센스퀴즈</h2>
+                <span class="section-date">2025.05.27</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <div style="font-size: 1.3em; font-weight: bold; color: #1565C0; margin-bottom: 30px;">세상에서 가장 가난한 왕은?</div>
+                <div style="font-size: 1.2em; color: #1565C0; line-height: 2;">
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: 재명호 보물찾기 (2번 버튼) -->
+        <div class="section autumn-theme">
+            <div class="section-header">
+                <h2 class="section-title">재명호 보물찾기</h2>
+                <span class="section-date">2025.09.23</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="margin-bottom: 20px;">보물을 찾아주세요! (선택한 팀만, 한번)</p>
+                <div class="treasure-container">
+                    <!-- 왼쪽 보물 2개 -->
+                    <div class="treasure-side">
+                        <div class="treasure-box" id="treasure-1" data-number="1" onclick="openTreasure(1)">1</div>
+                        <div class="treasure-box" id="treasure-2" data-number="2" onclick="openTreasure(2)">2</div>
+                    </div>
+                    <!-- 중앙 이미지 -->
+                    <img src="chaple/v.jpg" alt="재명호" class="treasure-image">
+                    <!-- 오른쪽 보물 2개 -->
+                    <div class="treasure-side">
+                        <div class="treasure-box" id="treasure-3" data-number="3" onclick="openTreasure(3)">3</div>
+                        <div class="treasure-box" id="treasure-4" data-number="4" onclick="openTreasure(4)">4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: MBTI 퀴즈 (3번 버튼) -->
+        <div class="section spring-theme">
+            <div class="section-header">
+                <h2 class="section-title">MBTI 맞추기 퀴즈</h2>
+                <span class="section-date">2025.03.11</span>
+            </div>
+            <div class="recreation-area">
+                <p style="font-size: 1.2em;">코디님의 MBTI는?</p>
+            </div>
+        </div>
+
+        <!-- Section 5: 영화 명대사 퀴즈 (4번 버튼) -->
+        <div class="section summer-theme">
+            <div class="section-header">
+                <h2 class="section-title">영화 명대사 퀴즈</h2>
+                <span class="section-date">2025.05.27</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="font-size: 1.3em; font-weight: bold; color: #1565C0; margin-bottom: 20px;">영화 명대사를 맞춰주세요!</p>
+                <img src="chaple/m1.png" alt="영화 명대사" style="max-width: 90%; max-height: 70vh; object-fit: contain;">
+            </div>
+        </div>
+
+        <!-- Section 6: 물건 가격 맞추기 (5번 버튼) -->
+        <div class="section autumn-theme">
+            <div class="section-header">
+                <h2 class="section-title">물건 가격 맞추기</h2>
+                <span class="section-date">2025.09.16</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="margin-bottom: 20px;">물건 가격을 맞춰주세요 (1000단위로 반올림, 업다운)</p>
+                <div class="price-container">
+                    <img src="chaple/c1.png" alt="물건" class="price-image">
+                    <div class="price-cover" id="price-cover" onclick="revealPrice()">
+                        클릭하여<br>가격 확인
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: 이미지 퀴즈 2 (6번 버튼) -->
+        <div class="section autumn-theme" style="position: relative;">
+            <div class="quiz-overlay hidden" id="quiz-overlay-2" onclick="hideQuizImage2()">
+                <img src="chaple/f2.png" alt="퀴즈 이미지" class="quiz-image">
+            </div>
+            <div class="section-header">
+                <h2 class="section-title">이미지 퀴즈</h2>
+                <span class="section-date">2025.11.04</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="margin-bottom: 20px;">질문을 전부 맞춰주세요!</p>
+                <div class="quiz-content hidden" id="quiz-content-2">
+                    <div class="quiz-questions">
+                        • 가방의 개수는?<br>
+                        • 플라스틱 물병의 개수는?<br>
+                        • 랜턴의 개수는?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: 이미지 확대 퀴즈 2 (7번 버튼) -->
+        <div class="section summer-theme">
+            <div class="section-header">
+                <h2 class="section-title">이미지 확대 퀴즈</h2>
+                <span class="section-date">2025.05.20</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="font-size: 1.3em; font-weight: bold; color: #1565C0; margin-bottom: 20px;">확대된 이미지를 보고 맞추세요!</p>
+                <img id="zoom-image-2" src="chaple/q6.png" alt="확대 이미지" style="width: 80%; height: 60vh; object-fit: cover; cursor: pointer;" onclick="nextZoomImage2()">
+            </div>
+        </div>
+
+        <!-- Section 9: 릴레이 퀴즈 (8번 버튼) -->
+        <div class="section summer-theme">
+            <div class="section-header">
+                <h2 class="section-title">릴레이 퀴즈</h2>
+                <span class="section-date">2025.05.27</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="margin-bottom: 20px;">주제에 해당되는 것을 조원이 겹치지 않게 대답하기</p>
+                <div class="word-display" id="relay-display" onclick="showNextRelay()">
+                    준비
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 10: 넌센스퀴즈 2 (9번 버튼) -->
+        <div class="section summer-theme">
+            <div class="section-header">
+                <h2 class="section-title">넌센스퀴즈</h2>
+                <span class="section-date">2025.05.27</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <div style="font-size: 1.3em; font-weight: bold; color: #1565C0; margin-bottom: 30px;">직접 만든 총은?</div>
+                <div style="font-size: 1.2em; color: #1565C0; line-height: 2;">
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 11: 생일 맞추기 퀴즈 (10번 버튼) -->
+        <div class="section spring-theme">
+            <div class="section-header">
+                <h2 class="section-title">생일 맞추기 퀴즈</h2>
+                <span class="section-date">2025.03.11</span>
+            </div>
+            <div class="recreation-area">
+                <p style="font-size: 1.2em;">코디님의 생일을 맞춰주세요! (업다운)</p>
+            </div>
+        </div>
+
+        <!-- Section 12: 상식퀴즈 (11번 버튼) -->
+        <div class="section summer-theme">
+            <div class="section-header">
+                <h2 class="section-title">상식퀴즈</h2>
+                <span class="section-date">2025.05.27</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <div style="font-size: 1.3em; font-weight: bold; color: #1565C0; margin-bottom: 30px;">5천원권 지폐에 있는 과일은?</div>
+                <div style="font-size: 1.2em; color: #1565C0; line-height: 2;">
+                    1. 복숭아<br>
+                    2. 배<br>
+                    3. 포도<br>
+                    4. 수박
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 13: 이어그린 그림 키워드 맞추기 (12번 버튼) -->
+        <div class="section spring-theme">
+            <div class="section-header">
+                <h2 class="section-title">이어그린 그림 키워드 맞추기</h2>
+                <span class="section-date">2025.03.25</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="font-size: 1.1em; font-weight: bold; color: #4A5568; margin-bottom: 15px;">이어그리기 했던 그림을 보고 역으로 키워드를 맞춰주세요!</p>
+                <img src="chaple/k1.png" alt="이어그린 그림" style="max-width: 75%; max-height: 60vh; object-fit: contain;">
+            </div>
+        </div>
+
+        <!-- Section 14: 벚꽃 개수 세기 (13번 버튼) -->
+        <div class="section spring-theme">
+            <div class="section-header">
+                <h2 class="section-title">벚꽃 개수 세기</h2>
+                <span class="section-date">2025.04.08</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="margin-bottom: 20px;">하늘에서 떨어지는 벚꽃 개수를 세주세요!</p>
+                <img src="chaple/a.jpg" alt="벚꽃" class="cherry-blossom-img" onclick="dropCherryBlossoms()">
+            </div>
+        </div>
+
+        <!-- Section 15: 물건 가격 맞추기 2 (14번 버튼) -->
+        <div class="section autumn-theme">
+            <div class="section-header">
+                <h2 class="section-title">물건 가격 맞추기</h2>
+                <span class="section-date">2025.09.16</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="margin-bottom: 20px;">물건 가격을 맞춰주세요 (1000단위로 반올림, 업다운)</p>
+                <div class="price-container">
+                    <img src="chaple/c2.png" alt="물건" class="price-image">
+                    <div class="price-cover" id="price-cover-2" onclick="revealPrice2()">
+                        클릭하여<br>가격 확인
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 16: 소그룹 추억 (15번 버튼) -->
+        <div class="section spring-theme">
+            <div class="section-header">
+                <h2 class="section-title">소그룹 추억</h2>
+                <span class="section-date">2025.03.11</span>
+            </div>
+            <div class="recreation-area">
+                <p style="font-size: 1.2em;">지금까지 했던 소그룹들중에<br>인상깊었던 내용이나 에피소드를 말해주세요!</p>
+            </div>
+        </div>
+
+        <!-- Section 17: 이미지 퀴즈 (16번 버튼) -->
+        <div class="section autumn-theme" style="position: relative;">
+            <div class="quiz-overlay hidden" id="quiz-overlay" onclick="hideQuizImage()">
+                <img src="chaple/f1.png" alt="퀴즈 이미지" class="quiz-image">
+            </div>
+            <div class="section-header">
+                <h2 class="section-title">이미지 퀴즈</h2>
+                <span class="section-date">2025.11.04</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="margin-bottom: 20px;">질문을 전부 맞춰주세요!</p>
+                <div class="quiz-content hidden" id="quiz-content">
+                    <div class="quiz-questions">
+                        • 노란색 별의 개수는?<br>
+                        • 우주선 모형의 개수는?<br>
+                        • 매달린 행성의 개수는?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 18: 릴레이 퀴즈 2 (17번 버튼) -->
+        <div class="section summer-theme">
+            <div class="section-header">
+                <h2 class="section-title">릴레이 퀴즈</h2>
+                <span class="section-date">2025.05.27</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="margin-bottom: 20px;">주제에 해당되는 것을 조원이 겹치지 않게 대답하기</p>
+                <div class="word-display" id="relay-display-2" onclick="showNextRelay2()">
+                    준비
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 19: 이어그린 그림 키워드 맞추기 2 (18번 버튼) -->
+        <div class="section spring-theme">
+            <div class="section-header">
+                <h2 class="section-title">이어그린 그림 키워드 맞추기</h2>
+                <span class="section-date">2025.03.25</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="font-size: 1.1em; font-weight: bold; color: #4A5568; margin-bottom: 15px;">이어그리기 했던 그림을 보고 역으로 키워드를 맞춰주세요!</p>
+                <img src="chaple/k2.png" alt="이어그린 그림" style="max-width: 75%; max-height: 60vh; object-fit: contain;">
+            </div>
+        </div>
+
+        <!-- Section 20: 4글자 단어 이어말하기 (19번 버튼) -->
+        <div class="section autumn-theme">
+            <div class="section-header">
+                <h2 class="section-title">4글자 단어 이어말하기</h2>
+                <span class="section-date">2025.11.18</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="margin-bottom: 20px;">모든 팀원이 한번씩 맞추면 됩니다.</p>
+                <div class="word-display" id="word-display" onclick="showNextWord()">
+                    준비
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 21: 상식퀴즈 2 (20번 버튼) -->
+        <div class="section summer-theme">
+            <div class="section-header">
+                <h2 class="section-title">상식퀴즈</h2>
+                <span class="section-date">2025.05.27</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <div style="font-size: 1.3em; font-weight: bold; color: #1565C0; margin-bottom: 30px;">남의 의견이나 충고를 귀담아 듣지 않고 흘려버리는 태도를 뜻하는 사자성어는?</div>
+                <div style="font-size: 1.2em; color: #1565C0; line-height: 2;">
+                    1. 주마간산<br>
+                    2. 마이동풍<br>
+                    3. 조삼모사<br>
+                    4. 새옹지마
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 22: 영화 명대사 퀴즈 2 (21번 버튼) -->
+        <div class="section summer-theme">
+            <div class="section-header">
+                <h2 class="section-title">영화 명대사 퀴즈</h2>
+                <span class="section-date">2025.05.27</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="font-size: 1.3em; font-weight: bold; color: #1565C0; margin-bottom: 20px;">영화 명대사를 맞춰주세요!</p>
+                <img src="chaple/m2.png" alt="영화 명대사" style="max-width: 90%; max-height: 70vh; object-fit: contain;">
+            </div>
+        </div>
+
+        <!-- Section 23: 마니또 / 이름 삼행시 (22번 버튼) -->
+        <div class="section spring-theme">
+            <div class="section-header">
+                <h2 class="section-title">마니또 / 이름 삼행시</h2>
+                <span class="section-date">2025.04.01</span>
+            </div>
+            <div class="recreation-area">
+                <p style="font-size: 1.2em;">마니또 때의 경험을 살려<br>코디님의 이름으로 삼행시를 지어주세요!</p>
+            </div>
+        </div>
+
+        <!-- Section 24: 재명호 보물찾기 (23번 버튼) -->
+        <div class="section autumn-theme">
+            <div class="section-header">
+                <h2 class="section-title">재명호 보물찾기</h2>
+                <span class="section-date">2025.09.23</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="margin-bottom: 20px;">보물을 찾아주세요! (선택한 팀만, 한번)</p>
+                <div class="treasure-container">
+                    <!-- 왼쪽 보물 2개 -->
+                    <div class="treasure-side">
+                        <div class="treasure-box" id="treasure-5" data-number="5" onclick="openTreasure(5)">1</div>
+                        <div class="treasure-box" id="treasure-6" data-number="6" onclick="openTreasure(6)">2</div>
+                    </div>
+                    <!-- 중앙 이미지 -->
+                    <img src="chaple/v.jpg" alt="재명호" class="treasure-image">
+                    <!-- 오른쪽 보물 2개 -->
+                    <div class="treasure-side">
+                        <div class="treasure-box" id="treasure-7" data-number="7" onclick="openTreasure(7)">3</div>
+                        <div class="treasure-box" id="treasure-8" data-number="8" onclick="openTreasure(8)">4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 25: 이미지 확대 퀴즈 (24번 버튼) -->
+        <div class="section summer-theme">
+            <div class="section-header">
+                <h2 class="section-title">이미지 확대 퀴즈</h2>
+                <span class="section-date">2025.05.20</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="font-size: 1.3em; font-weight: bold; color: #1565C0; margin-bottom: 20px;">확대된 이미지를 보고 맞추세요!</p>
+                <img id="zoom-image" src="chaple/q1.png" alt="확대 이미지" style="width: 80%; height: 60vh; object-fit: cover; cursor: pointer;" onclick="nextZoomImage()">
+            </div>
+        </div>
+
+        <!-- Section 26: 이어그린 그림 키워드 맞추기 3 (25번 버튼) -->
+        <div class="section spring-theme">
+            <div class="section-header">
+                <h2 class="section-title">이어그린 그림 키워드 맞추기</h2>
+                <span class="section-date">2025.03.25</span>
+            </div>
+            <div class="recreation-area" style="flex-direction: column;">
+                <p style="font-size: 1.1em; font-weight: bold; color: #4A5568; margin-bottom: 15px;">이어그리기 했던 그림을 보고 역으로 키워드를 맞춰주세요!</p>
+                <img src="chaple/k3.png" alt="이어그린 그림" style="max-width: 75%; max-height: 60vh; object-fit: contain;">
+            </div>
+        </div>
+
+        <!-- Section 27: 점수 획득 -->
+        <div class="section" style="background: #E3FDFD;">
+            <div class="score-section-title" id="score-title">
+                점수를 선택하세요!
+            </div>
+            <div id="score-buttons"></div>
+        </div>
+    </div>
+
+    <!-- fullPage.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
+
+    <script>
+        let scores = {};
+        let teamCount = 0;
+        const teamColors = ['#ffe2dd', '#fffedd', '#e4ffdd', '#ddfff4', '#e1ddff', '#ffe4f5', '#fff0e4', '#e4f4ff', '#f5e4ff', '#e4ffe9'];
+
+        // 페이지 로드시 조 개수 모달 표시
+        window.addEventListener('load', () => {
+            // 새로고침시 조 없이 시작
+            document.getElementById('team-count-input').value = 0;
+            teamCount = 0;
+            scores = {};
+            createTeamsUI();
+        });
+
+        // 조 초기화 함수
+        function initializeTeams() {
+            const input = document.getElementById('team-count-input');
+            teamCount = parseInt(input.value);
+            if (teamCount < 0 || teamCount > 10) {
+                alert('0~10 사이의 숫자를 입력해주세요.');
+                return;
+            }
+
+            // 로컬 스토리지에 저장
+            localStorage.setItem('teamCount', teamCount);
+            
+            // 점수 초기화
+            scores = {};
+            for (let i = 1; i <= teamCount; i++) {
+                scores[i] = 0;
+            }
+
+            // 저장된 점수 불러오기
+            const savedScores = JSON.parse(localStorage.getItem('scores'));
+            if (savedScores) {
+                for (let i = 1; i <= teamCount; i++) {
+                    if (savedScores[i] !== undefined) {
+                        scores[i] = savedScores[i];
+                    }
+                }
+            }
+
+            // UI 생성
+            createTeamsUI();
+            
+            // 모달 닫기
+            document.getElementById('team-setup-modal').style.display = 'none';
+        }
+
+        // 조 UI 생성 함수
+        function createTeamsUI() {
+            const container = document.getElementById('teams-container');
+            container.innerHTML = '';
+
+            for (let i = 1; i <= teamCount; i++) {
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'group';
+                groupDiv.id = `group${i}`;
+                
+                groupDiv.innerHTML = `
+                    <div class="score-row">
+                        <div class="updown-col">
+                            <button class="up" data-group="${i}">↑</button>
+                            <button class="down" data-group="${i}">↓</button>
+                        </div>
+                        <div class="score-box" id="number${i}" style="background-color: ${teamColors[i-1]}">${i}조: ${scores[i]}</div>
+                    </div>
+                `;
+                
+                container.appendChild(groupDiv);
+            }
+
+            // 이벤트 리스너 추가
+            attachEventListeners();
+        }
+
+        // 이벤트 리스너 추가 함수
+        function attachEventListeners() {
+            document.querySelectorAll('.up').forEach(button => {
+                button.addEventListener('click', () => {
+                    const group = button.getAttribute('data-group');
+                    scores[group]++;
+                    updateDisplay(group);
+                });
+            });
+
+            document.querySelectorAll('.down').forEach(button => {
+                button.addEventListener('click', () => {
+                    const group = button.getAttribute('data-group');
+                    scores[group]--;
+                    updateDisplay(group);
+                });
+            });
+        }
+
+        // 점수 업데이트 함수
+        function updateDisplay(group) {
+            const numberDisplay = document.getElementById(`number${group}`);
+            numberDisplay.textContent = `${group}조: ${scores[group]}`;
+            localStorage.setItem('scores', JSON.stringify(scores));
+        }
+
+        // 조 개수 변경 모달 표시 함수
+        function showTeamSetupModal() {
+            document.getElementById('team-setup-modal').style.display = 'flex';
+        }
+
+        // fullPage.js 초기화
+        new fullpage('#fullpage', {
+            licenseKey: 'gplv3-license',
+            autoScrolling: true,
+            navigation: true,
+            navigationPosition: 'right',
+            scrollingSpeed: 0,  // 모션 없이 즉시 이동
+            normalScrollElements: '.section',
+        });
+
+        // 휠 스크롤 완전 차단
+        document.addEventListener('wheel', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        // 25개 버튼 생성 (5x5)
+        const specialButtonsDiv = document.getElementById('special-buttons');
+        for (let i = 1; i <= 25; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'special';
+            btn.textContent = i;
+            btn.onclick = function() { handleClick(this, i); };
+            specialButtonsDiv.appendChild(btn);
+        }
+
+        // 버튼 클릭 시 해당 섹션으로 이동
+        function handleClick(button, sectionNum) {
+            button.textContent = "X";
+            button.classList.add("x");
+            button.onclick = function (event) {
+                event.preventDefault();
+            };
+            
+            // 2번, 23번 버튼은 둘 다 보물찾기(Section 3)로 이동
+            if (sectionNum === 2 || sectionNum === 23) {
+                fullpage_api.moveTo(3);
+                return;
+            }
+            
+            // 동적 섹션 이동: 버튼 번호 + 1 = 섹션 번호
+            fullpage_api.moveTo(sectionNum + 1);
+            
+            // 특정 게임 초기화가 필요한 경우
+            if (sectionNum === 6) {
+                setTimeout(() => showQuizImage2(), 100);
+            } else if (sectionNum === 7) {
+                setTimeout(() => resetZoomGame2(), 100);
+            } else if (sectionNum === 8) {
+                setTimeout(() => resetRelayGame(), 100);
+            } else if (sectionNum === 16) {
+                setTimeout(() => showQuizImage(), 100);
+            } else if (sectionNum === 17) {
+                setTimeout(() => resetRelayGame2(), 100);
+            } else if (sectionNum === 19) {
+                setTimeout(() => resetWordGame(), 100);
+            } else if (sectionNum === 24) {
+                setTimeout(() => resetZoomGame(), 100);
+            }
+        }
+        
+        // 돌아가기 버튼 - Section 1으로 복귀
+        function scrollToTop() {
+            fullpage_api.moveTo(1);  // 첫 번째 섹션으로 즉시 이동
+        }
+
+        // 주사위 결과 사라짐 타이머를 저장할 변수
+        let diceTimeout = null;
+
+        function rollDice() {
+            const diceDiv = document.getElementById('dice-result');
+            // 이전 타이머가 있으면 취소(연타시 항상 2초 뒤에 사라지도록)
+            if (diceTimeout) {
+                clearTimeout(diceTimeout);
+                diceTimeout = null;
+            }
+            // 1~6 중 임의의 숫자
+            const result = Math.floor(Math.random() * 6) + 1;
+            diceDiv.textContent = `${result}`;
+            diceDiv.style.display = 'block';
+            diceDiv.style.opacity = '1';
+            // 2초 후 사라지게
+            diceTimeout = setTimeout(() => {
+                diceDiv.style.opacity = '0';
+                setTimeout(() => {
+                    diceDiv.style.display = 'none';
+                }, 400);
+            }, 2000);
+        }
+        
+        // 벚꽃 떨어뜨리기 함수
+        function dropCherryBlossoms() {
+            const count = 20; // 20개
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const petal = document.createElement('div');
+                    petal.textContent = '🌸';
+                    petal.className = 'falling-petal';
+                    // 오른쪽 300px 더 여유있게 제외
+                    const maxLeft = window.innerWidth - 330;
+                    petal.style.left = (Math.random() * maxLeft) + 'px';
+                    petal.style.top = '-50px';
+                    petal.style.animationDuration = (Math.random() * 1.5 + 2) + 's'; // 2~3.5초
+                    document.body.appendChild(petal);
+                    
+                    // 애니메이션 끝나면 제거
+                    setTimeout(() => {
+                        petal.remove();
+                    }, 4000);
+                }, i * 150);
+            }
+        }
+        
+        // 새 보물찾기 게임 - 4칸 버전
+        const treasureValues = ['점수판 1개<br>효과 2배', '점수판<br>2개 선택', '점수<br>바꾸기', '5점'];
+        let shuffledTreasures = [];
+        let shuffledTreasures2 = [];
+
+        function initNewTreasureGame() {
+            // 첫 번째 보물찾기 셔플 (1-4번)
+            shuffledTreasures = [...treasureValues];
+            for (let i = shuffledTreasures.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledTreasures[i], shuffledTreasures[j]] = [shuffledTreasures[j], shuffledTreasures[i]];
+            }
+            
+            // 두 번째 보물찾기 셔플 (5-8번)
+            shuffledTreasures2 = [...treasureValues];
+            for (let i = shuffledTreasures2.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledTreasures2[i], shuffledTreasures2[j]] = [shuffledTreasures2[j], shuffledTreasures2[i]];
+            }
+        }
+
+        function openTreasure(num) {
+            const box = document.getElementById(`treasure-${num}`);
+            if (box.classList.contains('opened')) return;
+
+            box.classList.add('opened');
+            
+            // 1-4번은 첫 번째 배열, 5-8번은 두 번째 배열 사용
+            const treasure = num <= 4 ? shuffledTreasures[num - 1] : shuffledTreasures2[num - 5];
+            box.innerHTML = treasure;
+            box.style.fontSize = '1.2em';
+            box.style.lineHeight = '1.4';
+            box.style.background = 'linear-gradient(135deg, #FFD54F, #FFF176)';
+        }
+
+        // 페이지 로드시 새 보물찾기 게임 초기화
+        setTimeout(initNewTreasureGame, 500);
+
+        // 물건 가격 맞추기 - 가격 공개 함수
+        function revealPrice() {
+            const cover = document.getElementById('price-cover');
+            cover.classList.add('revealed');
+        }
+
+        // 물건 가격 맞추기 2 - 가격 공개 함수
+        function revealPrice2() {
+            const cover = document.getElementById('price-cover-2');
+            cover.classList.add('revealed');
+        }
+
+        // 이미지 퀴즈 - 이미지 표시 함수
+        function showQuizImage() {
+            const overlay = document.getElementById('quiz-overlay');
+            const content = document.getElementById('quiz-content');
+            overlay.classList.remove('hidden');
+            content.classList.add('hidden');
+        }
+
+        // 이미지 퀴즈 - 이미지 숨기기 함수
+        function hideQuizImage() {
+            const overlay = document.getElementById('quiz-overlay');
+            const content = document.getElementById('quiz-content');
+            overlay.classList.add('hidden');
+            setTimeout(() => {
+                content.classList.remove('hidden');
+            }, 400);
+        }
+
+        // 이미지 퀴즈 2 - 이미지 표시 함수
+        function showQuizImage2() {
+            const overlay = document.getElementById('quiz-overlay-2');
+            const content = document.getElementById('quiz-content-2');
+            overlay.classList.remove('hidden');
+            content.classList.add('hidden');
+        }
+
+        // 이미지 퀴즈 2 - 이미지 숨기기 함수
+        function hideQuizImage2() {
+            const overlay = document.getElementById('quiz-overlay-2');
+            const content = document.getElementById('quiz-content-2');
+            overlay.classList.add('hidden');
+            setTimeout(() => {
+                content.classList.remove('hidden');
+            }, 400);
+        }
+
+        // 4글자 단어 이어말하기 게임
+        const wordList = [
+            '아나', '나무', '오랑', '사슴', '백상', '김치', '달걀', '사천', '감자', '무한',
+            '고속', '할리', '양념', '주전', '장기', '콘크', '아프', '스마', '아이', '블루',
+            '샌드', '치즈', '초코', '제로', '녹차', '바이', '은행', '해바', '코스', '카네'
+        ];
+        let remainingWords = [];
+        let currentWordIndex = 0;
+
+        function resetWordGame() {
+            // 섹션에 처음 들어갈 때만 초기화 (이미 게임 중이면 초기화 안함)
+            if (remainingWords.length === 0 || currentWordIndex === 0) {
+                remainingWords = [...wordList];
+                currentWordIndex = 0;
+                document.getElementById('word-display').textContent = '준비';
+                document.getElementById('word-info').textContent = '';
+            }
+        }
+
+        function showNextWord() {
+            if (remainingWords.length === 0) {
+                document.getElementById('word-display').textContent = '끝';
+                return;
+            }
+
+            // 랜덤으로 선택
+            const randomIndex = Math.floor(Math.random() * remainingWords.length);
+            const selectedWord = remainingWords[randomIndex];
+            
+            // 선택된 단어 제거
+            remainingWords.splice(randomIndex, 1);
+            currentWordIndex++;
+
+            // 화면에 표시
+            document.getElementById('word-display').textContent = selectedWord;
+        }
+
+        // 릴레이 퀴즈 게임
+        const relayTopics = ['라면 종류', '아이스크림 종류', '가전제품'];
+        let remainingTopics = [];
+        let currentTopicIndex = 0;
+
+        function resetRelayGame() {
+            if (remainingTopics.length === 0 || currentTopicIndex === 0) {
+                remainingTopics = [...relayTopics];
+                currentTopicIndex = 0;
+                document.getElementById('relay-display').textContent = '준비';
+            }
+        }
+
+        function showNextRelay() {
+            if (remainingTopics.length === 0) {
+                document.getElementById('relay-display').textContent = '끝';
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * remainingTopics.length);
+            const selectedTopic = remainingTopics[randomIndex];
+            
+            remainingTopics.splice(randomIndex, 1);
+            currentTopicIndex++;
+
+            document.getElementById('relay-display').textContent = selectedTopic;
+        }
+
+        // 릴레이 퀴즈 2 게임
+        const relayTopics2 = ['운동 종목', '수도 이름', '과일 종류'];
+        let remainingTopics2 = [];
+        let currentTopicIndex2 = 0;
+
+        function resetRelayGame2() {
+            if (remainingTopics2.length === 0 || currentTopicIndex2 === 0) {
+                remainingTopics2 = [...relayTopics2];
+                currentTopicIndex2 = 0;
+                document.getElementById('relay-display-2').textContent = '준비';
+            }
+        }
+
+        function showNextRelay2() {
+            if (remainingTopics2.length === 0) {
+                document.getElementById('relay-display-2').textContent = '끝';
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * remainingTopics2.length);
+            const selectedTopic = remainingTopics2[randomIndex];
+            
+            remainingTopics2.splice(randomIndex, 1);
+            currentTopicIndex2++;
+
+            document.getElementById('relay-display-2').textContent = selectedTopic;
+        }
+
+        // 이미지 확대 퀴즈 게임
+        let currentZoomIndex = 1;
+        const maxZoomImages = 5;
+
+        function resetZoomGame() {
+            currentZoomIndex = 1;
+            document.getElementById('zoom-image').src = 'chaple/q1.png';
+        }
+
+        function nextZoomImage() {
+            currentZoomIndex++;
+            if (currentZoomIndex > maxZoomImages) {
+                currentZoomIndex = 1;
+            }
+            document.getElementById('zoom-image').src = `chaple/q${currentZoomIndex}.png`;
+        }
+
+        // 이미지 확대 퀴즈 2 게임
+        let currentZoomIndex2 = 6;
+        const minZoomImages2 = 6;
+        const maxZoomImages2 = 9;
+
+        function resetZoomGame2() {
+            currentZoomIndex2 = 6;
+            document.getElementById('zoom-image-2').src = 'chaple/q6.png';
+        }
+
+        function nextZoomImage2() {
+            currentZoomIndex2++;
+            if (currentZoomIndex2 > maxZoomImages2) {
+                currentZoomIndex2 = minZoomImages2;
+            }
+            document.getElementById('zoom-image-2').src = `chaple/q${currentZoomIndex2}.png`;
+        }
+
+        // 점수 획득 섹션으로 이동
+        function goToScoreSection() {
+            fullpage_api.moveTo(27);
+        }
+
+        // 점수 데이터 (30개 버튼의 점수)
+        const scoreValues = [
+            '꽝', '꽝', '꽝', '꽝', '꽝', 1,
+            1, 1, 1, 1, 2,
+            2, 2, 2, 2, 3,
+            3, 3, 3, 3, '한팀과 같이1점',
+            '한팀과 같이1점', '한팀과 같이1점', '1점 뺏기', '1점 뺏기', '1점 뺏기',
+            '꼴지팀이라면\n 5점', '1점+\n하나더 선택', '2점 뺏기', '2점+\n하나더선택'
+        ];
+
+        // 점수 배열 랜덤 셔플
+        let shuffledScores = [...scoreValues];
+        for (let i = shuffledScores.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledScores[i], shuffledScores[j]] = [shuffledScores[j], shuffledScores[i]];
+        }
+
+        // 점수 획득 버튼 생성 (6x5 = 30개)
+        const scoreButtonsDiv = document.getElementById('score-buttons');
+        for (let i = 1; i <= 30; i++) {
+            const btn = document.createElement('button');
+            btn.innerHTML = i;
+            btn.onclick = function() { handleScoreClick(this, i); };
+            scoreButtonsDiv.appendChild(btn);
+        }
+
+        // 점수 배수 효과
+        let scoreMultiplier = 1;
+
+        // 점수 버튼 클릭 처리
+        function handleScoreClick(button, num) {
+            if (button.classList.contains('clicked')) return;
+            
+            button.classList.add('clicked');
+            button.innerHTML = 'X';
+            
+            // 점수/효과 표시
+            const value = shuffledScores[num - 1];
+            
+            if (typeof value === 'string') {
+                showScorePopup(value.replace(/\n/g, '<br>'));
+            } else {
+                const finalScore = value * scoreMultiplier;
+                showScorePopup(`${finalScore}점`);
+                scoreMultiplier = 1; // 배수 초기화
+            }
+        }
+
+        // 점수 팝업 표시
+        function showScorePopup(text) {
+            // 기존 팝업이 있으면 제거
+            const existing = document.getElementById('score-popup');
+            if (existing) {
+                existing.remove();
+            }
+
+            const popup = document.createElement('div');
+            popup.id = 'score-popup';
+            popup.innerHTML = text;
+            popup.style.cssText = `
+                position: fixed;
+                left: calc(50% - 135px);
+                top: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 5000;
+                font-size: 8em;
+                font-weight: bold;
+                color: #305669;
+                background: linear-gradient(135deg, #E3FDFD, #CBF1F5);
+                border: 5px solid #A6E3E9;
+                border-radius: 24px;
+                padding: 60px 100px;
+                box-shadow: 0 12px 40px rgba(48, 86, 105, 0.3);
+                opacity: 0;
+                transition: opacity 0.3s;
+                text-align: center;
+                line-height: 1.3;
+            `;
+            document.body.appendChild(popup);
+
+            // 페이드 인
+            setTimeout(() => {
+                popup.style.opacity = '1';
+            }, 10);
+
+            // 3초 후 페이드 아웃 및 제거
+            setTimeout(() => {
+                popup.style.opacity = '0';
+                setTimeout(() => {
+                    popup.remove();
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
