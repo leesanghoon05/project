@@ -1,0 +1,957 @@
+<!DOCTYPE html><!-- 해시태그 추가 및 검색기능, 책 추가 업데이트 예정 -->
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성과를 지배하는 바인더의 힘</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --bg: #f8fafc;
+            --bg-white: #ffffff;
+            --text-dark: #111827;
+            --text-medium: #1f2937;
+            --text-light: #4b5563;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        /* 다크 모드 */
+        body.dark-mode {
+            --primary: #9cb686;
+            --primary-light: #b5c99a;
+            --bg: #1a1a2e;
+            --bg-white: #252542;
+            --text-dark: #f1f5f9;
+            --text-medium: #cbd5e1;
+            --text-light: #94a3b8;
+            --border: #3d3d5c;
+            --shadow: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .section-quote {
+            background: linear-gradient(135deg, rgba(156, 182, 134, 0.15) 0%, rgba(181, 201, 154, 0.08) 100%);
+        }
+
+        /* 고정 컨트롤 패널 */
+        .control-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: var(--bg-white);
+            color: var(--text-medium);
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .control-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* 책 선택 드롭다운 */
+        .book-dropdown {
+            position: relative;
+        }
+
+        .book-menu {
+            position: absolute;
+            top: 62px;
+            right: 0;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            min-width: 200px;
+            display: none;
+            overflow: hidden;
+        }
+
+        .book-menu.show {
+            display: block;
+        }
+
+        .book-menu-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .book-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .book-menu-item:hover {
+            background: var(--bg);
+        }
+
+        .book-menu-item.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .book-menu-item.disabled {
+            color: var(--text-light);
+            cursor: not-allowed;
+            font-style: italic;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* 헤더 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* 탭 네비게이션 */
+        .tab-nav {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 32px;
+            padding: 16px;
+            background: var(--bg-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .tab-btn {
+            padding: 10px 8px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-medium);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            background: var(--bg);
+            border-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* 콘텐츠 영역 */
+        .content-area {
+            background: var(--bg-white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            padding: 48px;
+            min-height: 500px;
+        }
+
+        .section-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 섹션 헤더 */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--bg);
+        }
+
+        .section-icon {
+            display: none;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* 인용구 */
+        .section-quote {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 500;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 32px;
+        }
+
+        /* 콘텐츠 리스트 */
+        .content-list {
+            list-style: none;
+        }
+
+        .content-list li {
+            padding: 18px 0;
+            padding-left: 32px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-medium);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .content-list li:last-child {
+            border-bottom: none;
+        }
+
+        .content-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 24px;
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* 섹션별 아이콘 - 비활성화 */
+
+        /* 스무 살의 팡세 테마 - 비활성화 */
+
+        /* 푸터 */
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            margin-top: 40px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* 반응형 */
+        @media (max-width: 1100px) {
+            #pensees-nav {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .tab-nav {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            #pensees-nav {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px 16px;
+                padding-top: 80px;
+            }
+
+            .header h1 {
+                font-size: 1.4rem;
+            }
+
+            .content-area {
+                padding: 28px 20px;
+            }
+
+            .tab-nav {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .tab-btn {
+                padding: 8px 6px;
+                font-size: 0.75rem;
+            }
+
+            .control-panel {
+                top: 12px;
+                right: 12px;
+            }
+
+            .control-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+
+            .section-title {
+                font-size: 1.25rem;
+            }
+
+            .section-quote {
+                font-size: 1rem;
+                padding: 16px 20px;
+            }
+
+            .content-list li {
+                font-size: 0.95rem;
+                padding-left: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 고정 컨트롤 패널 -->
+    <div class="control-panel">
+        <button class="control-btn" id="themeToggle" title="다크/라이트 모드 전환">🌙</button>
+        <div class="book-dropdown">
+            <button class="control-btn" id="bookToggle" title="책 선택">📚</button>
+            <div class="book-menu" id="bookMenu">
+                <div class="book-menu-item active" data-book="binder">성과를 지배하는 바인더의 힘</div>
+                <div class="book-menu-item" data-book="pensees">스무 살의 팡세</div>
+                <div class="book-menu-item" data-book="action">행동하지 않으면 인생은 바뀌지 않는다</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <h1>성과를 지배하는 바인더의 힘</h1>
+            <p>성과에는 직접적인 성과, 가치 창조와 가치 재확인, 인재 육성 등이 있다</p>
+        </header>
+
+        <!-- 탭 네비게이션 -->
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="execution">실행</button>
+            <button class="tab-btn" data-tab="time">시간관리</button>
+            <button class="tab-btn" data-tab="goal">목표관리</button>
+            <button class="tab-btn" data-tab="idea">기록과 아이디어</button>
+            <button class="tab-btn" data-tab="reading">독서</button>
+            <button class="tab-btn" data-tab="self">자기관리</button>
+            <button class="tab-btn" data-tab="standard">표준과 조직</button>
+        </nav>
+
+        <!-- 콘텐츠 영역 -->
+        <main class="content-area">
+            <!-- 실행 -->
+            <div id="execution" class="section-content theme-execution active">
+                <div class="section-header">
+                    <h2 class="section-title">실행</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "자기 자신과 경쟁하라"
+                </blockquote>
+                <ul class="content-list">
+                    <li>습관의 고리(신호-반복행동-보상)를 만들어라.</li>
+                    <li>사전 준비와 프로세스 집중력이 강한 사람이 일처리를 잘한다.</li>
+                    <li>성공하는 사람들은 하루에 18시간을 일에 몰입한다.</li>
+                    <li>사람은 가르칠 때 성장한다.</li>
+                    <li>아는데도 실천하지 못하는 이유는 정보의 과부하, 부정적 필터링, 의지의 부족이다.</li>
+                </ul>
+            </div>
+
+            <!-- 시간관리 -->
+            <div id="time" class="section-content theme-time">
+                <div class="section-header">
+                    <h2 class="section-title">시간관리</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "작심삼일이라면, 삼일마다 목표를 세워라"
+                </blockquote>
+                <ul class="content-list">
+                    <li>걸릴 시간을 예측해야 한다. 데이터가 쌓일수록 정교해진다.</li>
+                    <li>타인이 부여한 데드라인을 자기 주도 데드라인으로 관리해야 한다.</li>
+                    <li>중요한 일과 급한 일을 구별하여 우선순위를 결정해야 한다.</li>
+                    <li>아침 일과를 정하라.</li>
+                </ul>
+            </div>
+
+            <!-- 목표관리 -->
+            <div id="goal" class="section-content theme-goal">
+                <div class="section-header">
+                    <h2 class="section-title">목표관리</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "삶의 방향과 목적지가 없으면 시간과 에너지가 낭비된다"
+                </blockquote>
+                <ul class="content-list">
+                    <li>목표는 구체적이고, 달성도 측정이 가능하며, 실현 가능하고, 결과 지향적이며, 마감일이 있어야 한다.</li>
+                    <li>꿈 리스트를 작성하라. 실현 가능성은 고려하지 않고 구체적으로 작성하고 타인과 공유하라.</li>
+                    <li>목표를 단기, 중기, 장기 목표로 설정하라. (연간, 월간, 주간 등)</li>
+                    <li>과거를 평가하고 미래 목표를 수정해야 한다. (피드백)</li>
+                    <li>프로세스를 단순하게 변화시킬 줄 알아야 한다.</li>
+                </ul>
+            </div>
+
+            <!-- 기록과 아이디어 -->
+            <div id="idea" class="section-content theme-idea">
+                <div class="section-header">
+                    <h2 class="section-title">기록과 아이디어</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "잊기 위해 기록하라. 머리는 항상 창의적으로"
+                </blockquote>
+                <ul class="content-list">
+                    <li>기록은 중요한 기술이자, 노하우이자, 지적 재산이다.</li>
+                    <li>참신한 영감과 기막힌 아이디어는 때와 장소를 가리지 않고 불시에 떠오른다.</li>
+                    <li>나 자신에 대해 미리 준비하고 기록하라.</li>
+                    <li>모방+모방은 응용이고, 모방+모방+모방은 창조이다.</li>
+                </ul>
+            </div>
+
+            <!-- 독서 -->
+            <div id="reading" class="section-content theme-reading">
+                <div class="section-header">
+                    <h2 class="section-title">독서</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "적용하지 않는 책 읽기는 시간 낭비이다"
+                </blockquote>
+                <ul class="content-list">
+                    <li>독서의 장점은 삶의 의미와 목적, 성공의 노하우, 정직하게 승리하는 법, 학습 성장법, 인생의 가치관 설정, 풍부한 정서, 다양한 지식과 노하우, 동기부여, 내면의 친구, 탁월한 아이디어, 나의 개선점, 생활 태도, 사고방식이다.</li>
+                    <li>본 것, 깨달은 것, 적용할 것을 독서 바인더에 작성하여 내 삶에 적용하라.</li>
+                    <li>거실과 사무실을 서재로 하고 책은 늘 휴대하며, 줄 치고 메모하며 읽어라.</li>
+                    <li>편중되지 않은 10~50권의 독서를 통해 다양한 주장과 시각을 가져야 한다.</li>
+                </ul>
+            </div>
+
+            <!-- 자기관리 -->
+            <div id="self" class="section-content theme-self">
+                <div class="section-header">
+                    <h2 class="section-title">자기관리</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "정직하고 성실하고 열정적인 태도를 가져라"
+                </blockquote>
+                <ul class="content-list">
+                    <li>경영 마인드를 가진 융합형 인재가 되라.</li>
+                    <li>가장 어렵고 모두가 반대하고 아무도 가지 않는 황무지의 길을 걸어라. 남들이 기피하는 길은 나만의 무기가 된다.</li>
+                    <li>스스로 일어설 줄 알아야 한다.</li>
+                    <li>돈의 3~10%는 나를 위한 자기계발에 사용하라.</li>
+                    <li>전문가는 계속 공부해야 하며 겸손해야 한다.</li>
+                    <li>단 한 명은 250명에게 영향을 끼친다. 누구에게나 최선을 다하고 섬겨야 한다.</li>
+                </ul>
+            </div>
+
+            <!-- 표준과 조직 -->
+            <div id="standard" class="section-content theme-standard">
+                <div class="section-header">
+                    <h2 class="section-title">표준과 조직</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "모든 직업은 소명이고 천직이니 항상 최선과 정성을 다해야 한다"
+                </blockquote>
+                <ul class="content-list">
+                    <li>문서화된 절차와 매뉴얼이 중요하다.</li>
+                    <li>표준은 중요하지만, 개선과 진화가 필요하다.</li>
+                    <li>체계가 없거나 시스템이 부족하면 본인이 표준을 직접 만들면 된다.</li>
+                    <li>내가 누구인지, 취업시장에서 원하는 모습과 어떤 일이 나에게 가장 일치하는지 알아야 한다.</li>
+                    <li>들어갈 조직을 사랑하라.</li>
+                    <li>업무관리를 탁월하게 해야 하는 이유는 개인의 재능이 발견되고, 계발되며, 실현되는 곳이 직장이기 때문이다.</li>
+                    <li>일과 더불어 맡겨진 업무에 대해 공부해야 한다.</li>
+                    <li>전문가는 문제 해결력이 있고, 가격이 적당해야 하며, 부작용이 없고, 전문분야 외에도 다식하며, 일의 패턴을 숙지해야 한다.</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <!-- 스무 살의 팡세 -->
+    <div class="container" id="pensees-container" style="display: none;">
+        <header class="header">
+            <h1>스무 살의 팡세</h1>
+            <p>Pensées at Twenty</p>
+        </header>
+
+        <nav class="tab-nav" id="pensees-nav">
+            <button class="tab-btn active" data-tab="p-human">인간</button>
+            <button class="tab-btn" data-tab="p-suffering">고난과 성장</button>
+            <button class="tab-btn" data-tab="p-faith">신앙과 이성</button>
+            <button class="tab-btn" data-tab="p-bible">성경</button>
+            <button class="tab-btn" data-tab="p-salvation">믿음과 구원</button>
+            <button class="tab-btn" data-tab="p-love">사랑과 용서</button>
+            <button class="tab-btn" data-tab="p-relationship">대인관계</button>
+            <button class="tab-btn" data-tab="p-disciple">제자도</button>
+            <button class="tab-btn" data-tab="p-wealth">재물</button>
+            <button class="tab-btn" data-tab="p-sabbath">안식일</button>
+            <button class="tab-btn" data-tab="p-church">교회</button>
+        </nav>
+
+        <main class="content-area">
+            <!-- 인간 -->
+            <div id="p-human" class="section-content theme-human active">
+                <div class="section-header">
+                    <h2 class="section-title">인간</h2>
+                </div>
+                <ul class="content-list">
+                    <li>인간은 우주의 점이다. 다만 도덕법칙은 동물성으로부터 나아가 한계 없이 가치가 올라간다.</li>
+                    <li>인간은 합리적인 것 같으면서도 감정적인 존재이다. 하나님이 중심이 되는 세계관을 위한 선제적 믿음이 필요하다. → 재림의 약속.</li>
+                    <li>기독교는 인간 본성을 있는 그대로 본다. 이를 통해 우리는 인간이 무엇이 잘못되었는지 탐구하고 해결책을 강구할 수 있다.</li>
+                    <li>입에서 나오는 것들은 마음에서 나오나니 이것이야말로 사람을 더럽게 하느니라.</li>
+                </ul>
+            </div>
+
+            <!-- 고난과 성장 -->
+            <div id="p-suffering" class="section-content theme-suffering">
+                <div class="section-header">
+                    <h2 class="section-title">고난과 성장</h2>
+                </div>
+                <ul class="content-list">
+                    <li>시험을 통해 인내심 성장, 완전하고 성숙한 사람으로 성장한다.</li>
+                    <li>하나님은 악을 허용하고 통제하고 계신다. 왜냐하면 인간을 구원하기 위해 악을 사용하시기 때문이다. (인간을 사랑하심)</li>
+                    <li>인간이 당하는 고통을 내버려두지 않으시고, 우리가 감당할 수 있을 시험만 허락하신다. → 시험을 이길 능력과 피할 길도 주신다.</li>
+                    <li>성경에는 종말론적 회복의 소망이 약속되어 있다.</li>
+                    <li>'프로이트' 도착적 쾌락 → 우울증(죽음 충동) → 신의 개입이 없다면 이 상황의 구원은 없다. (허무주의)</li>
+                </ul>
+            </div>
+
+            <!-- 신앙과 이성 -->
+            <div id="p-faith" class="section-content theme-faith">
+                <div class="section-header">
+                    <h2 class="section-title">신앙과 이성</h2>
+                </div>
+                <ul class="content-list">
+                    <li>과학과 신앙은 분야와 목적이 다른 것이기에, 서로 존중해서 봐야 한다.</li>
+                    <li>신의 존재를 이성적으로 증명할 수는 없지만 인간다운 삶을 위해선 신의 현존이 필요하다.</li>
+                    <li>'합리성의 비합리성': 인간이 기계적 합리성에 매몰되어 인간이 배제됨 → 예의성, 유연성, 포용성, 창의성이 소멸된다. → 과학기술이 막을 수 없는 종말.</li>
+                    <li>과학은 삶의 의미를 묻는 물음에는 답을 줄 수 없으며, 요구할 필요도 없다. 과학은 잘못 없다. 다만 삶의 이상화에 대한 비판적 시각이 필요하다.</li>
+                </ul>
+            </div>
+
+            <!-- 성경 -->
+            <div id="p-bible" class="section-content theme-bible">
+                <div class="section-header">
+                    <h2 class="section-title">성경</h2>
+                </div>
+                <ul class="content-list">
+                    <li>성경의 다양한 증거들은, 그들을 통해 성경을 기록하게 하신 하나님이 계셨다는 것을 증명한다.</li>
+                    <li>성경은 인간의 지성만으로 해석하지 말 것. 독자는 읽을 때 겸손해야 하고 하나님의 명에 감동하심을 받아야 한다.</li>
+                    <li>오직 성경, 그리스도를 받아들이고, 믿음으로 구원받는다.</li>
+                </ul>
+            </div>
+
+            <!-- 믿음과 구원 -->
+            <div id="p-salvation" class="section-content theme-salvation">
+                <div class="section-header">
+                    <h2 class="section-title">믿음과 구원</h2>
+                </div>
+                <ul class="content-list">
+                    <li>인간이 구원을 위해 할 수 있는 유일한 선택은 '믿음'이다.</li>
+                    <li>하늘에 세계를 다스리는 왕이 계신다는 사실을 인정하는 것이 기독교 신앙이다.</li>
+                    <li>(하나님의 나라는 너희 안에 있느니라.) = 하나님의 통치가 인간의 마음속에서 일어나는 것임을 제시</li>
+                    <li>행함이 없는 믿음은 죽은 것이다. 진정한 믿음은 신실한 행동을 수반한다. (율법폐기론 X)</li>
+                    <li>내 삶, 행동이 구원을 결정한다고 생각하면 안 된다. (율법주의 X) 순종은 조건이 아니라 하나님의 통치를 드러내는 증표용 열매.</li>
+                </ul>
+            </div>
+
+            <!-- 사랑과 용서 -->
+            <div id="p-love" class="section-content theme-love">
+                <div class="section-header">
+                    <h2 class="section-title">사랑과 용서</h2>
+                </div>
+                <ul class="content-list">
+                    <li>'너희의 원수를 사랑하라' 그러면 너희가 아버지의 아들이 된 것이다.</li>
+                    <li>톨스토이의 사회 질서는 '악의 처벌'이 아닌 '사랑과 연민'으로 이루어진다.</li>
+                    <li>사랑은 서두르면 안 된다. 사랑의 특징은 오래 참음이다.</li>
+                    <li>서로 용서하라: 용서할 때 하나님의 통치가 우리 안에 세워진다.</li>
+                </ul>
+            </div>
+
+            <!-- 대인관계 -->
+            <div id="p-relationship" class="section-content theme-relationship">
+                <div class="section-header">
+                    <h2 class="section-title">대인관계</h2>
+                </div>
+                <ul class="content-list">
+                    <li>그리스도의 삶이 하나님과의 관계로 끝나지 않고, 사람들과의 올바른 관계를 반드시 수반해야 한다.</li>
+                    <li>오는 사람들에게 적절하고도 올바른 존경의 마음을 나타낼 수 있어야 한다. (예의) 또한 다른 사람들에게 신앙으로 억압하거나 강요하지 않는다.</li>
+                    <li>우리는 음식 문제를 한 사람의 도덕적인 혹은 본질적인 문제인 양 과도하게 비판하지 않도록 주의할 필요가 있다. (서로의 자유 존중)</li>
+                    <li>다만, 여러 가지 이유로 채식을 추천한다.</li>
+                </ul>
+            </div>
+
+            <!-- 제자도 -->
+            <div id="p-disciple" class="section-content theme-disciple">
+                <div class="section-header">
+                    <h2 class="section-title">제자도</h2>
+                </div>
+                <ul class="content-list">
+                    <li>그리스도가 이 땅에서 하던 것은 자비의 정치학이다. 함께 화내고 아파하는 것, 세상을 향해 화해의 마음을 가지고 사는 것.</li>
+                    <li>그리스도 제자 덕목: 세속적 가치 불순응, 예수를 닮음, 인격적 성숙, 창조세계를 돌봄, 세상과 신앙의 균형, 서로 의존과 돌봄, 단순한 삶, 죽음을 통한 생명</li>
+                    <li>'그린리프' 리더십은 본질적으로 종이라고 여기는 사람에게 주어졌다.</li>
+                </ul>
+            </div>
+
+            <!-- 재물 -->
+            <div id="p-wealth" class="section-content theme-wealth">
+                <div class="section-header">
+                    <h2 class="section-title">재물</h2>
+                </div>
+                <ul class="content-list">
+                    <li>돈은 악한 것도 선한 것도 아니다. 다만 우리는 돈을 사용해야지 섬겨서는 안 된다.</li>
+                    <li>내 재능은 하나님이 나에게 주신 사명이기에 궁핍한 자들과 나눌 것. (우리가 모으는 것은 소유가 아닌 점유하는 것이다.)</li>
+                    <li>돈은 목표가 아닌 도구이다. 일확천금 X, 배우기 위해 일하라. 경쟁보단 창조의 길을 걸어라. 말씀에 충실하라.</li>
+                    <li>부자여도 인간의 존엄함을 보호하고 부끄러움을 느끼지 않게 하고, (사치를 부리지 않음) 가난한 자에게 다시 일어설 기회를 주어야 한다.</li>
+                </ul>
+            </div>
+
+            <!-- 안식일 -->
+            <div id="p-sabbath" class="section-content theme-sabbath">
+                <div class="section-header">
+                    <h2 class="section-title">안식일</h2>
+                </div>
+                <ul class="content-list">
+                    <li>안식일은 즐거움으로 하나님과 특별한 교제를 나누는 날이다. 안식일은 사람을 위하여 있는 것이다.</li>
+                    <li>안식일의 참 정신은 무언가를 하지 못하는 날이 아닌 선을 행하는 날이다.</li>
+                </ul>
+            </div>
+
+            <!-- 교회 -->
+            <div id="p-church" class="section-content theme-church">
+                <div class="section-header">
+                    <h2 class="section-title">교회</h2>
+                </div>
+                <ul class="content-list">
+                    <li>교회는 건물이 아니고 믿는 사람들의 모임이다. 교회는 사랑의 공동체이다.</li>
+                    <li>교회가 하는 일이란 바로 예수께서 이루신 구원을 가르치며 전파하는 일이다.</li>
+                    <li>교회의 유일한 목적은 온 세상에 복음을 전하여 사람을 구원하는 데에 있다.</li>
+                    <li>그리스도의 삶은 나만의 것이 아니다. '전도의 의무' 모든 그리스도인은 지역교회에 들어가 예배와 교제와 증거를 함께 해야 한다.</li>
+                    <li>교회는 공동체에 대하여 행복과 평안을 주는 유익한 공동체가 되어야 하며, 개인의 가치와 개성을 존중하면서도 지역사회에 배려를 실천해야 한다.</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <!-- 행동하지 않으면 인생은 바뀌지 않는다 -->
+    <div class="container" id="action-container" style="display: none;">
+        <header class="header">
+            <h1>행동하지 않으면 인생은 바뀌지 않는다</h1>
+            <p>매일 나아가고 있다는 감각을 섬세하게 느껴라. 더 크게 상상하고 나아가라.</p>
+        </header>
+
+        <nav class="tab-nav" id="action-nav">
+            <button class="tab-btn active" data-tab="a-know">나를 알라</button>
+            <button class="tab-btn" data-tab="a-think">생각을 바꿔라</button>
+            <button class="tab-btn" data-tab="a-goal">목표를 세워라</button>
+            <button class="tab-btn" data-tab="a-act">행동하라</button>
+            <button class="tab-btn" data-tab="a-improve">개선하라</button>
+            <button class="tab-btn" data-tab="a-together">함께 성장하라</button>
+        </nav>
+
+        <main class="content-area">
+            <!-- 나를 알라 -->
+            <div id="a-know" class="section-content theme-execution active">
+                <div class="section-header">
+                    <h2 class="section-title">나를 알라</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "우리는 백 번을 살아도 다 쓰지 못한 잠재력을 지니고 태어났다"
+                </blockquote>
+                <ul class="content-list">
+                    <li>성공에 필요한 모든 지식과 기술은 후천적으로 배울 수 있다. 성공은 개인의 행동에 좌우된다.</li>
+                    <li>잠재력은 자기 자신에 대해 어떻게 생각하고 느끼고 바라보는지가 무엇보다 중요하다.</li>
+                    <li>자기 자신에 대한 긍정적인 인식과 잠재력에 대한 열린 마음을 지녀라. 생각하기 나름이다.</li>
+                    <li>세상을 바라보는 관점이 인생의 방향을 결정한다.</li>
+                    <li>동기부여를 위해 스스로에게 물어라. 나는 왜 이 일을 하는가? 나의 가치관과 삶의 목표는 무엇인가?</li>
+                    <li>궁극적으로 성공은 물질적인 보상보다 내면의 기쁨이 결정한다. 자존감이 중요하다. 나는 나를 좋아한다.</li>
+                </ul>
+            </div>
+
+            <!-- 생각을 바꿔라 -->
+            <div id="a-think" class="section-content theme-goal">
+                <div class="section-header">
+                    <h2 class="section-title">생각을 바꿔라</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "한 사람의 사고방식에 가장 큰 걸림돌은 자기 제한적 믿음이다"
+                </blockquote>
+                <ul class="content-list">
+                    <li>모든 믿음은 학습으로 인해 형성된다. 그 믿음은 생각하고 느끼고 행동하는 모든 방식을 결정한다.</li>
+                    <li>사실이 아닌 잘못된 믿음에서 벗어나라.</li>
+                    <li>어떤 자질을 원한다면 이미 그것을 지니고 있는 것처럼 행동하라. 행동이 감정을 만든다.</li>
+                    <li>확신에 찬 믿음은 언제나 현실이 된다. 이것이 자기 충족적 예언이다.</li>
+                    <li>성공하고 싶으면 태도를 바꿔야 한다. 긍정적으로 생각하라.</li>
+                    <li>마음으로 상상하고 얻을 수 있는 것이라면 무엇이든 성취할 수 있다는 사실을 기억하라.</li>
+                    <li>긍정의 힘은 나에 대한 통제권을 쥐게 되고 자존감과 자신감이 높아지는 것이다.</li>
+                    <li>도전하지 못하는 이유는 편안함을 느껴 현재에 안주하게 되는 '적당히'라는 함정 때문이다.</li>
+                    <li>통제할 수 없는 일이라면 절대 걱정하지 말라. 통제할 수 있는 일과 없는 일을 구분할 줄 알아야 한다.</li>
+                    <li>자신의 책임을 인정하는 행동은 감정 관리에 도움이 된다. 받아들이고 할 수 있는 한 최선을 다하라.</li>
+                </ul>
+            </div>
+
+            <!-- 목표를 세워라 -->
+            <div id="a-goal" class="section-content theme-time">
+                <div class="section-header">
+                    <h2 class="section-title">목표를 세워라</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "현재에 만족하지 않고 새로이 큰 목표를 세워라. 또한 할 수 없다는 생각 자체를 하지 말라"
+                </blockquote>
+                <ul class="content-list">
+                    <li>학습된 무기력에서 벗어나라. 소원에는 목표와 달리 에너지가 없다.</li>
+                    <li>구체적인 목표는 방향감과 명확성을 제공한다.</li>
+                    <li>구체적으로 생각하고, 기록하고, 기한을 지정하고, 목록을 작성하고, 체크리스트를 만들고, 행동하고, 지속하라.</li>
+                    <li>3P 기법을 활용하라. 개인적인 목표, 긍정적 어조, 현재 시제로 작성하라. 예를 들어 나는 0000년에 000목표를 해낸다.</li>
+                    <li>완벽할 때도 목표를 계속해서 재설정해야 한다. 목표가 가장 강력한 동기를 부여한다.</li>
+                    <li>동기는 매일 새롭게 창조되어야만 한다. 모든 목표는 더 큰 목표로 이어져야 한다.</li>
+                    <li>장기적 관점은 성공에 반드시 필요하다. 지금 행동의 결과를 하나로 모으는 목표를 세워라.</li>
+                    <li>사람은 생각하는 대로 된다. 현실과 괴리감이 지나치게 크지 않은 작은 자아 이상부터 선행되어야 한다.</li>
+                    <li>타인의 말이나 눈앞의 결과에 휘둘리지 않고 목표를 달성한 것이라고 확신하라. 나를 믿어라.</li>
+                    <li>명확한 목표를 세우고, 계획을 설정하고, 실행하고, 계속 노력하면 성공한다.</li>
+                </ul>
+            </div>
+
+            <!-- 행동하라 -->
+            <div id="a-act" class="section-content theme-self">
+                <div class="section-header">
+                    <h2 class="section-title">행동하라</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "행동과 노력이 없는 목표는 의미가 없다"
+                </blockquote>
+                <ul class="content-list">
+                    <li>진짜 동기부여는 능력이 향상되었다고 느끼는 순간이다. 작은 일을 꾸준히 하라.</li>
+                    <li>목표를 달성하고 싶으면 우선 작은 단위로 나눠라. 가속도의 법칙을 활용하라.</li>
+                    <li>16번의 실패와 그 뒤의 성공이 있다. 실패들이 없었다면 성공을 거두기 힘들다.</li>
+                    <li>생각하고 말하라. 성급하지 않게 하라. 효율적으로 시간을 관리하라.</li>
+                    <li>독서하고, 기록하고, 하루를 계획하고, 중요한 것에 집중한 후 피드백하라.</li>
+                    <li>업무 수행에 따른 보상 체계인 자기 규율을 갖춰라. 매일의 업무 목표를 정하고 우선순위를 나열하고 일할 때는 온전히 집중하라.</li>
+                    <li>매일 오전에 90분씩 두 차례 집중하라. 단기적으로 성실하지 않으면 절대 멀리 볼 수도 없다.</li>
+                    <li>중요하고 긴급한 일을 빨리 끝내고, 중요하고 긴급하지 않은 일의 시간을 늘려라.</li>
+                    <li>일찍 자고 일찍 일어나라. 밤에는 휴대폰을 보지 않는다. 불필요한 정보 습득에 시간을 허비하지 않는다.</li>
+                    <li>할 일 목록을 글로 작성하라. 아침 운동을 하라. 명상 및 독서를 하라. 우선순위를 정하라. 매일 목표를 작성하라. 한 번에 한 가지 일에만 집중하라.</li>
+                    <li>나 자신에게 일주일 10시간을 투자하라(자기계발). 일어나서 휴대폰을 보지 않는다. 도파민 중독에서 벗어나라. 사용 시간을 정하라.</li>
+                    <li>건강한 식습관을 유지하라. 설탕, 소금, 밀가루를 줄여라. 특히 아침은 깨끗하게 먹어라.</li>
+                </ul>
+            </div>
+
+            <!-- 개선하라 -->
+            <div id="a-improve" class="section-content theme-idea">
+                <div class="section-header">
+                    <h2 class="section-title">개선하라</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "너무 소심하고 까다롭게 자신의 행동을 고민하지 말라. 모든 인생은 실험이다"
+                </blockquote>
+                <ul class="content-list">
+                    <li>행동하면서 피드백을 수용하라. 고집스러운 자존심과 학습된 무기력, 현실 안주에서 벗어나야 한다.</li>
+                    <li>오늘보다 더 나은 방식이 있는가를 항상 물어라. 무한히 피드백하고 수용하라.</li>
+                    <li>바꿀 수 없는 것에 불평하기보다는 바꿀 수 있는 것에 집중하라.</li>
+                    <li>긍정적인 교훈이나 피드백을 얻으려 노력하다 보면 결국 긍정적인 사람이 된다.</li>
+                    <li>어떤 좌절이나 어려움 속에서도 적어도 하나의 교훈을 찾을 수 있다. 실수는 기회이자 선물이다.</li>
+                    <li>이중평면 학습은 공부와 동시에 그 내용을 누군가에게 가르친다고 생각해보는 학습법이다.</li>
+                    <li>바꿀 수 없는 과거는 잊고 미래를 생각하라. 과거에서 배울 점만 얻고 나머지는 보내주면 된다.</li>
+                    <li>우리가 타인에게 베풀 수 있는 가장 멋진 선물은 긍정적인 말이다.</li>
+                    <li>이상화는 완벽한 모습을 생각하는 것이고, 시각화는 명확성, 실감성, 강도, 지속시간, 반복을 의미하고, 언어화는 긍정 확인이다. 이를 통해 실행하라.</li>
+                    <li>어떤 문제가 생길지 미리 예측해 대비하면, 문제 발생 시 즉시 해결할 수 있다. 넘어져도 절망하지 않게 된다.</li>
+                    <li>모든 일은 생각한 것보다 더 많은 비용과 시간을 요구한다. 처음엔 모든 것이 완벽하게 굴러가지 않는다.</li>
+                    <li>잠재 고객에게 서비스의 첫 버전을 제시하고 피드백을 수용하라. 이를 반복하라.</li>
+                    <li>위기 시에는 먼저 침착한 태도를 취하라. 사실을 파악하고 책임을 인정하라. 파산 시에는 인간관계 유지에 노력하라.</li>
+                    <li>위기 예측법은 3%만 되어도 미리 생각하고 계획하는 것이다. 준비된 사람이 되라. 대비책이 있다면 극복할 수 없는 실패는 없다.</li>
+                    <li>유연성을 갖춰라. 내게 중요한 가치의 우선순위를 설정하고, 계속 학습하고, 밤 9시부터 아침 6시까지 취침하고, 30분 명상하고, 잘못된 일은 단순화하라.</li>
+                </ul>
+            </div>
+
+            <!-- 함께 성장하라 -->
+            <div id="a-together" class="section-content theme-standard">
+                <div class="section-header">
+                    <h2 class="section-title">함께 성장하라</h2>
+                </div>
+                <blockquote class="section-quote">
+                    "사람이 느끼는 기쁨의 80%는 사람과의 관계에서 온다"
+                </blockquote>
+                <ul class="content-list">
+                    <li>뛰어난 리더는 직원에게 적절한 동기를 부여해 성장을 돕고 승리하게 한다.</li>
+                    <li>그 순간에 충실하라. 내 성과를 늘어놓기보다 상대방에게 질문하라. 더 많은 시간을 투자해 서로 속마음을 터놓아라. 건강한 관계를 유지하라.</li>
+                    <li>가정에서 텔레비전을 보지 않는다. 가족의 소중함을 기억하라. 익숙한 관계일수록 더 귀하게 여겨라. 미소 짓고, 감사와 사랑, 소중함을 표현하라. 관계를 소중히 하라.</li>
+                    <li>성공한 기업의 직원들은 직위 상관없이 모두 명확한 목표를 지니고 있었다.</li>
+                    <li>기업의 리더는 전 직원이 박수받고 응원받을 수 있는 체계를 만드는 사람이다. 성과는 언급하고 칭찬하라.</li>
+                    <li>핵심 가치를 공유한 기업이 양질의 기업이다. 진정성 있고 모든 구성원이 동의한 것이어야 한다.</li>
+                    <li>목표가 정해져야 하고 서로가 무슨 일을 하는지 알게 하라. 지속적이고 공평한 피드백을 반영하고 보상하라.</li>
+                    <li>리더는 먼저 행동하며 모두에게 묻고 확인하고 조정해야 한다. 팀원에게 일의 중요도와 순서를 가르쳐 주라.</li>
+                    <li>리더는 명확한 기준을 제시해야 한다. 충분한 리소스가 제공되었는지 확인하고 조정하라. 돌아다니며 격려하라.</li>
+                    <li>명확한 목표를 제시하고, 배려하고(직원이 아닌 인간으로서 대하라), 친절하라.</li>
+                    <li>책임을 지고 동기부여하라. 좋은 사람과 사람을 연결시켜라. 구성원을 신뢰하고, 서로 신뢰하게 조율하라.</li>
+                    <li>믿음을 바탕으로 아이디어를 두려움 없이 내놓는, 공유를 잘하는 리더가 되어야 한다.</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <!-- ALL 통합 뷰 삭제됨 - 추후 해시태그 기반 시스템으로 대체 예정 -->
+
+    <script>
+        // 컨테이너 참조
+        const binderContainer = document.querySelector('.container:not(#pensees-container):not(#action-container)');
+        const penseesContainer = document.getElementById('pensees-container');
+        const actionContainer = document.getElementById('action-container');
+        let currentBook = 'binder';
+
+        // 탭 전환 함수
+        function setupTabs(navSelector, containerSelector) {
+            const container = document.querySelector(containerSelector) || document;
+            const nav = document.querySelector(navSelector);
+            if (!nav) return;
+            
+            const tabBtns = nav.querySelectorAll('.tab-btn');
+            const sections = container.querySelectorAll('.section-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.dataset.tab;
+                    
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === tabId) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+        }
+
+        // 바인더 탭 설정
+        setupTabs('.tab-nav:not(#pensees-nav):not(#action-nav)', '.container:not(#pensees-container):not(#action-container)');
+        // 팡세 탭 설정
+        setupTabs('#pensees-nav', '#pensees-container');
+        // 행동 탭 설정
+        setupTabs('#action-nav', '#action-container');
+
+        // 다크모드 토글
+        const themeToggle = document.getElementById('themeToggle');
+        const savedTheme = localStorage.getItem('theme');
+        
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // 책 메뉴 토글
+        const bookToggle = document.getElementById('bookToggle');
+        const bookMenu = document.getElementById('bookMenu');
+        const bookMenuItems = document.querySelectorAll('.book-menu-item');
+
+        bookToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            bookMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', () => {
+            bookMenu.classList.remove('show');
+        });
+
+        // 책 전환
+        bookMenuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const bookId = item.dataset.book;
+                if (bookId === currentBook) return;
+
+                currentBook = bookId;
+                bookMenuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                if (bookId === 'binder') {
+                    binderContainer.style.display = 'block';
+                    penseesContainer.style.display = 'none';
+                    actionContainer.style.display = 'none';
+                } else if (bookId === 'pensees') {
+                    binderContainer.style.display = 'none';
+                    penseesContainer.style.display = 'block';
+                    actionContainer.style.display = 'none';
+                } else if (bookId === 'action') {
+                    binderContainer.style.display = 'none';
+                    penseesContainer.style.display = 'none';
+                    actionContainer.style.display = 'block';
+                }
+
+                localStorage.setItem('currentBook', bookId);
+                bookMenu.classList.remove('show');
+            });
+        });
+
+        // 저장된 책 불러오기
+        const savedBook = localStorage.getItem('currentBook');
+        if (savedBook && savedBook !== currentBook) {
+            const targetItem = document.querySelector(`.book-menu-item[data-book="${savedBook}"]`);
+            if (targetItem) targetItem.click();
+        }
+    </script>
+</body>
+</html>
